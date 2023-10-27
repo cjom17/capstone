@@ -13,12 +13,20 @@ return new class extends Migration
     {
         Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
-            $table->morphs('tokenable');
-            $table->string('name');
-            $table->string('token', 64)->unique();
-            $table->text('abilities')->nullable();
-            $table->timestamp('last_used_at')->nullable();
-            $table->timestamp('expires_at')->nullable();
+            $table->string('name'); // Fullname
+            $table->string('position'); // Position
+            $table->enum('gender', ['male', 'female', 'others']); // Gender
+            $table->date('date_of_birth'); // Date of Birth
+            $table->string('address'); // Address
+            $table->string('phone_number'); // Phone Number
+            $table->enum('civil_status', ['single', 'married', 'widowed', 'divorced']); // Civil Status
+            $table->string('role'); // Role
+            $table->string('profile_picture')->nullable(); // Profile Picture (you can make this field nullable if you want to allow users to have no profile picture)
+            $table->string('username')->unique(); // Username
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

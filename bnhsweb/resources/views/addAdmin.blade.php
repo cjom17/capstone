@@ -3,12 +3,8 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
-
-	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
+	<title>Boljoon National High School</title>
+	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -51,7 +47,7 @@
 								</ol>
 							</nav>
 						</div>
-						<div class="col-md-6 col-sm-12 text-right">
+						<!-- <div class="col-md-6 col-sm-12 text-right">
 							<div class="dropdown">
 								<a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 									January 2018
@@ -62,7 +58,7 @@
 									<a class="dropdown-item" href="#">View Assets</a>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
@@ -72,141 +68,140 @@
 						<p class="mb-30">jQuery Step wizard</p>
 					</div>
 					<div class="wizard-content">
-						<form class="tab-wizard wizard-circle wizard">
+					<div class="mt-5">
+            @if($errors->any())
+                <div class="col-12">
+                    @foreach($errors->all() as $error)
+                        <div class="alert alert-danger">{{$error}}</div>
+
+                    @endforeach
+                </div>
+            @endif
+
+            @if(session()->has('error'))
+            <div class="alert alert-danger">{{session('error')}}</div>
+
+            @endif
+
+            @if(session()->has('success'))
+            <div class="alert alert-success">{{session('success')}}</div>
+
+            @endif
+        </div>
+		
+						<form action="{{route('add.admin')}}" method="POST" class="tab-wizard wizard-circle wizard">
+						@csrf
 							<h5>Personal Info</h5>
 							<section>
+							<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Profile Picture:</label>
+											<label for="image">Choose an image:</label>
+											<input type="file" name="profile_picture" id="profile_picture" accept="image/*">
+											<input type="submit" value="Upload Image">
+										</div>
+									</div>
+									
+							</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label >First Name :</label>
-											<input type="text" class="form-control">
+											<label >Full Name :</label>
+											<input type="text" name="name" id="name" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label >Last Name :</label>
-											<input type="text" class="form-control">
+											<label >Position :</label>
+											<input type="text" name="position" id="position" class="form-control">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Email Address :</label>
-											<input type="email" class="form-control">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Phone Number :</label>
-											<input type="text" class="form-control">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Select City :</label>
-											<select class="custom-select form-control">
-												<option value="">Select City</option>
-												<option value="Amsterdam">India</option>
-												<option value="Berlin">UK</option>
-												<option value="Frankfurt">US</option>
+											<label>Gender :</label>
+											<select class="custom-select form-control" name="gender" id="gender">
+												<option value="">Male</option>
+												<option value="Amsterdam">Female</option>
+												<option value="Berlin">Others</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label >Date of Birth :</label>
-											<input type="text" class="form-control date-picker" placeholder="Select Date">
+											<input type="text" class="form-control date-picker" placeholder="Select Date" name="date_of_birth" id="date_of_birth">
 										</div>
 									</div>
 								</div>
-							</section>
-							<!-- Step 2 -->
-							<h5>Job Status</h5>
-							<section>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Job Title :</label>
-											<input type="text" class="form-control">
+											<label>Address :</label>
+											<input type="email" class="form-control" name="address" id="address">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Company Name :</label>
-											<input type="text" class="form-control">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<label>Job Description :</label>
-											<textarea class="form-control"></textarea>
+											<label>Phone Number :</label>
+											<input type="text" class="form-control" name="phone_number" id="phone_number">
 										</div>
 									</div>
 								</div>
-							</section>
-							<!-- Step 3 -->
-							<h5>Interview</h5>
-							<section>
+								
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Interview For :</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Interview Type :</label>
-											<select class="form-control">
-												<option>Normal</option>
-												<option>Difficult</option>
-												<option>Hard</option>
+											<label>Civil Status :</label>
+											<select class="custom-select form-control" name="civil_status" id="civil_status">
+												<option value="">Single</option>
+												<option value="Amsterdam">Married</option>
+												<option value="Berlin">Divorced</option>
+												<option value="Berlin">Widowed</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Interview Date :</label>
-											<input type="text" class="form-control date-picker" placeholder="Select Date">
-										</div>
-										<div class="form-group">
-											<label>Interview Time :</label>
-											<input class="form-control time-picker" placeholder="Select time" type="text">
+											<label >Role:</label>
+											<input type="text" class="form-control" placeholder="Admin" disabled name="role" id="role">
 										</div>
 									</div>
 								</div>
-							</section>
-							<!-- Step 4 -->
-							<h5>Remark</h5>
-							<section>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Behaviour :</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Confidance</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Result</label>
-											<select class="form-control">
-												<option>Select Result</option>
-												<option>Selected</option>
-												<option>Rejected</option>
-											</select>
+											<label >Username :</label>
+											<input type="text" class="form-control" name="username" id="username">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Comments</label>
-											<textarea class="form-control"></textarea>
+											<label >Email Adress :</label>
+											<input type="email" class="form-control" name="email" id="email">
 										</div>
 									</div>
-								</div>
+							</div>
+
+							<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label >Password :</label>
+											<input type="password" class="form-control" name="password" id="password">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label >Confirm Password :</label>
+											<input type="password" name="confirm_password" id="confirm_password" class="form-control">
+										</div>
+									</div>
+							</div>
 							</section>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						
 						</form>
 					</div>
 				</div>
