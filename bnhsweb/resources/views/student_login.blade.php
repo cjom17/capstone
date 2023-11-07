@@ -55,7 +55,7 @@
 		              <input type="password" class="form-control" placeholder="Password" required>
 		            </div>
 		            <div class="form-group">
-		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3"><a href="/student_landing">Sign In</a></button>
 		            </div>
 		            <!-- <div class="form-group d-md-flex">
 		            	<div class="w-50 text-left">

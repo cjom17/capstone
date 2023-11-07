@@ -71,13 +71,13 @@
 
                      <ul class="dropdown__menu">
                         <li>
-                           <a href="#" class="dropdown__link">
+                           <a href="/admission#forForms" class="dropdown__link">
                            <i class="ri-file-download-fill"></i>DOWNLOADABLE FORMS
                            </a>                          
                         </li>
 
                         <li>
-                           <a href="#" class="dropdown__link">
+                           <a href="/admission#requirements " class="dropdown__link">
                               <i class="ri-arrow-up-down-line"></i> ENROLL NOW
                            </a>
                         </li>

@@ -1,0 +1,350 @@
+/*!
+ * Bootstrap v4.3.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 The Bootstrap Authors
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+ :root {
+    --blue: #007bff;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+  
+  html {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  
+  article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block; }
+  
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    font-family: "Poppins",sans-serif;
+   }
+  
+  
+  
+ 
+  
+  
+  .mb-5,
+  .my-5 {
+    margin-bottom: 3rem !important; }
+  
+  .ml-5,
+  .mx-5 {
+    margin-left: 3rem !important; }
+  
+  
+  
+  .pl-3,
+  .px-3 {
+    padding-left: 1rem !important; }
+  
+  .p-4 {
+    padding: 1.5rem !important; }
+  
+  .pt-4,
+  .py-4 {
+    padding-top: 1.5rem !important; }
+  
+  .pr-4,
+  .px-4 {
+    padding-right: 1.5rem !important; }
+  
+   
+  .text-monospace {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important; }
+  
+  .text-justify {
+    text-align: justify !important; }
+  
+  .text-wrap {
+    white-space: normal !important; }
+  
+  .text-nowrap {
+    white-space: nowrap !important; }
+  
+  .text-truncate {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  
+  .text-left {
+    text-align: left !important; }
+  
+  .text-right {
+    text-align: right !important; }
+  
+  .text-center {
+    text-align: center !important; }
+  
+  @media (min-width: 576px) {
+    .text-sm-left {
+      text-align: left !important; }
+    .text-sm-right {
+      text-align: right !important; }
+    .text-sm-center {
+      text-align: center !important; } }
+  
+  @media (min-width: 768px) {
+    .text-md-left {
+      text-align: left !important; }
+    .text-md-right {
+      text-align: right !important; }
+    .text-md-center {
+      text-align: center !important; } }
+  
+  @media (min-width: 992px) {
+    .text-lg-left {
+      text-align: left !important; }
+    .text-lg-right {
+      text-align: right !important; }
+    .text-lg-center {
+      text-align: center !important; } }
+  
+  @media (min-width: 1200px) {
+    .text-xl-left {
+      text-align: left !important; }
+    .text-xl-right {
+      text-align: right !important; }
+    .text-xl-center {
+      text-align: center !important; } }
+  
+  
+  .text-decoration-none {
+    text-decoration: none !important; }
+  
+  
+  
+  @media print {
+    *,
+    *::before,
+    *::after {
+      text-shadow: none !important;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important; }
+    a:not(.btn) {
+      text-decoration: underline; }
+    abbr[title]::after {
+      content: " (" attr(title) ")"; }
+    pre {
+      white-space: pre-wrap !important; }
+    pre,
+    blockquote {
+      border: 1px solid #adb5bd;
+      page-break-inside: avoid; }
+    thead {
+      display: table-header-group; }
+    tr,
+    img {
+      page-break-inside: avoid; }
+    p,
+    h2,
+    h3 {
+      orphans: 3;
+      widows: 3; }
+    h2,
+  
+      .table td,
+      .table th {
+        background-color: #fff !important; }
+    .table-bordered th,
+    .table-bordered td {
+      border: 1px solid #dee2e6 !important; }
+    .table-dark {
+      color: inherit; }
+      .table-dark th,
+      .table-dark td,
+      .table-dark thead th,
+      .table-dark tbody + tbody {
+        border-color: #dee2e6; }
+    .table .thead-dark th {
+      color: inherit;
+      border-color: #dee2e6; } }
+  
+  body {
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    font-weight: normal;
+    background: #f8f9fd;
+    color: gray; }
+  
+  a {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+    color: #e3b04b; }
+    a:hover, a:focus {
+      text-decoration: none !important;
+      outline: none !important;
+      -webkit-box-shadow: none;
+      box-shadow: none; }
+  
+  h1, h2, h3, h4, h5,
+  .h1, .h2, .h3, .h4, .h5 {
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: "Lato", Arial, sans-serif;
+    color: #000; }
+  
+  .bg-primary {
+    background: #e3b04b !important; }
+  
+  .ftco-section {
+    padding: 7em 0; }
+  
+  .ftco-no-pt {
+    padding-top: 0; }
+  
+  .ftco-no-pb {
+    padding-bottom: 0; }
+  
+  .heading-section {
+    font-size: 28px;
+    color: #000; }
+  
+  .img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  
+  .wrap {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24); }
+  
+  .img, .login-wrap {
+    width: 50%; }
+    @media (max-width: 991.98px) {
+      .img, .login-wrap {
+        width: 100%; } }
+  
+  @media (max-width: 767.98px) {
+    .wrap .img {
+      height: 250px; } }
+  
+  .login-wrap {
+    position: relative;
+    background: #fff h3;
+  }
+  
+  .form-group {
+    position: relative; }
+    .form-group .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #000;
+      font-weight: 700; }
+    .form-group a {
+      color: gray; }
+  
+  .form-control {
+    height: 48px;
+    background: #fff;
+    color: #000;
+    font-size: 16px;
+    border-radius: 5px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.1); }
+    .form-control::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      color: rgba(0, 0, 0, 0.2) !important; }
+    .form-control::-moz-placeholder {
+      /* Firefox 19+ */
+      color: rgba(0, 0, 0, 0.2) !important; }
+    .form-control:-ms-input-placeholder {
+      /* IE 10+ */
+      color: rgba(0, 0, 0, 0.2) !important; }
+    .form-control:-moz-placeholder {
+      /* Firefox 18- */
+      color: rgba(0, 0, 0, 0.2) !important; }
+    .form-control:focus, .form-control:active {
+      outline: none !important;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      border: 1px solid #e3b04b; }
+  
+  
+  .btn {
+    cursor: pointer;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    font-size: 15px;
+    padding: 10px 20px; }
+    .btn:hover, .btn:active, .btn:focus {
+      outline: none; }
+    .btn.btn-primary {
+      background: #34ce57 !important;
+      /* border: 1px solid #e3b04b !important; */
+      color: #fff !important; }
+      .btn.btn-primary:hover {
+        border: 1px solid #e3b04b;
+        background: transparent;
+        color: #e3b04b; }
+      .btn.btn-primary.btn-outline-primary {
+        border: 1px solid #e3b04b;
+        background: transparent;
+        color: #e3b04b; }
+        .btn.btn-primary.btn-outline-primary:hover {
+          border: 1px solid transparent;
+          background: #e3b04b;
+          color: #fff; }
+  
+          @media screen and (max-width: 768px) {
+            #forFooter {
+              margin-top: 100vh;
+                height: auto; /* Adjust height as needed for smaller screens */
+            }
+        
+            .footer-container {
+                flex-direction: column; /* Stack elements vertically for smaller screens */
+                align-items: center;
+                text-align: center;
+                padding: 10px 0px;
+            }
+        
+            .footer-container img,
+            .footer-container h1 {
+                margin-bottom: 10px; /* Add spacing between elements for smaller screens */
+            }
+  
+            .mb-5{
+              display: flex;
+              flex-direction: column;
+            }
+        }
+  
+        @media screen and (min-width: 1200px)
+        {
+  
+          #forFooter {
+            margin-top: 50vh;
+              height: auto; /* Adjust height as needed for smaller screens */
+          }
+  
+        }
+  
+     
+  

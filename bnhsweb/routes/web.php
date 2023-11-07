@@ -86,6 +86,11 @@ Route::get('/addAdmin', function(){
     return view('addAdmin');
 
 });
+Route::get('/student_landing', function(){
+    return view('student_landing');
+
+});
+
 
 
 
