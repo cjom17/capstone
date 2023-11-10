@@ -45,17 +45,41 @@
 									</p>
 								</div> -->
 			      	</div>
-							<form action="#" class="signin-form">
+
+					  <div class="mt-5">
+						@if($errors->any())
+							<div class="col-12">
+								@foreach($errors->all() as $error)
+									<div class="alert alert-danger">{{$error}}</div>
+
+								@endforeach
+							</div>
+						@endif
+
+						@if(session()->has('error'))
+						<div class="alert alert-danger">{{session('error')}}</div>
+
+						@endif
+
+						@if(session()->has('success'))
+						<div class="alert alert-success">{{session('success')}}</div>
+
+						@endif
+					</div>
+
+
+					<form action="{{route('login.post')}}"  method="POST" class="signin-form">
+					@csrf
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="name">Email</label>
-			      			<input type="text" class="form-control" placeholder="Username" required>
+			      			<input type="text" name="email" id="email" class="form-control" placeholder="Username" required>
 			      		</div>
 		            <div class="form-group mb-3">
 		            	<label class="label" for="password">Password</label>
-		              <input type="password" class="form-control" placeholder="Password" required>
+		              <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
 		            </div>
 		            <div class="form-group">
-		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3"><a href="/adminDashboard">Sign In</a></button>
+		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
 		            </div>
 		            <!-- <div class="form-group d-md-flex">
 		            	<div class="w-50 text-left">

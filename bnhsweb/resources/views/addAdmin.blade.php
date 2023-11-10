@@ -89,7 +89,7 @@
             @endif
         </div>
 		
-						<form action="{{route('add.admin')}}" method="POST" class="tab-wizard wizard-circle wizard">
+						<form action="{{route('add.admin')}}" method="POST" class="tab-wizard wizard-circle wizard" enctype="multipart/form-data">
 						@csrf
 							<h5>Personal Info</h5>
 							<section>
@@ -99,7 +99,7 @@
 											<label>Profile Picture:</label>
 											<label for="image">Choose an image:</label>
 											<input type="file" name="profile_picture" id="profile_picture" accept="image/*">
-											<input type="submit" value="Upload Image">
+											<!-- <input type="submit" value="Upload Image"> -->
 										</div>
 									</div>
 									
@@ -123,16 +123,17 @@
 										<div class="form-group">
 											<label>Gender :</label>
 											<select class="custom-select form-control" name="gender" id="gender">
-												<option value="">Male</option>
-												<option value="Amsterdam">Female</option>
-												<option value="Berlin">Others</option>
+												<option value="" selected disabled>Select Gender</option>
+												<option value="male">Male</option>
+												<option value="female">Female</option>
+												<option value="others">Others</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label >Date of Birth :</label>
-											<input type="text" class="form-control date-picker" placeholder="Select Date" name="date_of_birth" id="date_of_birth">
+											<input type="date" class="form-control date-picker" placeholder="Select Date" name="date_of_birth" id="date_of_birth">
 										</div>
 									</div>
 								</div>
@@ -140,7 +141,7 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Address :</label>
-											<input type="email" class="form-control" name="address" id="address">
+											<input type="text" class="form-control" name="address" id="address">
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -156,10 +157,11 @@
 										<div class="form-group">
 											<label>Civil Status :</label>
 											<select class="custom-select form-control" name="civil_status" id="civil_status">
-												<option value="">Single</option>
-												<option value="Amsterdam">Married</option>
-												<option value="Berlin">Divorced</option>
-												<option value="Berlin">Widowed</option>
+											<option value="" selected disabled>Select Civil Status</option>
+											<option value="single">Single</option>
+											<option value="married">Married</option>
+											<option value="divorced">Divorced</option>
+											<option value="widowed">Widowed</option>
 											</select>
 										</div>
 									</div>
@@ -195,7 +197,7 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label >Confirm Password :</label>
-											<input type="password" name="confirm_password" id="confirm_password" class="form-control">
+											<input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
 										</div>
 									</div>
 							</div>

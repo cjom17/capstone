@@ -72,7 +72,7 @@ Route::get('/parentRegistration', function(){
 });
 
 Route::get('/adminDashboard', function(){
-    return view('adminDashboard');
+    return view('adminDashboard')->name('adminDashboard');
 
 });
 
@@ -95,7 +95,9 @@ Route::get('/student_landing', function(){
 
 
 // Login routes
-// Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/adminDashboard', [AuthController::class, 'showAdminDashboard'])->name('admin.dashboard');
+
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/adminLogin', [AuthController::class, 'loginPost'])->name('login.post');
 Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('AddAdmin.show');
 Route::post('/addAdmin', [AuthController::class, 'addAdmin'])->name('add.admin');

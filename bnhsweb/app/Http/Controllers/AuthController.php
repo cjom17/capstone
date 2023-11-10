@@ -14,11 +14,13 @@ class AuthController extends Controller
     /**
      * Display a listing of the resource.
      */
-
+    function showAdminDashboard(){
+        return view('adminDashboard');
+    }
 
     function login(){
         if(Auth::check()){
-            return redirect()->route('adminDashboard');
+            return redirect()->route('admin.dashboard');
         }
         return view('adminLogin');
     }
@@ -40,7 +42,7 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if(Auth::attempt($credentials)){
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('admin.dashboard'));
         }
         return redirect(route('login'))->with("error", "Login details are not valid");
     }
@@ -57,11 +59,12 @@ class AuthController extends Controller
             'address' => 'required',
             'phone_number' => 'required',
             'civil_status' => 'required|in:single,married,widowed,divorced',
-            'role' => 'Admin',
+            // 'role' => 'Admin',
             'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'username' => 'required|unique:users',
         ]);
-    
+        // $data['date_of_birth'] = Carbon::createFromFormat('d F Y', $request->input('date_of_birth'))->format('Y-m-d');
+
         $data = $request->except('_token', 'password', 'password_confirmation', 'profile_picture');
         $data['password'] = Hash::make($request->password);
     
