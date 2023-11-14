@@ -18,7 +18,7 @@
 </head>
 <body>
 
-    @include('student_header')
+    @include('parent_header')
       
     <section id="forCard">
         <div class="report-card-container">

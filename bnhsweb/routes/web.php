@@ -101,6 +101,28 @@ Route::get('/sview_grades', function(){
 
 });
 
+Route::get('/student_info', function(){
+    return view('student_info');
+
+});
+
+Route::get('/parent_info', function(){
+    return view('parent_info');
+
+});
+Route::get('/pview_grades', function(){
+    return view('pview_grades');
+
+});
+
+Route::get('/manage_events', function(){
+    return view('manage_events');
+
+});
+
+
+
+
 
 
 

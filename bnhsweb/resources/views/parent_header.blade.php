@@ -3,6 +3,8 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
+
 
       <!--=============== REMIXICONS ===============-->
       <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
@@ -20,7 +22,7 @@
       <header class="header">
          <nav class="nav container">
             <div class="nav__data">
-               <a href="/student_landing" class="nav__logo">
+               <a href="/parent_landing" class="nav__logo">
                   <img src="./images/bnhs1-removebg-preview.png" alt=""> BOLJOON NATIONAL <br>HIGH SCHOOL
                </a>
                
@@ -33,7 +35,7 @@
             <!--=============== NAV MENU ===============-->
             <div class="nav__menu" id="nav-menu" style="margin-right: -7%; " >
                <ul class="nav__list" >
-                  <li><a href="/student_landing" class="nav__link">HOME</a></li>
+                  <li><a href="/parent_landing" class="nav__link">HOME</a></li>
 
                   <!--=============== DROPDOWN 1 ===============-->
                 
@@ -42,9 +44,9 @@
 
              
 
-                  <li><a href="/sview_grades" class="nav__link">VIEW GRADES</a></li>
+                  <li><a href="/pview_grades" class="nav__link">VIEW GRADES</a></li>
 
-                  <li><a href="/student_info" class="nav__link">MY INFO</a></li>
+                  <li><a href="/parent_info" class="nav__link">MY INFO</a></li>
                   <li><a href="#" class="nav__link">LOGOUT</a></li>
 
 

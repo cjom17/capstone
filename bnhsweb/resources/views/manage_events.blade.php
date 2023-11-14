@@ -272,7 +272,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="/manage_events" class="dropdown-toggle no-arrow">
+						<a href="#" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-calendar"></span><span class="mtext" href=>Events</span>
 						</a>
 					</li>
@@ -316,21 +316,7 @@
 
 	<div class="main-container">
 		<div class="pd-ltr-20">
-			<div class="card-box pd-20 height-100-p mb-30">
-				<div class="row align-items-center">
-					<div class="col-md-4">
-						<img src="vendors/images/banner-img.png" alt="">
-					</div>
-					<div class="col-md-8">
-						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							@auth
-							Welcome back <div class="weight-600 font-30 text-blue">{{auth()->user()->name}} </div>
-							@endauth
-						</h4>
-						<p class="font-18 max-width-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde hic non repellendus debitis iure, doloremque assumenda. Autem modi, corrupti, nobis ea iure fugiat, veniam non quaerat mollitia animi error corporis.</p>
-					</div>
-				</div>
-			</div>
+		
 			<div class="row">
 				<div class="col-xl-3 mb-30">
 					<div class="card-box height-100-p widget-style1">
@@ -387,16 +373,15 @@
 			</div>
 		
 			<div class="card-box mb-30">
-				<h2 class="h4 pd-20">Best Selling Products</h2>
+				<h2 class="h4 pd-20">Events</h2>
 				<table class="data-table table nowrap">
 					<thead>
 						<tr>
-							<th class="table-plus datatable-nosort">Product</th>
-							<th>Name</th>
-							<th>Color</th>
-							<th>Size</th>
-							<th>Price</th>
-							<th>Oty</th>
+							<th class="table-plus datatable-nosort">Event Image</th>
+							<th>Event Title</th>
+							<th>Event Description</th>
+							<th>Event Date</th>
+							<th>Date Uploaded</th>
 							<th class="datatable-nosort">Action</th>
 						</tr>
 					</thead>

@@ -3,8 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Boljoon National High School</title>
-
-
+	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -262,7 +261,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_events" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-calendar"></span><span class="mtext" href=>Events</span>
 						</a>
 					</li>
