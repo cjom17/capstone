@@ -23,7 +23,7 @@
 
                 <h1>HI there <span> "Fullname" </span></h1>
                 <h2>Welcome Back!</h2>
-                <p> Keep updated with your progress.
+                <p> Keep updated with your child progress.
                 </p>
                 </div>
         </section>

@@ -91,6 +91,20 @@ Route::get('/student_landing', function(){
 
 });
 
+Route::get('/parent_landing', function(){
+    return view('parent_landing');
+
+});
+
+Route::get('/sview_grades', function(){
+    return view('sview_grades');
+
+});
+
+
+
+
+
 
 
 

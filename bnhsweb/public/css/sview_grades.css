@@ -1,0 +1,481 @@
+/*=============== GOOGLE FONTS ===============*/
+
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+    --header-height: 3.5rem;
+  
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --black-color: hsl(220, 24%, 12%);
+    --black-color-light: hsl(220, 24%, 15%);
+    --black-color-lighten: hsl(220, 20%, 18%);
+    --white-color: #fff;
+    --body-color: hsl(220, 100%, 97%);
+    --primary: #12de7b;
+    --secondary: #052A56;
+    --fortext: #b9bfc3;
+  
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: "Montserrat", sans-serif;
+    --normal-font-size: .938rem;
+  
+    /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-semi-bold: 600;
+  
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+  }
+  
+  /*========== Responsive typography ==========*/
+  @media screen and (min-width: 1024px) {
+    :root {
+      --normal-font-size: 1rem;
+    }
+  }
+  
+  /*=============== BASE ===============*/
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+  }
+  
+  ul {
+    list-style: none;
+    /* Color highlighting when pressed on mobile devices */
+    /*-webkit-tap-highlight-color: transparent;*/
+  }
+  
+  a {
+    text-decoration: none;
+    
+  }
+  
+  /*=============== REUSABLE CSS CLASSES ===============*/
+  .container {
+    max-width: 1120px;
+    margin-inline: 1.5rem;
+  }
+  
+  /*=============== HEADER ===============*/
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 12vh;
+    width: 100%;
+    background-color: var(--secondary);
+    box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+    z-index: var(--z-fixed);
+  }
+  
+  
+  .nav__menu li a{
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--fortext);
+  }
+  
+  .nav__menu li a:hover{
+    color: #ffffff;
+  }
+  
+  
+  
+  /*=============== NAV ===============*/
+  .nav {
+    height: var(--header-height);
+  }
+  
+  .nav__logo, 
+  .nav__burger, 
+  .nav__close {
+    color: var(--white-color);
+  }
+  
+  .nav__data {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: -10%;
+  }
+  
+  .nav__logo {
+    display: inline-flex;
+    align-items: center;
+    column-gap: .25rem;
+    font-weight: var(--font-semi-bold);
+    /* Color highlighting when pressed on mobile devices */
+    /*-webkit-tap-highlight-color: transparent;*/
+  }
+  
+  .nav__logo i {
+    font-weight: initial;
+    font-size: 1.25rem;
+  }
+  
+  .nav__toggle {
+    position: relative;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .nav__burger, 
+  .nav__close {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    inset: 0;
+    margin: auto;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: opacity .1s, transform .4s;
+  }
+  
+  .nav__close {
+    opacity: 0;
+  }
+  
+  /* Navigation for mobile devices */
+  @media screen and (max-width: 1118px) {
+    .nav__menu {
+      position: absolute;
+      left: 0;
+      top: 2.5rem;
+      width: 100%;
+      height: calc(100vh - 3.5rem);
+      overflow: auto;
+      pointer-events: none;
+      opacity: 0;
+      transition: top .4s, opacity .3s;
+    }
+    .nav__menu::-webkit-scrollbar {
+      width: 0;
+    }
+    .nav__list {
+      background-color: var(--black-color);
+      padding-top: 1rem;
+      
+    }
+    .header .nav img {
+      width: 40px;
+  
+    }
+    .nav__data{
+      margin-left: 0%;
+  
+    }
+  
+    header .nav__data a{
+      font-size: 10px;
+    }
+  
+  
+    
+    
+  }
+  
+  .nav__link {
+    color: var(--white-color);
+    font-weight: var(--font-semi-bold);
+    padding: 1.1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color .3s;
+  }
+  
+  .nav__link:hover {
+    background-color: var(--black-color-light);
+  }
+  
+  /* Show menu */
+  .show-menu {
+    opacity: 1;
+    top: 3.5rem;
+    pointer-events: initial;
+  }
+  
+  /* Show icon */
+  .show-icon .nav__burger {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+  .show-icon .nav__close {
+    opacity: 1;
+    transform: rotate(90deg);
+  }
+  
+  /*=============== DROPDOWN ===============*/
+  .dropdown__item {
+    cursor: pointer;
+  }
+  
+  .dropdown__arrow {
+    font-size: 1.25rem;
+    font-weight: initial;
+    transition: transform .4s;
+  }
+  
+  .dropdown__link, 
+  .dropdown__sublink {
+    padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+    color: var(--white-color);
+    background-color: var(--secondary);
+    display: flex;
+    align-items: center;
+    column-gap: .5rem;
+    font-weight: var(--font-semi-bold);
+    transition: background-color .3s;
+  }
+  
+  .dropdown__link i, 
+  .dropdown__sublink i {
+    font-size: 1.25rem;
+    font-weight: initial;
+  }
+  
+  .dropdown__link:hover, 
+  .dropdown__sublink:hover {
+    background-color: #06346b;
+  }
+  
+  .dropdown__menu, 
+  .dropdown__submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease-out;
+  }
+  
+  /* Show dropdown menu & submenu */
+  .dropdown__item:hover .dropdown__menu, 
+  .dropdown__subitem:hover > .dropdown__submenu {
+    max-height: 1000px;
+    transition: max-height .4s ease-in;
+  }
+  
+  /* Rotate dropdown icon */
+  .dropdown__item:hover .dropdown__arrow {
+    transform: rotate(180deg);
+  }
+  
+  /*=============== DROPDOWN SUBMENU ===============*/
+  .dropdown__add {
+    margin-left: auto;
+  }
+  
+  .dropdown__sublink {
+    background-color: var(--black-color-lighten);
+  }
+  
+  /*=============== BREAKPOINTS ===============*/
+  /* For small devices */
+  @media screen and (max-width: 340px) {
+    .container {
+      margin-inline: 1rem;
+    }
+  
+    .nav__link {
+      padding-inline: 1rem;
+    }
+  
+    .header .nav img {
+      width: 40px;
+  
+    }
+  }
+  
+  /* For large devices */
+  @media screen and (min-width: 1118px) {
+    
+    .container {
+      margin-inline: auto;
+    }
+  
+    .nav {
+      height: calc(var(--header-height) + 2rem);
+      display: flex;
+      justify-content: space-between;
+    }
+    .nav__toggle {
+      display: none;
+    }
+    .nav__list {
+      height: 100%;
+      display: flex;
+      column-gap: 3rem;
+    }
+    .nav__link {
+      height: 100%;
+      padding: 0;
+      justify-content: initial;
+      column-gap: .25rem;
+    }
+    .nav__link:hover {
+      background-color: transparent;
+    }
+  
+    .dropdown__item, 
+    .dropdown__subitem {
+      position: relative;
+    }
+  
+    .dropdown__menu, 
+    .dropdown__submenu {
+      max-height: initial;
+      overflow: initial;
+      position: absolute;
+      left: 0;
+      top: 6rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s, top .3s;
+    }
+  
+    .dropdown__link, 
+    .dropdown__sublink {
+      padding-inline: 1rem 3.5rem;
+    }
+  
+    .dropdown__subitem .dropdown__link {
+      padding-inline: 1rem;
+    }
+  
+    .dropdown__submenu {
+      position: absolute;
+      left: 100%;
+      top: .5rem;
+    }
+  
+    /* Show dropdown menu */
+    .dropdown__item:hover .dropdown__menu {
+      opacity: 1;
+      top: 5.5rem;
+      pointer-events: initial;
+      transition: top .3s;
+    }
+  
+    /* Show dropdown submenu */
+    .dropdown__subitem:hover > .dropdown__submenu {
+      opacity: 1;
+      top: 0;
+      pointer-events: initial;
+      transition: top .3s;
+    }
+  }
+  
+  /* >>>>>>>>>>>>>>>>>>>> My added Code >>>>>>>>>>>>>>>>>>>>>>>>> */
+  
+  header .nav img{
+    width: 80px;
+  }
+  
+  header .nav__data a{
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  
+  .nav__list{
+    background-color: transparents;
+  }
+  
+  header i{
+    color: var(--primary);
+  }
+
+
+
+  /* >>>>>>>>>>>>>>>>>... For Grades <<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+  #forGrades{
+    margin: 14vh;
+  }
+
+  
+ 
+  #forFooter{
+    width: 100%;
+    height: 12vh;
+    background-color: #052A56;
+    position: absolute;
+   top: 70vh;
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  .footer-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 40%;
+  }
+  
+  .footer-container img{
+    height: 70px;
+    width: 70px;
+  }
+  
+  .footer-container h1{
+    color: #fff;
+    font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+  }
+  
+  .footer-container h1 span{
+    color: #11CC72;
+  }
+  
+  
+
+ 
+  
+ 
+          @media screen and (max-width: 768px) {
+            #forFooter {
+              margin-top: 60vh;
+                height: auto; /* Adjust height as needed for smaller screens */
+            }
+        
+            .footer-container {
+                flex-direction: column; /* Stack elements vertically for smaller screens */
+                align-items: center;
+                text-align: center;
+                padding: 10px 0px;
+            }
+        
+            .footer-container img,
+            .footer-container h1 {
+                margin-bottom: 10px; /* Add spacing between elements for smaller screens */
+            }
+  
+            .mb-5{
+              display: flex;
+              flex-direction: column;
+            }
+        }
+  
+        @media screen and (min-width: 1200px)
+        {
+  
+          #forFooter {
+            margin-top: 50vh;
+              height: auto; /* Adjust height as needed for smaller screens */
+          }
+  
+        }
+  
+     
+  

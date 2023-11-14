@@ -20,7 +20,7 @@
       <header class="header">
          <nav class="nav container">
             <div class="nav__data">
-               <a href="/" class="nav__logo">
+               <a href="/student_landing" class="nav__logo">
                   <img src="./images/bnhs1-removebg-preview.png" alt=""> BOLJOON NATIONAL <br>HIGH SCHOOL
                </a>
                
@@ -33,7 +33,7 @@
             <!--=============== NAV MENU ===============-->
             <div class="nav__menu" id="nav-menu" style="margin-right: -7%; " >
                <ul class="nav__list" >
-                  <li><a href="#" class="nav__link">HOME</a></li>
+                  <li><a href="/student_landing" class="nav__link">HOME</a></li>
 
                   <!--=============== DROPDOWN 1 ===============-->
                 
