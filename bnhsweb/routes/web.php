@@ -135,7 +135,7 @@ Route::get('/adminDashboard', [AuthController::class, 'showAdminDashboard'])->na
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/adminLogin', [AuthController::class, 'loginPost'])->name('login.post');
-Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('AddAdmin.show');
+Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('addAdmin.show');
 Route::post('/addAdmin', [AuthController::class, 'addAdmin'])->name('add.admin');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 

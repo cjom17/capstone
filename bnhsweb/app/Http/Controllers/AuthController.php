@@ -26,10 +26,7 @@ class AuthController extends Controller
     }
 
     function show_add_admin(){
-        if(Auth::check()){
-            return redirect()->route('adminDashboard');
-        }
-        
+      
         return view('addAdmin');
     }
 
@@ -48,41 +45,46 @@ class AuthController extends Controller
     }
 
     public function addAdmin(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|confirmed', // Add 'confirmed' to ensure password confirmation matches
-            'position' => 'required',
-            'gender' => 'required|in:male,female,others',
-            'date_of_birth' => 'required|date',
-            'address' => 'required',
-            'phone_number' => 'required',
-            'civil_status' => 'required|in:single,married,widowed,divorced',
-            // 'role' => 'Admin',
-            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'username' => 'required|unique:users',
-        ]);
-        // $data['date_of_birth'] = Carbon::createFromFormat('d F Y', $request->input('date_of_birth'))->format('Y-m-d');
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:8|confirmed',
+        'position' => 'required',
+        'gender' => 'required|in:male,female,others',
+        'date_of_birth' => 'required|date',
+        'address' => 'required',
+        'phone_number' => 'required',
+        'civil_status' => 'required|in:single,married,widowed,divorced',
+        'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'username' => 'required|unique:users',
+    ]);
 
-        $data = $request->except('_token', 'password', 'password_confirmation', 'profile_picture');
-        $data['password'] = Hash::make($request->password);
-    
-        // Handle profile picture upload if provided
-        if ($request->hasFile('profile_picture')) {
-            $imagePath = $request->file('profile_picture')->store('profile_pictures', 'public');
-            $data['profile_picture'] = $imagePath;
+    $data = $request->except('_token', 'password', 'password_confirmation');
+    $data['password'] = Hash::make($request->password);
+
+    // Handle profile picture upload if provided
+    if ($request->hasFile('profile_picture')) {
+        $image = $request->file('profile_picture');
+        if ($image->isValid()) {
+            $destinationPath = 'images'; // Change this to your desired directory
+            $profileImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $data['profile_picture'] = $profileImage;
+        } else {
+            return back()->with('error', 'File upload error: ' . $image->getErrorMessage());
         }
-    
-        $user = User::create($data);
-    
-        if (!$user) {
-            return redirect(route('registration'))->with("error", "Try again");
-        }
-    
-        return redirect()->route('login')->with("success", "Registration successful");
     }
-    
+
+    $user = User::create($data);
+
+    if (!$user) {
+        return redirect(route('addAdmin.show'))->with("error", "Try again");
+    }
+
+    return redirect()->route('addAdmin.show')->with("success", "New admin added successfully");
+}
+
     function logout(){
             // Session::flush();
             Auth::logout();

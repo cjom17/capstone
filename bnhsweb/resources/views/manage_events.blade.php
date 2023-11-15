@@ -392,7 +392,7 @@
 							</td>
 							<td>
 								<h5 class="font-16">Shirt</h5>
-								by John Doe
+								
 							</td>
 							<td>Black</td>
 							<td>M</td>
@@ -417,7 +417,6 @@
 							</td>
 							<td>
 								<h5 class="font-16">Boots</h5>
-								by Lea R. Frith
 							</td>
 							<td>brown</td>
 							<td>9UK</td>
@@ -442,7 +441,6 @@
 							</td>
 							<td>
 								<h5 class="font-16">Hat</h5>
-								by Erik L. Richards
 							</td>
 							<td>Orange</td>
 							<td>M</td>
@@ -467,7 +465,6 @@
 							</td>
 							<td>
 								<h5 class="font-16">Long Dress</h5>
-								by Renee I. Hansen
 							</td>
 							<td>Gray</td>
 							<td>L</td>
@@ -492,7 +489,6 @@
 							</td>
 							<td>
 								<h5 class="font-16">Blazer</h5>
-								by Vicki M. Coleman
 							</td>
 							<td>Blue</td>
 							<td>M</td>

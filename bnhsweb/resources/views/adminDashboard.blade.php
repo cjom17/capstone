@@ -128,8 +128,17 @@
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<span class="user-icon">
-							<img src="vendors/images/photo1.jpg" alt="">
+
+					
+						<span class="user-icon" >
+						@if(auth()->user()->profile_picture)
+						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}" style="width: 170x; " alt="Profile Image" style="width: 170px; border: 3px solid;">
+						@else
+							{{-- Default image if the user doesn't have a profile picture --}}
+							<img src="{{ asset('images/default.jpg') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+						@endif
+							
+							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
 						</span>
 						@auth
 						<span class="user-name">{{auth()->user()->name}} </span>
@@ -324,7 +333,7 @@
 					<div class="col-md-8">
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
 							@auth
-							Welcome back <div class="weight-600 font-30 text-blue">{{auth()->user()->name}} </div>
+							Welcome back <div class="weight-600 font-30 text-blue">{{auth()->user()->username}} </div>
 							@endauth
 						</h4>
 						<p class="font-18 max-width-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde hic non repellendus debitis iure, doloremque assumenda. Autem modi, corrupti, nobis ea iure fugiat, veniam non quaerat mollitia animi error corporis.</p>
