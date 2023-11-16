@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,6 +120,12 @@ Route::get('/manage_events', function(){
 
 });
 
+Route::get('/add_events', function(){
+    return view('add_events');
+
+});
+
+
 
 
 
@@ -138,4 +144,14 @@ Route::post('/adminLogin', [AuthController::class, 'loginPost'])->name('login.po
 Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('addAdmin.show');
 Route::post('/addAdmin', [AuthController::class, 'addAdmin'])->name('add.admin');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
+// Routes for Events
+Route::get('/add_events', [EventController::class, 'showAddEvent'])->name('events.index');
+Route::get('/manage_events', [EventController::class, 'showManageEvent'])->name('events.manage');
+Route::post('/add_events', [EventController::class, 'addEvent'])->name('events.addEvent')->middleware('auth');
+Route::get('/manage_events', [EventController::class, 'getEvents'])->name('events.display');
+Route::get('/', [EventController::class, 'showLatestEvents'])->name('latest-events');
+
 

@@ -132,7 +132,7 @@
 					
 						<span class="user-icon" >
 						@if(auth()->user()->profile_picture)
-						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}" style="width: 170x; " alt="Profile Image" style="width: 170px; border: 3px solid;">
+						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
 						@else
 							{{-- Default image if the user doesn't have a profile picture --}}
 							<img src="{{ asset('images/default.jpg') }}" alt="Default Image" style="width: 170px; border: 3px solid;">

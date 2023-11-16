@@ -34,7 +34,7 @@
 	</script>
 </head>
 <body>
-	<div class="pre-loader">
+	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="images/logo.PNG" alt=""></div>
 			<div class='loader-progress' id="progress_div">
@@ -45,7 +45,7 @@
 				Loading...
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<div class="header">
 		<div class="header-left">
@@ -128,8 +128,17 @@
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<span class="user-icon">
-							<img src="vendors/images/photo1.jpg" alt="">
+
+					
+						<span class="user-icon" >
+						@if(auth()->user()->profile_picture)
+						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}" style="width: 170x; " alt="Profile Image" style="width: 170px; border: 3px solid;">
+						@else
+							{{-- Default image if the user doesn't have a profile picture --}}
+							<img src="{{ asset('images/default.jpg') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+						@endif
+							
+							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
 						</span>
 						@auth
 						<span class="user-name">{{auth()->user()->name}} </span>
@@ -272,7 +281,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_events" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-calendar"></span><span class="mtext" href=>Events</span>
 						</a>
 					</li>
@@ -315,132 +324,103 @@
 
 
 	<div class="main-container">
-		<div class="pd-ltr-20">
-		
-			<div class="row">
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">2020</div>
-								<div class="weight-600 font-14">Contact</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart2"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">400</div>
-								<div class="weight-600 font-14">Deals</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart3"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">350</div>
-								<div class="weight-600 font-14">Campaign</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart4"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">$6060</div>
-								<div class="weight-600 font-14">Worth</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="page-header">
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+				<div class="page-header">
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
-							<!-- <div class="title">
-								<h4>List of Admins</h4>
-							</div> -->
+							<div class="title">
+								<h4>Form Wizards</h4>
+							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Admins</li>
+									<li class="breadcrumb-item active" aria-current="page">Form Wizards</li>
 								</ol>
 							</nav>
 						</div>
-						<div class="col-md-6 col-sm-12 text-right">
+						<!-- <div class="col-md-6 col-sm-12 text-right">
 							<div class="dropdown">
-								<a class="btn btn-primary" href="/add_events">
-									ADD NEW EVENT
+								<a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+									January 2018
 								</a>
-							
+								<div class="dropdown-menu dropdown-menu-right">
+									<a class="dropdown-item" href="#">Export List</a>
+									<a class="dropdown-item" href="#">Policies</a>
+									<a class="dropdown-item" href="#">View Assets</a>
+								</div>
 							</div>
-						</div>
+						</div> -->
+					</div>
+				</div>
+
+				<div class="pd-20 card-box mb-30">
+					<div class="clearfix">
+						<h4 class="text-blue h4">Step wizard</h4>
+						<p class="mb-30">jQuery Step wizard</p>
+					</div>
+					<div class="wizard-content">
+					<div class="mt-5">
+            @if($errors->any())
+                <div class="col-12">
+                    @foreach($errors->all() as $error)
+                        <div class="alert alert-danger">{{$error}}</div>
+
+                    @endforeach
+                </div>
+            @endif
+
+            @if(session()->has('error'))
+            <div class="alert alert-danger">{{session('error')}}</div>
+
+            @endif
+
+            @if(session()->has('success'))
+            <div class="alert alert-success">{{session('success')}}</div>
+
+            @endif
+        </div>
+			<form  action="{{route('events.addEvent')}}" method="POST"  enctype="multipart/form-data">
+			@csrf
+			<div class="form-group row">
+				<label for="image"  class="col-sm-2 col-form-label">Event Image</label>
+				<div class="col-sm-10"> 
+				<input type="file" class="form-control" name="event_image" id="event_image"  accept="image/*">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="event_title" class="col-sm-2 col-form-label">Event Title</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control" name="event_title" id="event_title" placeholder="Enter the event title here">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="event_desc" class="col-sm-2 col-form-label">Event Description</label>
+				<div class="col-sm-10">
+				<textarea class="form-control" name="event_desc" id="event_desc" placeholder="Enter the event description here..."></textarea>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="event_date" class="col-sm-2 col-form-label">Event date</label>
+				<div class="col-sm-10"> 
+				<input type="date" class="form-control" name="event_date" id="event_date" placeholder="Select date">
+				</div>
+			</div>
+			
+			
+			<div class="form-group row">
+				<div class="col-sm-10">
+				<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+			</form>
 					
 					</div>
 				</div>
-		
-			<div class="card-box mb-30">
-				
-				<h2 class="h4 pd-20">Events</h2>
-			
-			<table class="data-table table nowrap">
-				<thead>
-					<tr>
-						<th class="table-plus datatable-nosort">Event Image</th>
-						<th>Event Title</th>
-						<th>Event Description</th>
-						<th>Event Date</th>
-						<th>Date Uploaded</th>
-						<th class="datatable-nosort">Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach($events as $event)
-						<tr>
-							<td class="table-plus">
-								<img src="{{ asset('images/' . $event->event_image) }}" width="70px" height="70px" alt="Event Image">
-							</td>
-							<td>
-								<h5 class="font-16">{{ $event->event_title }}</h5>
-							</td>
-							<td>{{ $event->event_desc }}</td>
-							<td>{{ $event->event_date }}</td>
-							<td>{{ $event->date_uploaded }}</td>
-							<td>
-								<div class="dropdown">
-									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-										<i class="dw dw-more"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-									</div>
-								</div>
-							</td>
-						</tr>
-					@endforeach
-				</tbody>
-			</table>
 
+				
+
+		
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
 				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
