@@ -76,6 +76,20 @@ a {
 /* >>>>>>>>>>>>>>>>>>>>>>> Landing Page <<<<<<<<<<<<<<<<<<<<<< */
 
 
+.empty-message{
+  height: 40vh;
+  width: 100%;
+
+}
+
+.empty-message p{
+  display: flex;
+  justify-content: center;
+  padding-top: 130px;
+  font-size: 1.5rem;
+}
+
+
 /* Style the landing page container with background image and overlay */
 .landing-page {
     margin-top:60px ;

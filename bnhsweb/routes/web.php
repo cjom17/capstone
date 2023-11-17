@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\UpdateController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -125,6 +127,17 @@ Route::get('/add_events', function(){
 
 });
 
+Route::get('/add_updates', function(){
+    return view('add_updates');
+
+});
+
+
+Route::get('/manage_updates', function(){
+    return view('manage_updates');
+
+});
+
 
 
 
@@ -152,6 +165,13 @@ Route::get('/add_events', [EventController::class, 'showAddEvent'])->name('event
 Route::get('/manage_events', [EventController::class, 'showManageEvent'])->name('events.manage');
 Route::post('/add_events', [EventController::class, 'addEvent'])->name('events.addEvent')->middleware('auth');
 Route::get('/manage_events', [EventController::class, 'getEvents'])->name('events.display');
-Route::get('/', [EventController::class, 'showLatestEvents'])->name('latest-events');
 
+// Route for Updates
 
+Route::get('/add_updates', [UpdateController::class, 'showAddUpdate'])->name('updates.index');
+Route::get('/manage_updates', [UpdateController::class, 'showManageUpdate'])->name('updates.manage');
+Route::post('/add_updates', [UpdateController::class, 'addUpdate'])->name('updates.addUpdate')->middleware('auth');
+Route::get('/manage_updates', [UpdateController::class, 'getUpdates'])->name('updates.display');
+
+//Routes for Home
+Route::get('/', [HomeController::class, 'showLandingPage'])->name('landing-page');
