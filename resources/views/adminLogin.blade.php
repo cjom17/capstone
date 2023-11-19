@@ -68,7 +68,7 @@
 					</div>
 
 
-					<form action="{{route('login.post')}}"  method="POST" class="signin-form">
+				<form action="{{url('login.post')}}"  method="POST" class="signin-form">
 					@csrf
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="name">Email</label>
@@ -92,7 +92,7 @@
 										<a href="#">Forgot Password</a>
 									</div>
 		            </div> -->
-		          </form>
+		        </form>
 		          <!-- <p class="text-center">Don't have an account yet? <a data-toggle="tab" href="#signup" style="color: #11CC72;">Sign Up</a></p> -->
 		        </div>
 		      </div>
