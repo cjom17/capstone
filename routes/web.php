@@ -5,6 +5,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GradelvlController;
+use App\Http\Controllers\SectionController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -139,7 +145,49 @@ Route::get('/manage_updates', function(){
 });
 
 
+Route::get('/manage_gradelvl', function(){
+    return view('manage_gradelvl');
 
+});
+
+Route::get('/add_gradelvl', function(){
+    return view('add_gradelvl');
+
+});
+
+
+
+Route::get('/manage_subjects', function(){
+    return view('manage_subjects');
+
+});
+
+Route::get('/add_subject', function(){
+    return view('add_subject');
+
+});
+
+
+
+Route::get('/manage_sections', function(){
+    return view('manage_sections');
+
+});
+
+Route::get('/add_section', function(){
+    return view('add_section');
+
+});
+
+Route::get('/manage_teachers', function(){
+    return view('manage_teachers');
+
+});
+
+Route::get('/add_teacher', function(){
+    return view('add_teacher');
+
+});
 
 
 
@@ -175,3 +223,36 @@ Route::get('/manage_updates', [UpdateController::class, 'getUpdates'])->name('up
 
 //Routes for Home
 Route::get('/', [HomeController::class, 'showLandingPage'])->name('landing-page');
+
+
+
+// Routes for grade level
+
+Route::get('/add_gradelvl', [GradelvlController::class, 'showAddGradelvl'])->name('gradelvl.index');
+Route::get('/manage_gradelvl', [GradelvlController::class, 'showManageGradelvl'])->name('gradelvl.manage');
+Route::post('/add_gradelvl', [GradelvlController::class, 'addGradelvl'])->name('gradelvls.addGradelvl')->middleware('auth');
+Route::get('/manage_gradelvl', [GradelvlController::class, 'getGradelvl'])->name('gradelvl.display');
+
+
+// Routes for Subjects
+Route::get('/add_subject', [SubjectController::class, 'showAddSubject'])->name('subject.index');
+Route::get('/manage_subjects', [SubjectController::class, 'showManageSubject'])->name('subject.manage');
+Route::post('/add_subject', [SubjectController::class, 'addSubject'])->name('subjects.addsubject')->middleware('auth');
+Route::get('/manage_subjects', [SubjectController::class, 'getSubject'])->name('subject.display');
+
+// Routes for Sections
+Route::get('/add_section', [SectionController::class, 'showAddSection'])->name('section.index');
+Route::get('/manage_sections', [SectionController::class, 'showManageSection'])->name('section.manage');
+Route::post('/add_section', [SectionController::class, 'addSection'])->name('section.addsection')->middleware('auth');
+Route::get('/manage_sections', [SectionController::class, 'getSection'])->name('section.display');
+
+
+//Routes for Teachers
+
+Route::get('/manage_teacher', [AuthController::class, 'showManageTeacher'])->name('manage.teacher');
+
+// Route::get('/login', [TeacherController::class, 'login'])->name('login');
+// Route::post('/adminLogin', [TeacherController::class, 'loginPost'])->name('login.post');
+Route::get('/add_teacher', [TeacherController::class, 'showAddTeacher'])->name('addTeacher.show');
+Route::post('/add_teacher', [TeacherController::class, 'addTeacher'])->name('add.teacher');
+// Route::get('/logout', [TeacherController::class, 'logout'])->name('logout');

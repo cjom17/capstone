@@ -15,7 +15,7 @@
 		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 	  </style>
 	
-	<link rel="stylesheet" href="{{ secure_asset('css/admin_login.css') }}">
+	<link rel="stylesheet" href="css/admin_login.css">
 
 	</head>
 	<body>
@@ -31,7 +31,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-12 col-lg-10">
 					<div class="wrap d-md-flex">
-					<div class="img" style="background-image: url('{{ secure_asset('images/admin.png') }}');">
+						<div class="img" style="background-image: url(images/admin.png);">
 			      </div>
 						<div class="login-wrap p-4 p-md-5">
 			      	<div class="d-flex">
@@ -68,7 +68,7 @@
 					</div>
 
 
-				<form action="{{secure_url('login.post')}}"  method="POST" class="signin-form">
+					<form action="{{route('login.post')}}"  method="POST" class="signin-form">
 					@csrf
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="name">Email</label>
@@ -92,7 +92,7 @@
 										<a href="#">Forgot Password</a>
 									</div>
 		            </div> -->
-		        </form>
+		          </form>
 		          <!-- <p class="text-center">Don't have an account yet? <a data-toggle="tab" href="#signup" style="color: #11CC72;">Sign Up</a></p> -->
 		        </div>
 		      </div>
@@ -109,11 +109,10 @@
 
 	</section>
 
-<script src="{{ secure_asset('js/jquery.min.js') }}"></script>
-<script src="{{ secure_asset('js/popper.js') }}"></script>
-<script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ secure_asset('js/main.js') }}"></script>
-
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
 
 	</body>
 </html>
