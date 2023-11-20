@@ -11,32 +11,35 @@ class TeacherController extends Controller
     function showManageTeacher(){
         return view('manage_teachers');
     }
+    function showTeacherLogin(){
+        return view('teacherLogin');
+    }
 
-    // function login(){
-    //     if(Auth::check()){
-    //         return redirect()->route('admin.dashboard');
-    //     }
-    //     return view('adminLogin');
-    // }
+    function showTeacherDashboard(){
+       
+        return view('teacher_dashboard');
+    }
 
     function showAddTeacher(){
       
         return view('add_teacher');
     }
 
-    // function loginPost(Request $request){
-    //     $request->validate([
-    //         'email' => 'required',
-    //         'password' => 'required'
+    function teacherLoginPost(Request $request)
+{
+    $request->validate([
+        'id_number' => 'required',
+        'password' => 'required'
+    ]);
 
-    //     ]);
+    $credentials = $request->only('id_number', 'password');
 
-    //     $credentials = $request->only('email', 'password');
-    //     if(Auth::attempt($credentials)){
-    //         return redirect()->intended(route('admin.dashboard'));
-    //     }
-    //     return redirect(route('login'))->with("error", "Login details are not valid");
-    // }
+    if (Auth::guard('teacher')->attempt($credentials)) {
+        return redirect()->intended(route('teacher.dashboard'));
+    }
+
+    return redirect(route('teacher.login'))->with("error", "Login details are not valid");
+}
 
     public function addTeacher(Request $request)
     {

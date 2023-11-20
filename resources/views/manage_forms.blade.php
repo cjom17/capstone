@@ -381,14 +381,14 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Sections</li>
+									<li class="breadcrumb-item active" aria-current="page">Downloadable Forms</li>
 								</ol>
 							</nav>
 						</div>
 						<div class="col-md-6 col-sm-12 text-right">
 							<div class="dropdown">
-								<a class="btn btn-primary" href="/add_section">
-									ADD NEW SECTION
+								<a class="btn btn-primary" href="/add_form">
+									ADD NEW FORM
 								</a>
 							
 							</div>
@@ -399,23 +399,26 @@
 		
 			<div class="card-box mb-30">
 				
-				<h2 class="h4 pd-20">Events</h2>
+				<h2 class="h4 pd-20">Downloadable Forms</h2>
 			
 			<table class="data-table table nowrap">
 				<thead>
 					<tr>
-						<th class="table-plus datatable-nosort">Section Name</th>
-						<th>Section Description</th>
+						<th class="table-plus datatable-nosort">Form Name</th>
+						<th class="datatable-nosort">Form Description</th>
+						<th class="datatable-nosort">Form Type</th>
 						<th class="datatable-nosort">Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($sections as $section)
+					@foreach($forms as $form)
 						<tr>
 							<td>
-								<h5 class="font-16">{{ $section->section_name }}</h5>
+								<h5 class="font-16">{{ $form->form_name }}</h5>
 							</td>
-							<td>{{ $section->section_desc }}</td>					
+							<td>{{ $form->form_desc }}</td>					
+							<td>
+							<td>{{ $form->form_type }}</td>					
 							<td>
 								<div class="dropdown">
 									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

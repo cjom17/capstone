@@ -399,7 +399,7 @@
 				<div class="col-md-6 col-sm-12">
 					<div class="form-group">
 						<label>Fullname: </label>
-						<input type="text" id="position" name="fullname" class="form-control">
+						<input type="text" id="fullname" name="fullname" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12">

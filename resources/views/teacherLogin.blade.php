@@ -44,15 +44,38 @@
 										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
 									</p>
 								</div> -->
+
 			      	</div>
-							<form action="#" class="signin-form">
+					  <div class="mt-5">
+						@if($errors->any())
+							<div class="col-12">
+								@foreach($errors->all() as $error)
+									<div class="alert alert-danger">{{$error}}</div>
+
+								@endforeach
+							</div>
+						@endif
+
+						@if(session()->has('error'))
+						<div class="alert alert-danger">{{session('error')}}</div>
+
+						@endif
+
+						@if(session()->has('success'))
+						<div class="alert alert-success">{{session('success')}}</div>
+
+						@endif
+					</div>
+
+			<form action="{{route('teacherLogin.post')}}"  method="POST" class="signin-form">
+				@csrf
 			      		<div class="form-group mb-3">
-			      			<label class="label" for="name">LRN NUMBER</label>
-			      			<input type="text" class="form-control" placeholder="Username" required>
+			      			<label class="label" for="name">ID NUMBER</label>
+			      			<input type="text" class="form-control" placeholder="Id number" name="id_number" id="id_number" required>
 			      		</div>
 		            <div class="form-group mb-3">
 		            	<label class="label" for="password">Password</label>
-		              <input type="password" class="form-control" placeholder="Password" required>
+		              <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
 		            </div>
 		            <div class="form-group">
 		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
@@ -68,7 +91,7 @@
 										<a href="#">Forgot Password</a>
 									</div>
 		            </div> -->
-		          </form>
+		    </form>
 		          <p class="text-center">Don't have an account yet? <a data-toggle="tab" href="#signup" style="color: #11CC72;">Sign Up</a></p>
 		        </div>
 		      </div>

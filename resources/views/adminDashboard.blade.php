@@ -276,7 +276,7 @@
 
 
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_forms" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-file"></span><span class="mtext" href=>Forms</span>
 						</a>
 					</li>
