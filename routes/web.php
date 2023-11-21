@@ -218,24 +218,6 @@ Route::get('/add_student', function(){
 
 
 
-
-
-
-
-
-
-
-// Login routes
-Route::get('/adminDashboard', [AuthController::class, 'showAdminDashboard'])->name('admin.dashboard');
-
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/adminLogin', [AuthController::class, 'loginPost'])->name('login.post');
-Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('addAdmin.show');
-Route::post('/addAdmin', [AuthController::class, 'addAdmin'])->name('add.admin');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
-
-
 // Routes for Events
 Route::get('/add_events', [EventController::class, 'showAddEvent'])->name('events.index');
 Route::get('/manage_events', [EventController::class, 'showManageEvent'])->name('events.manage');
@@ -268,23 +250,44 @@ Route::get('/manage_subjects', [SubjectController::class, 'showManageSubject'])-
 Route::post('/add_subject', [SubjectController::class, 'addSubject'])->name('subjects.addsubject')->middleware('auth');
 Route::get('/manage_subjects', [SubjectController::class, 'getSubject'])->name('subject.display');
 
-// Routes for Sections
-Route::get('/add_section', [SectionController::class, 'showAddSection'])->name('section.index');
-Route::get('/manage_sections', [SectionController::class, 'showManageSection'])->name('section.manage');
-Route::post('/add_section', [SectionController::class, 'addSection'])->name('section.addsection')->middleware('auth');
-Route::get('/manage_sections', [SectionController::class, 'getSection'])->name('section.display');
 
-// Routes for FORMS
-Route::get('/add_form', [FormController::class, 'showAddForm'])->name('form.index');
-Route::get('/manage_forms', [FormController::class, 'showManageForm'])->name('form.manage');
-Route::post('/add_form', [FormController::class, 'addForm'])->name('form.addForm')->middleware('auth');
-Route::get('/manage_forms', [FormController::class, 'getForm'])->name('form.display');
 
-//Routes for Teachers
-Route::get('/teacher_dashboard', [TeacherController::class, 'showTeacherDashboard'])->name('teacher.dashboard');
-Route::get('/manage_teacher', [TeacherController::class, 'showManageTeacher'])->name('manage.teacher');
+
+Route::post('/adminLogin', [AuthController::class, 'loginPost'])->name('login.post');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+
+Route::middleware(['auth:web', 'role:admin'])->group(function () {
+    Route::post('/addAdmin', [AuthController::class, 'addAdmin'])->name('add.admin'); 
+    Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('addAdmin.show');
+    Route::get('/adminDashboard', [AuthController::class, 'showAdminDashboard'])->name('admin.dashboard');
+    Route::get('/manage_teacher', [TeacherController::class, 'showManageTeacher'])->name('manage.teacher');
+    Route::get('/add_teacher', [TeacherController::class, 'showAddTeacher'])->name('addTeacher.show');
+    Route::post('/add_teacher', [TeacherController::class, 'addTeacher'])->name('add.teacher');     
+    
+    // Routes for FORMS
+    Route::get('/add_form', [FormController::class, 'showAddForm'])->name('form.index');
+    Route::get('/manage_forms', [FormController::class, 'showManageForm'])->name('form.manage');
+    Route::post('/add_form', [FormController::class, 'addForm'])->name('form.addForm')->middleware('auth');
+    Route::get('/manage_forms', [FormController::class, 'getForm'])->name('form.display');
+
+    // Routes for Sections
+    Route::get('/add_section', [SectionController::class, 'showAddSection'])->name('section.index');
+    Route::get('/manage_sections', [SectionController::class, 'showManageSection'])->name('section.manage');
+    Route::post('/add_section', [SectionController::class, 'addSection'])->name('section.addsection')->middleware('auth');
+    Route::get('/manage_sections', [SectionController::class, 'getSection'])->name('section.display');
+
+
+        
+});
+
+// For Teacher
+Route::middleware(['auth:teacher', 'role:teacher'])->group(function () {
+    // Route::get('/logout', [TeacherController::class, 'logout'])->name('logout');
+    Route::get('/teacher_dashboard', [TeacherController::class, 'showTeacherDashboard'])->name('teacher.dashboard'); 
+});
+
 Route::get('/teacherLogin', [TeacherController::class, 'showTeacherLogin'])->name('teacher.login');
 Route::post('/teacherLogin', [TeacherController::class, 'teacherLoginPost'])->name('teacherLogin.post');
-Route::get('/add_teacher', [TeacherController::class, 'showAddTeacher'])->name('addTeacher.show');
-Route::post('/add_teacher', [TeacherController::class, 'addTeacher'])->name('add.teacher');
-// Route::get('/logout', [TeacherController::class, 'logout'])->name('logout');
+   
+// Logout 
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -45,10 +45,10 @@
 									</p>
 								</div> -->
 			      	</div>
-							<form action="#" class="signin-form">
+			<form action="#" class="signin-form">
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="name">LRN NUMBER</label>
-			      			<input type="text" class="form-control" placeholder="Username" required>
+			      			<input type="text"  class="form-control" placeholder="LRN" id required>
 			      		</div>
 		            <div class="form-group mb-3">
 		            	<label class="label" for="password">Password</label>
@@ -68,7 +68,7 @@
 										<a href="#">Forgot Password</a>
 									</div>
 		            </div> -->
-		          </form>
+		    </form>
 		          <p class="text-center">Don't have an account yet? <a data-toggle="tab" href="#signup" style="color: #11CC72;">Sign Up</a></p>
 		        </div>
 		      </div>

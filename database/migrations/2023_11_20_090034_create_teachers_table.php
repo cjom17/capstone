@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->string('profile_picture')->nullable(); // Profile Picture (you can make this field nullable if you want to allow users to have no profile picture)
-            $table->string('image_id');
+            $table->string('image_id')->nullable();
             $table->integer('admin_id')->nullable(); 
             $table->string('fullname'); // Fullname
             $table->string('position')->default('Teacher'); // Position
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('status')->default('Approved'); // Role
+            $table->string('role')->default('teacher'); // Role
             $table->rememberToken();
             $table->timestamps();
         });

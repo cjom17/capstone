@@ -120,25 +120,25 @@
 
                      <ul class="dropdown__menu">
                         <li>
-                           <a href="/adminLogin" class="dropdown__link">
+                           <a href="/adminLogin" class="dropdown__link" target="_blank">
                            <i class="ri-admin-fill"></i> ADMIN
                            </a>                          
                         </li>
 
                         <li>
-                           <a href="teacherLogin" class="dropdown__link">
+                           <a href="teacherLogin" class="dropdown__link" target="_blank">
                            <i class="ri-user-2-fill"></i> TEACHER
                            </a>
                         </li>
 
                         <li>
-                           <a href="/student_login" class="dropdown__link">
+                           <a href="/student_login" class="dropdown__link" target="_blank">
                            <i class="ri-user-3-fill"></i> STUDENT
                            </a>
                         </li>
 
-                        <li>
-                           <a href="/parentLogin" class="dropdown__link">
+                        <li> 
+                           <a href="/parentLogin" class="dropdown__link" target="_blank">
                            <i class="ri-user-heart-line"></i> PARENT
                            </a>
                         </li>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Student Login</title>
+  	<title>Login | Boljoon National High School</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -92,7 +92,7 @@
 									</div>
 		            </div> -->
 		    </form>
-		          <p class="text-center">Don't have an account yet? <a data-toggle="tab" href="#signup" style="color: #11CC72;">Sign Up</a></p>
+		          <!-- <p class="text-center">Don't have an account yet? <a data-toggle="tab" href="#signup" style="color: #11CC72;">Sign Up</a></p> -->
 		        </div>
 		      </div>
 				</div>

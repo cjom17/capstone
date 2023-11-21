@@ -35,7 +35,7 @@ class TeacherController extends Controller
     $credentials = $request->only('id_number', 'password');
 
     if (Auth::guard('teacher')->attempt($credentials)) {
-        return redirect()->intended(route('teacher.dashboard'));
+        return redirect()->route('teacher.dashboard');
     }
 
     return redirect(route('teacher.login'))->with("error", "Login details are not valid");
@@ -110,7 +110,7 @@ class TeacherController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'status' => $request->status ?? 'Approved', // Default value if not provided
+            'role' => $request->role ?? 'teacher', // Default value if not provided
         ];
 
         $teacher = Teacher::create($teacherData);
@@ -125,7 +125,7 @@ class TeacherController extends Controller
     function logout(){
             // Session::flush();
             Auth::logout();
-            return redirect()->route('login');
+            return redirect()->route('teacher.login');
     }
 
 
