@@ -275,7 +275,7 @@ a {
 
 .event-card-container {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-evenly; */
   flex-wrap: wrap;
 }
 
@@ -435,7 +435,7 @@ a {
 
 .update-card-container {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-evenly; */
   flex-wrap: wrap;
 }
 

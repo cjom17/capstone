@@ -20,26 +20,44 @@
     @include('parent_header')
       
     <section id="forInfo">
+        
+        <div class="my-info-image">
+        
+            @if(auth('parent')->user()->profile_picture)
+					<img src="{{ asset('/' . auth('parent')->user()->profile_picture) }}"  alt="Profile Image" style="width: 180px; ">
+				@else
+					{{-- Default image if the user doesn't have a profile picture --}}
+				    <img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 180px; border: 3px solid;">
+				@endif
+        </div>
+        <h3 class="prof">Profile Picture :</h3>
+        
         <div class="my-info-container">
             <h1>Personal Information</h1> <br>
-            <p>First name: <span>John </span></p>
-            <p>Last name: <span> Doe</span></p>
-            <p>Middle name: <span> Dan</span></p>
-            <p>Age : <span> 14</span></p>
-            <p>Grade Level : <span> 7</span></p>
-            <p>Section : <span> Sunflower</span></p>
-            <p>Birth Date : <span> 10/23/23</span></p>
-            <p>Place of Birth : <span> Boljoon Cebu</span></p>
-            <p>Civil Status : <span> Single</span></p>
+            <p>LRN : <span> {{auth('parent')->user()->student_lrn}}</span></p>
+            <p>First name: <span>{{auth('parent')->user()->f_name}} </span></p>
+            <p>Last name: <span> {{auth('parent')->user()->l_name}}</span></p>
+            <p>Middle name: <span>  @if(auth('parent')->user()->m_name)
+                    {{ auth('parent')->user()->x_name }}
+                @else
+                    NA
+                @endif</span></p>
+            <p>Extension name: 
+                <span> @if(auth('parent')->user()->x_name)
+                    {{ auth('parent')->user()->x_name }}
+                @else
+                    NA
+                @endif
+                </span></p>
+            <p>Age : <span> {{auth('parent')->user()->age}}</span></p>      
+            <p>Civil Status : <span> {{auth('parent')->user()->gender}}</span></p>
+            <p>Nationality : <span> {{auth('parent')->user()->nationality}}</span></p>
+            <p>Religion : <span> {{auth('parent')->user()->religion}}</span></p>
+            <p>Address : <span> {{auth('parent')->user()->address}}</span></p>
+            <p>Phone Number : <span> {{auth('parent')->user()->phone_number}}</span></p>
+            <p>Username : <span> {{auth('parent')->user()->username}}</span></p>
 
-            <p>Nationality : <span> Filipino</span></p>
-            <p>Religion : <span> Roman Catholic</span></p>
-            <p>Mother's name : <span> Mother's name</span></p>
-            <p>Father's name : <span> Father's name</span></p>
-            <p>Phone no. : <span> 01923431311</span></p>
-            <p>Email Address : <span> sample@gmail.com</span></p>
-            <p>Password: <span> 12345678</span></p>
-
+            <p>Email Address : <span> {{auth('parent')->user()->email}}</span></p>
 
         </div>
     </section>

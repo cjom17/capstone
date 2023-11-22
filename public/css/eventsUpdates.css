@@ -198,9 +198,11 @@
   
   .event-card-container {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
+    
   }
+  
   
   .event-card {
     flex: 1;
@@ -297,6 +299,7 @@
     justify-content: space-between;
     align-items: center;
     height: 12vh;
+    margin-top: 20px;
     background-color: var(--secondary); /* Background color for the header */
     padding: 0 20px; /* Add some padding for spacing */
   }
@@ -358,7 +361,7 @@
   
   .update-card-container {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
   }
   

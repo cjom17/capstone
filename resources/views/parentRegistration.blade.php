@@ -31,7 +31,30 @@
 					style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" /> -->
 				</div>
 				<div class="col-xl-6">
-				<div class="card-body p-md-5 text-black">
+			
+		<div class="mt-5">
+            @if($errors->any())
+                <div class="col-12">
+                    @foreach($errors->all() as $error)
+                        <div class="alert alert-danger">{{$error}}</div>
+
+                    @endforeach
+                </div>
+            @endif
+
+            @if(session()->has('error'))
+            <div class="alert alert-danger">{{session('error')}}</div>
+
+            @endif
+
+            @if(session()->has('success'))
+            <div class="alert alert-success">{{session('success')}}</div>
+
+            @endif
+        </div>
+		<form action="{{route('parent.register')}}" method="POST" enctype="multipart/form-data">
+		@csrf				
+					<div class="card-body p-md-5 text-black">
 					<h3 class="mb-5 text-uppercase">Parent registration form</h3>
 					<div class="form-outline mb-4">
 					<input type="file" name="profile_picture" id="profile_picture" accept="image/*"><br>
@@ -129,25 +152,12 @@
 						<div class="col-md-6 mb-4">
 							<div class="form-outline">
 							<input type="text" id="student_lrn" name="student_lrn" class="form-control form-control-lg" />
-							<label class="form-label" for="phone_number">Student LRN</label>
+							<label class="form-label" for="">Student LRN</label>
 							</div>
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="col-md-6 mb-4">
-							<div class="form-outline">
-							<input type="text" id="address" name="address" class="form-control form-control-lg" />
-							<label class="form-label" for="">Adresss</label>
-							</div>
-						</div>
-						<div class="col-md-6 mb-4">
-							<div class="form-outline">
-							<input type="text" id="phone_number" name="phone_number" class="form-control form-control-lg" />
-							<label class="form-label" for="phone_number">Phone number</label>
-							</div>
-						</div>
-					</div>
+				
 					
 					<div class="row">
 						<div class="col-md-6 mb-4">
@@ -159,7 +169,7 @@
 						<div class="col-md-6 mb-4">
 							<div class="form-outline">
 							<input type="email" id="email" name="email" class="form-control form-control-lg" />
-							<label class="form-label" for="phone_number">Email</label>
+							<label class="form-label" for="email">Email</label>
 							</div>
 						</div>
 					</div>
@@ -167,22 +177,23 @@
 					<div class="row">
 						<div class="col-md-6 mb-4">
 							<div class="form-outline">
-							<input type="text" id="password" name="password" class="form-control form-control-lg" />
+							<input type="password" id="password" name="password" class="form-control form-control-lg" />
 							<label class="form-label" for="">Password</label>
 							</div>
 						</div>
 						<div class="col-md-6 mb-4">
 							<div class="form-outline">
-							<input type="text" id="password_confirmation" name="password_confirmation" class="form-control form-control-lg" />
-							<label class="form-label" for="phone_number">Confirm Password</label>
+							<input type="password" id="password_confirmation" name="password_confirmation" class="form-control form-control-lg" />
+							<label class="form-label" for="password_confirmation">Confirm Password</label>
 							</div>
 						</div>
 					</div>
 
 					<div class="d-flex justify-content-end pt-3" >
-					<button type="button" class="btn btn-secondary " >Reset all</button>
-					<button type="button" class="btn btn-success" style="margin-left: 10px">Submit form</button>
+						<button type="button" class="btn btn-secondary " >Reset all</button>
+						<button type="submit" class="btn btn-success" style="margin-left: 10px">Submit form</button>
 					</div>
+		</form>
 
 				</div>
 				</div>

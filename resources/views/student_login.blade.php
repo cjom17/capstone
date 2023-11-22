@@ -45,7 +45,27 @@
 									</p>
 								</div> -->
 			      	</div>
-			<form action="{{route('studentLogin.post')}}"  method="POST" class="signin-form">
+					  <div class="mt-5">
+						@if($errors->any())
+							<div class="col-12">
+								@foreach($errors->all() as $error)
+									<div class="alert alert-danger">{{$error}}</div>
+
+								@endforeach
+							</div>
+						@endif
+
+						@if(session()->has('error'))
+						<div class="alert alert-danger">{{session('error')}}</div>
+
+						@endif
+
+						@if(session()->has('success'))
+						<div class="alert alert-success">{{session('success')}}</div>
+
+						@endif
+					</div>
+		<form action="{{route('studentLogin.post')}}"  method="POST" class="signin-form">
 			@csrf
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="student_lrn">LRN NUMBER</label>

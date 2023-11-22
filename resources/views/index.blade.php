@@ -85,7 +85,7 @@
             <div class="update-card">
                <div class="image-container">
                   @if($update->update_image)
-                        <img src="{{ asset('images/' . $event->update_image) }}" alt="Event Image">
+                        <img src="{{ asset('images/' . $update->update_image) }}" alt="Event Image">
                     @else
                         <!-- Display a default image when there is no event image -->
                         <img src="{{ asset('images/admin.png') }}" alt="Default Event Image">

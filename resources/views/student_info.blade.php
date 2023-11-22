@@ -37,7 +37,11 @@
             <p>LRN : <span> {{auth('student')->user()->student_lrn}}</span></p>
             <p>First name: <span>{{auth('student')->user()->f_name}} </span></p>
             <p>Last name: <span> {{auth('student')->user()->l_name}}</span></p>
-            <p>Middle name: <span> {{auth('student')->user()->m_name}}</span></p>
+            <p>Middle name: <span> @if(auth('student')->user()->x_name)
+                    {{ auth('student')->user()->m_name }}
+                @else
+                    NA
+                @endif</span></p>
             <p>Extension name: 
                 <span> @if(auth('student')->user()->x_name)
                     {{ auth('student')->user()->x_name }}
@@ -54,8 +58,16 @@
             <p>Religion : <span> {{auth('student')->user()->religion}}</span></p>
             <p>Address : <span> {{auth('student')->user()->address}}</span></p>
             <p>Phone Number : <span> {{auth('student')->user()->phone_number}}</span></p>
-            <p>Mother's name : <span> {{auth('student')->user()->mother_name}}</span></p>
-            <p>Father's name : <span> {{auth('student')->user()->father_name}}</span></p>
+            <p>Mother's name : <span> @if(auth('student')->user()->mother_name)
+                    {{ auth('student')->user()->x_name }}
+                @else
+                    NA
+                @endif</span></p>
+            <p>Father's name : <span> @if(auth('student')->user()->x_name)
+                    {{ auth('student')->user()->father_name }}
+                @else
+                    NA
+                @endif</span></p>
             <p>Email Address : <span> {{auth('student')->user()->email}}</span></p>
 
         </div>

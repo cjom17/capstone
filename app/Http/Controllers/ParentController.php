@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
-use App\Models\Teacher;
+use App\Models\ParentModel;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
@@ -37,7 +37,7 @@ class ParentController extends Controller
         'password' => 'required'
     ]);
 
-    $credentials = $request->only('parent_lrn', 'password');
+    $credentials = $request->only('username', 'password');
 
     if (Auth::guard('parent')->attempt($credentials)) {
         return redirect()->route('parent.landing');
@@ -47,13 +47,9 @@ class ParentController extends Controller
 }
 
 
-    public function addParent(Request $request)
+    public function parentRegistration(Request $request)
     {
-        $user = Auth::user();
-
-        if (!$user || $user->role !== 'parent') {
-            return redirect()->route('parent.login'); // Redirect to the login page or handle authentication as needed
-        }
+        
 
         // Validate the incoming request data
         $request->validate([

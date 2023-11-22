@@ -45,14 +45,35 @@
 									</p>
 								</div> -->
 			      	</div>
-			<form action="#" class="signin-form">
+					  <div class="mt-5">
+						@if($errors->any())
+							<div class="col-12">
+								@foreach($errors->all() as $error)
+									<div class="alert alert-danger">{{$error}}</div>
+
+								@endforeach
+							</div>
+						@endif
+
+						@if(session()->has('error'))
+						<div class="alert alert-danger">{{session('error')}}</div>
+
+						@endif
+
+						@if(session()->has('success'))
+						<div class="alert alert-success">{{session('success')}}</div>
+
+						@endif
+					</div>
+			<form action="{{route('parentLogin.post')}}"  method="POST" class="signin-form">
+			@csrf
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="name">Username</label>
-			      			<input type="text" class="form-control" placeholder="Username" required>
+			      			<input type="text" class="form-control" placeholder="Username" name="username" id="username" required>
 			      		</div>
 		            <div class="form-group mb-3">
 		            	<label class="label" for="password">Password</label>
-		              <input type="password" class="form-control" placeholder="Password" required>
+		              <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
 		            </div>
 		            <div class="form-group">
 		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>

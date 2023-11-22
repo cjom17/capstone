@@ -215,6 +215,11 @@ Route::get('/add_student', function(){
 //Routes for Home
 Route::get('/', [HomeController::class, 'showLandingPage'])->name('landing-page');
 
+Route::get('/events_updates', [HomeController::class, 'displayEvents'])->name('events.display');
+
+
+
+
 // Admin Login
 Route::post('/adminLogin', [AuthController::class, 'loginPost'])->name('login.post');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -284,11 +289,11 @@ Route::middleware(['auth:teacher', 'role:teacher'])->group(function () {
     Route::get('/teacher_dashboard', [TeacherController::class, 'showTeacherDashboard'])->name('teacher.dashboard'); 
 });
 
-// Students Login
-Route::get('/student_login', [StudentController::class, 'showStudentLogin'])->name('student.login');
-Route::post('/student_login', [StudentController::class, 'studentLoginPost'])->name('studentLogin.post');
+// PARENT LOGIN
+Route::get('/parentLogin', [ParentController::class, 'showParentLogin'])->name('parent.login');
+Route::post('/parentLogin', [ParentController::class, 'parentLoginPost'])->name('parentLogin.post');
 
-// ROUTE GROUP FOR STUDENT
+// ROUTE GROUP FOR PARENT
 
 Route::middleware(['auth:parent', 'role:parent'])->group(function () {
     Route::get('/parent_landing', [ParentController::class, 'showParentLanding'])->name('parent.landing');
@@ -297,8 +302,25 @@ Route::middleware(['auth:parent', 'role:parent'])->group(function () {
     });
 });
 
+Route::post('/parentRegistration', [ParentController::class, 'parentRegistration'])->name('parent.register');     
+
+
+
+// STUDENT LOGIN
+Route::get('/studentLogin', [StudentController::class, 'showstudentLogin'])->name('student.login');
+Route::post('/studentLogin', [StudentController::class, 'studentLoginPost'])->name('studentLogin.post');
+
+// ROUTE GROUP FOR STUDENT
+
+Route::middleware(['auth:student', 'role:student'])->group(function () {
+    Route::get('/student_landing', [StudentController::class, 'showStudentLanding'])->name('student.landing');
+    Route::get('/student_info', function(){
+        return view('student_info');
+    });
+});
+
 // Logout 
-Route::get('/teacherLogout', [ParentController::class, 'parentLogout'])->name('parent.logout');
+Route::get('/parentLogout', [ParentController::class, 'parentLogout'])->name('parent.logout');
 Route::get('/teacherLogout', [TeacherController::class, 'teacherLogout'])->name('teacher.logout');
 Route::get('/studentLogout', [StudentController::class, 'studentLogout'])->name('student.logout');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

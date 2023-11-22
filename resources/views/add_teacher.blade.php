@@ -135,7 +135,7 @@
 						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}" style="width: 170x; " alt="Profile Image" style="width: 170px; border: 3px solid;">
 						@else
 							{{-- Default image if the user doesn't have a profile picture --}}
-							<img src="{{ asset('images/default.jpg') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+							<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
 						@endif
 							
 							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
@@ -360,7 +360,7 @@
 						<p class="mb-30">jQuery Step wizard</p>
 					</div>
 					<div class="wizard-content">
-					<div class="mt-5">
+		<div class="mt-5">
             @if($errors->any())
                 <div class="col-12">
                     @foreach($errors->all() as $error)

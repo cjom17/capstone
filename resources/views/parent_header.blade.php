@@ -47,7 +47,7 @@
                   <li><a href="/pview_grades" class="nav__link">VIEW GRADES</a></li>
 
                   <li><a href="/parent_info" class="nav__link">MY INFO</a></li>
-                  <li><a href="#" class="nav__link">LOGOUT</a></li>
+                  <li><a href="{{ route('parent.logout') }}" class="nav__link">LOGOUT</a></li>
 
 
                </ul>
