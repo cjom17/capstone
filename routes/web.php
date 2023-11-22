@@ -10,6 +10,9 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ParentController;
+
 
 
 /*
@@ -114,15 +117,9 @@ Route::get('/sview_grades', function(){
 
 });
 
-Route::get('/student_info', function(){
-    return view('student_info');
 
-});
 
-Route::get('/parent_info', function(){
-    return view('parent_info');
 
-});
 Route::get('/pview_grades', function(){
     return view('pview_grades');
 
@@ -215,51 +212,28 @@ Route::get('/add_student', function(){
 });
 
 
-
-
-
-// Routes for Events
-Route::get('/add_events', [EventController::class, 'showAddEvent'])->name('events.index');
-Route::get('/manage_events', [EventController::class, 'showManageEvent'])->name('events.manage');
-Route::post('/add_events', [EventController::class, 'addEvent'])->name('events.addEvent')->middleware('auth');
-Route::get('/manage_events', [EventController::class, 'getEvents'])->name('events.display');
-
-// Route for Updates
-
-Route::get('/add_updates', [UpdateController::class, 'showAddUpdate'])->name('updates.index');
-Route::get('/manage_updates', [UpdateController::class, 'showManageUpdate'])->name('updates.manage');
-Route::post('/add_updates', [UpdateController::class, 'addUpdate'])->name('updates.addUpdate')->middleware('auth');
-Route::get('/manage_updates', [UpdateController::class, 'getUpdates'])->name('updates.display');
-
 //Routes for Home
 Route::get('/', [HomeController::class, 'showLandingPage'])->name('landing-page');
 
-
-
-// Routes for grade level
-
-Route::get('/add_gradelvl', [GradelvlController::class, 'showAddGradelvl'])->name('gradelvl.index');
-Route::get('/manage_gradelvl', [GradelvlController::class, 'showManageGradelvl'])->name('gradelvl.manage');
-Route::post('/add_gradelvl', [GradelvlController::class, 'addGradelvl'])->name('gradelvls.addGradelvl')->middleware('auth');
-Route::get('/manage_gradelvl', [GradelvlController::class, 'getGradelvl'])->name('gradelvl.display');
-
-
-// Routes for Subjects
-Route::get('/add_subject', [SubjectController::class, 'showAddSubject'])->name('subject.index');
-Route::get('/manage_subjects', [SubjectController::class, 'showManageSubject'])->name('subject.manage');
-Route::post('/add_subject', [SubjectController::class, 'addSubject'])->name('subjects.addsubject')->middleware('auth');
-Route::get('/manage_subjects', [SubjectController::class, 'getSubject'])->name('subject.display');
-
-
-
-
+// Admin Login
 Route::post('/adminLogin', [AuthController::class, 'loginPost'])->name('login.post');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
+// Route group for Admin
+Route::post('/addAdmin', [AuthController::class, 'addAdmin'])->name('add.admin'); 
+Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('addAdmin.show');
+
 Route::middleware(['auth:web', 'role:admin'])->group(function () {
-    Route::post('/addAdmin', [AuthController::class, 'addAdmin'])->name('add.admin'); 
-    Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('addAdmin.show');
+    // Routes for grade level
+    Route::get('/add_gradelvl', [GradelvlController::class, 'showAddGradelvl'])->name('gradelvl.index');
+    Route::get('/manage_gradelvl', [GradelvlController::class, 'showManageGradelvl'])->name('gradelvl.manage');
+    Route::post('/add_gradelvl', [GradelvlController::class, 'addGradelvl'])->name('gradelvls.addGradelvl')->middleware('auth');
+    Route::get('/manage_gradelvl', [GradelvlController::class, 'getGradelvl'])->name('gradelvl.display');
+
+    // Routes for managing Admin
     Route::get('/adminDashboard', [AuthController::class, 'showAdminDashboard'])->name('admin.dashboard');
+
+    // Routes for managing teacher
     Route::get('/manage_teacher', [TeacherController::class, 'showManageTeacher'])->name('manage.teacher');
     Route::get('/add_teacher', [TeacherController::class, 'showAddTeacher'])->name('addTeacher.show');
     Route::post('/add_teacher', [TeacherController::class, 'addTeacher'])->name('add.teacher');     
@@ -276,18 +250,55 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::post('/add_section', [SectionController::class, 'addSection'])->name('section.addsection')->middleware('auth');
     Route::get('/manage_sections', [SectionController::class, 'getSection'])->name('section.display');
 
+    // Routes for Events
+    Route::get('/add_events', [EventController::class, 'showAddEvent'])->name('events.index');
+    Route::get('/manage_events', [EventController::class, 'showManageEvent'])->name('events.manage');
+    Route::post('/add_events', [EventController::class, 'addEvent'])->name('events.addEvent')->middleware('auth');
+    Route::get('/manage_events', [EventController::class, 'getEvents'])->name('events.display');
 
+    // Route for Updates
+    Route::get('/add_updates', [UpdateController::class, 'showAddUpdate'])->name('updates.index');
+    Route::get('/manage_updates', [UpdateController::class, 'showManageUpdate'])->name('updates.manage');
+    Route::post('/add_updates', [UpdateController::class, 'addUpdate'])->name('updates.addUpdate')->middleware('auth');
+    Route::get('/manage_updates', [UpdateController::class, 'getUpdates'])->name('updates.display');
         
 });
 
-// For Teacher
+// Teacher Login
+Route::get('/teacherLogin', [TeacherController::class, 'showTeacherLogin'])->name('teacher.login');
+Route::post('/teacherLogin', [TeacherController::class, 'teacherLoginPost'])->name('teacherLogin.post');
+
+// ROUTE GROUP FOR TEACHER
 Route::middleware(['auth:teacher', 'role:teacher'])->group(function () {
-    // Route::get('/logout', [TeacherController::class, 'logout'])->name('logout');
+    // Routes for Subjects
+    Route::get('/add_subject', [SubjectController::class, 'showAddSubject'])->name('subject.index');
+    Route::get('/manage_subjects', [SubjectController::class, 'showManageSubject'])->name('subject.manage');
+    Route::post('/add_subject', [SubjectController::class, 'addSubject'])->name('subjects.addsubject')->middleware('auth');
+    Route::get('/manage_subjects', [SubjectController::class, 'getSubject'])->name('subject.display');
+
+    //Routes for Students
+    Route::get('/manage_student', [StudentController::class, 'showManageStudent'])->name('manage.student');
+    Route::get('/add_student', [StudentController::class, 'showAddStudent'])->name('addStudent.show');
+    Route::post('/add_student', [StudentController::class, 'addStudent'])->name('add.student');     
+    
     Route::get('/teacher_dashboard', [TeacherController::class, 'showTeacherDashboard'])->name('teacher.dashboard'); 
 });
 
-Route::get('/teacherLogin', [TeacherController::class, 'showTeacherLogin'])->name('teacher.login');
-Route::post('/teacherLogin', [TeacherController::class, 'teacherLoginPost'])->name('teacherLogin.post');
-   
+// Students Login
+Route::get('/student_login', [StudentController::class, 'showStudentLogin'])->name('student.login');
+Route::post('/student_login', [StudentController::class, 'studentLoginPost'])->name('studentLogin.post');
+
+// ROUTE GROUP FOR STUDENT
+
+Route::middleware(['auth:parent', 'role:parent'])->group(function () {
+    Route::get('/parent_landing', [ParentController::class, 'showParentLanding'])->name('parent.landing');
+    Route::get('/parent_info', function(){
+        return view('parent_info');
+    });
+});
+
 // Logout 
+Route::get('/teacherLogout', [ParentController::class, 'parentLogout'])->name('parent.logout');
+Route::get('/teacherLogout', [TeacherController::class, 'teacherLogout'])->name('teacher.logout');
+Route::get('/studentLogout', [StudentController::class, 'studentLogout'])->name('student.logout');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

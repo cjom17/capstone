@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Session;
+// use App\Http\Controllers\Session;
+use Illuminate\Support\Facades\Session;
 
 
 class AuthController extends Controller
@@ -86,7 +87,7 @@ class AuthController extends Controller
 }
 
     function logout(){
-            // Session::flush();
+            Session::flush();
             Auth::logout();
             return redirect()->route('login');
     }

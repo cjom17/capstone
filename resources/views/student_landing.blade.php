@@ -20,8 +20,9 @@
     @include('student_header')
         <section id="studentLanding">
                 <div id="showcase">
-
-                <h1>HI there <span> "Fullname" </span></h1>
+                @auth
+                <h1>HI there <span> {{auth('student')->user()->f_name}} {{auth('student')->user()->m_name}} {{auth('student')->user()->l_name}}</span></h1>
+                @endauth
                 <h2>Welcome Back!</h2>
                 <p> Keep updated with your progress.
                 </p>

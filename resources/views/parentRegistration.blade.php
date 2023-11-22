@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Student Login</title>
+  	<title>Parent Registration | Boljoon National High School</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -9,7 +9,7 @@
 	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -19,64 +19,180 @@
 
 	</head>
 	<body>
-	<section class="ftco-section">
-		<div class="container" >
-			<div class="overlay"></div>
-			<div class="row justify-content-center">
-				<div class="col-md-9 text-center mb-5">
-					<img src="./images/bnhs1-removebg-preview.png" alt="">
-					<h2 class="heading-section">BOLJOON NATIONAL HIGH SCHOOL</h2>
+	<section class="h-100 ">
+	<div class="container py-5 h-100">
+		<div class="row d-flex justify-content-center align-items-center h-100">
+		<div class="col">
+			<div class="card card-registration my-4">
+			<div class="row g-0">
+				<div class="col-xl-6 d-none d-xl-block" style="background-image: url('./images/parent.png'); background-size:cover; background-repeat: no-repeat; background-position: center;">
+				<!-- <img src="./images/parent.png"
+					alt="Sample photo" class="img-fluid"
+					style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" /> -->
+				</div>
+				<div class="col-xl-6">
+				<div class="card-body p-md-5 text-black">
+					<h3 class="mb-5 text-uppercase">Parent registration form</h3>
+					<div class="form-outline mb-4">
+					<input type="file" name="profile_picture" id="profile_picture" accept="image/*"><br>
+					<label class="form-label" for="form3Example97">Profile Picture : </label> 
+				</div>
+				<div class="row">
+					<div class="col-md-6 mb-4">
+						<div class="form-outline">
+						<input type="text"  class="form-control form-control-lg" name="f_name" id="f_name" />
+						<label class="form-label" for="">First name</label>
+						</div>
+					</div>
+					<div class="col-md-6 mb-4">
+						<div class="form-outline">
+						<input type="text" class="form-control form-control-lg" name="l_name" id="l_name" />
+						<label class="form-label" for="">Last name</label>
+						</div>
+					</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text"  class="form-control form-control-lg" name="m_name" id="x_name" />
+							<label class="form-label" for="">Middle name</label>
+							</div>
+						</div>
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text"  class="form-control form-control-lg" name="x_name" id="x_name" />
+							<label class="form-label" for="">Extension name</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<select class="custom-select form-control" name="gender" id="gender">
+							<option value="" selected disabled>Select Gender</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+							<option value="others">Others</option>
+							</select>
+							<label class="form-label" for="">Gender</label>
+							</div>
+						</div>
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<select class="custom-select form-control" name="civil_status" id="civil_status">
+							<option value="" selected disabled>Select Civil Status</option>
+							<option value="single">Single</option>
+							<option value="married">Married</option>
+							<option value="divorced">Divorced</option>
+							<option value="widowed">Widowed</option>
+							</select>
+							<label class="form-label" for="">Civil Status</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text" class="form-control form-control-lg" name="nationality" id="nationality"/>
+							<label class="form-label" for="">Nationality</label>
+							</div>
+						</div>
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text" id="religion" name="religion" class="form-control form-control-lg" />
+							<label class="form-label" for="">Religion</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text" id="address" name="address" class="form-control form-control-lg" />
+							<label class="form-label" for="">Adresss</label>
+							</div>
+						</div>
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text" id="phone_number" name="phone_number" class="form-control form-control-lg" />
+							<label class="form-label" for="phone_number">Phone number</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text" id="age" name="age" class="form-control form-control-lg" />
+							<label class="form-label" for="">Age</label>
+							</div>
+						</div>
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text" id="student_lrn" name="student_lrn" class="form-control form-control-lg" />
+							<label class="form-label" for="phone_number">Student LRN</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text" id="address" name="address" class="form-control form-control-lg" />
+							<label class="form-label" for="">Adresss</label>
+							</div>
+						</div>
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text" id="phone_number" name="phone_number" class="form-control form-control-lg" />
+							<label class="form-label" for="phone_number">Phone number</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text" id="username" name="username" class="form-control form-control-lg" />
+							<label class="form-label" for="">Username</label>
+							</div>
+						</div>
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="email" id="email" name="email" class="form-control form-control-lg" />
+							<label class="form-label" for="phone_number">Email</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text" id="password" name="password" class="form-control form-control-lg" />
+							<label class="form-label" for="">Password</label>
+							</div>
+						</div>
+						<div class="col-md-6 mb-4">
+							<div class="form-outline">
+							<input type="text" id="password_confirmation" name="password_confirmation" class="form-control form-control-lg" />
+							<label class="form-label" for="phone_number">Confirm Password</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="d-flex justify-content-end pt-3" >
+					<button type="button" class="btn btn-secondary " >Reset all</button>
+					<button type="button" class="btn btn-success" style="margin-left: 10px">Submit form</button>
+					</div>
+
+				</div>
 				</div>
 			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-12 col-lg-10">
-					<div class="wrap d-md-flex">
-						<div class="img" style="background-image: url(images/parent.png);">
-			      </div>
-						<div class="login-wrap p-4 p-md-5">
-			      	<div class="d-flex">
-			      		<div class="w-100">
-			      			<h3 class="mb-4" style="font-size: 1.3rem; font-weight: 600;">CREATE AN ACCOUNT</h3>
-			      		</div>
-								<!-- <div class="w-100">
-									<p class="social-media d-flex justify-content-end">
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-									</p>
-								</div> -->
-			      	</div>
-							<form action="#" class="signin-form">
-			      		<div class="form-group mb-3">
-			      			<label class="label" for="name">LRN NUMBER</label>
-			      			<input type="text" class="form-control" placeholder="Username" required>
-			      		</div>
-		            <div class="form-group mb-3">
-		            	<label class="label" for="password">Password</label>
-		              <input type="password" class="form-control" placeholder="Password" required>
-		            </div>
-		            <div class="form-group">
-		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Register</button>
-		            </div>
-		            <!-- <div class="form-group d-md-flex">
-		            	<div class="w-50 text-left">
-			            	<label class="checkbox-wrap checkbox-primary mb-0">Remember Me
-									  <input type="checkbox" checked>
-									  <span class="checkmark"></span>
-										</label>
-									</div>
-									<div class="w-50 text-md-right">
-										<a href="#">Forgot Password</a>
-									</div>
-		            </div> -->
-		          </form>
-		          <p class="text-center">Already have an account? <a data-toggle="tab" href="/parentLogin" style="color: #11CC72;">Sign In</a></p>
-		        </div>
-		      </div>
-				</div>
 			</div>
-		
 		</div>
+		</div>
+	</div>
 	</section>
+	
 	<section id="forFooter">
 		<div class="footer-container">
 			<img src="./images/bnhs1-removebg-preview.png" alt="">
@@ -84,6 +200,7 @@
 		</div>
 
 	</section>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 	<script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>

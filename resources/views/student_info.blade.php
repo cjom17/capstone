@@ -20,27 +20,43 @@
     @include('student_header')
       
     <section id="forInfo">
+        
+        <div class="my-info-image">
+        
+            @if(auth('student')->user()->profile_picture)
+					<img src="{{ asset('/' . auth('student')->user()->profile_picture) }}"  alt="Profile Image" style="width: 180px; ">
+				@else
+					{{-- Default image if the user doesn't have a profile picture --}}
+				    <img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 180px; border: 3px solid;">
+				@endif
+        </div>
+        <h3 class="prof">Profile Picture :</h3>
+        
         <div class="my-info-container">
             <h1>Personal Information</h1> <br>
-            <p>LRN : <span> 12333113</span></p>
-            <p>First name: <span>John </span></p>
-            <p>Last name: <span> Doe</span></p>
-            <p>Middle name: <span> Dan</span></p>
-            <p>Age : <span> 14</span></p>
-            <p>Grade Level : <span> 7</span></p>
-            <p>Section : <span> Sunflower</span></p>
-            <p>Birth Date : <span> 10/23/23</span></p>
-            <p>Place of Birth : <span> Boljoon Cebu</span></p>
-            <p>Civil Status : <span> Single</span></p>
-
-            <p>Nationality : <span> Filipino</span></p>
-            <p>Religion : <span> Roman Catholic</span></p>
-            <p>Mother's name : <span> Mother's name</span></p>
-            <p>Father's name : <span> Father's name</span></p>
-            <p>Phone no. : <span> 01923431311</span></p>
-            <p>Email Address : <span> sample@gmail.com</span></p>
-            <p>Password: <span> 12345678</span></p>
-
+            <p>LRN : <span> {{auth('student')->user()->student_lrn}}</span></p>
+            <p>First name: <span>{{auth('student')->user()->f_name}} </span></p>
+            <p>Last name: <span> {{auth('student')->user()->l_name}}</span></p>
+            <p>Middle name: <span> {{auth('student')->user()->m_name}}</span></p>
+            <p>Extension name: 
+                <span> @if(auth('student')->user()->x_name)
+                    {{ auth('student')->user()->x_name }}
+                @else
+                    NA
+                @endif
+                </span></p>
+            <p>Grade Level : <span>{{auth('student')->user()->year_lvl}}</span></p>
+            <p>Section : <span> {{auth('student')->user()->section_name}}</span></p>
+            <p>Birth Date : <span> {{auth('student')->user()->date_of_birth}}</span></p>
+            <p>Age : <span> {{auth('student')->user()->age}}</span></p>      
+            <p>Civil Status : <span> {{auth('student')->user()->gender}}</span></p>
+            <p>Nationality : <span> {{auth('student')->user()->nationality}}</span></p>
+            <p>Religion : <span> {{auth('student')->user()->religion}}</span></p>
+            <p>Address : <span> {{auth('student')->user()->address}}</span></p>
+            <p>Phone Number : <span> {{auth('student')->user()->phone_number}}</span></p>
+            <p>Mother's name : <span> {{auth('student')->user()->mother_name}}</span></p>
+            <p>Father's name : <span> {{auth('student')->user()->father_name}}</span></p>
+            <p>Email Address : <span> {{auth('student')->user()->email}}</span></p>
 
         </div>
     </section>

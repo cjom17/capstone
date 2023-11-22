@@ -131,31 +131,30 @@
 
 					
 						<span class="user-icon" >
-						@if(auth()->user()->profile_picture)
-						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}" style="width: 170x; " alt="Profile Image" style="width: 170px; border: 3px solid;">
+						@if(auth('teacher')->user()->profile_picture)
+						<img src="{{ asset('/' . auth('teacher')->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
 						@else
 							{{-- Default image if the user doesn't have a profile picture --}}
-							<img src="{{ asset('images/default.jpg') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+							<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
 						@endif
 							
 							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
 						</span>
 						@auth
-						<span class="user-name">{{auth()->user()->name}} </span>
+						<span class="user-name">{{auth('teacher')->user()->fullname}} </span>
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
 						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-						<a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="{{ route('teacher.logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
 			</div>
 			
 		</div>
 	</div>
-
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -339,9 +338,10 @@
             @endif
         </div>
 			
-		<form action="{{route('add.teacher')}}" method="POST" enctype="multipart/form-data">
+		<form action="{{route('add.student')}}" method="POST" enctype="multipart/form-data">
 		@csrf
 			<div class="row">
+				
 				<div class="col-md-6">
 						<div class="form-group">
 							<label>Profile Picture:</label>

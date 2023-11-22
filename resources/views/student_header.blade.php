@@ -45,7 +45,7 @@
                   <li><a href="/sview_grades" class="nav__link">VIEW GRADES</a></li>
 
                   <li><a href="/student_info" class="nav__link">MY INFO</a></li>
-                  <li><a href="#" class="nav__link">LOGOUT</a></li>
+                  <li><a href="{{ route('student.logout') }}" class="nav__link">LOGOUT</a></li>
 
 
                </ul>

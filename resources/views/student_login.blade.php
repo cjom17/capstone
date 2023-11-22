@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Student Login</title>
+  	<title>Student Login | Boljoon National High School</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -45,17 +45,18 @@
 									</p>
 								</div> -->
 			      	</div>
-			<form action="#" class="signin-form">
+			<form action="{{route('studentLogin.post')}}"  method="POST" class="signin-form">
+			@csrf
 			      		<div class="form-group mb-3">
-			      			<label class="label" for="name">LRN NUMBER</label>
-			      			<input type="text"  class="form-control" placeholder="LRN" id required>
+			      			<label class="label" for="student_lrn">LRN NUMBER</label>
+			      			<input type="text"  class="form-control" placeholder="LRN" name="student_lrn" id="student_lrn" required>
 			      		</div>
 		            <div class="form-group mb-3">
 		            	<label class="label" for="password">Password</label>
-		              <input type="password" class="form-control" placeholder="Password" required>
+		              <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
 		            </div>
 		            <div class="form-group">
-		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3"><a href="/student_landing">Sign In</a></button>
+		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
 		            </div>
 		            <!-- <div class="form-group d-md-flex">
 		            	<div class="w-50 text-left">
@@ -69,7 +70,7 @@
 									</div>
 		            </div> -->
 		    </form>
-		          <p class="text-center">Don't have an account yet? <a data-toggle="tab" href="#signup" style="color: #11CC72;">Sign Up</a></p>
+		          <!-- <p class="text-center">Don't have an account yet? <a data-toggle="tab" href="#signup" style="color: #11CC72;">Sign Up</a></p> -->
 		        </div>
 		      </div>
 				</div>

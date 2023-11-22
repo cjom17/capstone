@@ -5,6 +5,7 @@ use App\Models\Teacher;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TeacherController extends Controller
 {
@@ -122,8 +123,8 @@ class TeacherController extends Controller
         return redirect()->route('addTeacher.show')->with("success", "New teacher added successfully");
     }
 
-    function logout(){
-            // Session::flush();
+    function teacherLogout(){
+            Session::flush();
             Auth::logout();
             return redirect()->route('teacher.login');
     }

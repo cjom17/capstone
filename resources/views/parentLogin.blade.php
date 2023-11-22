@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Student Login</title>
+  	<title>Parent Login | Boljoon National High School</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -45,9 +45,9 @@
 									</p>
 								</div> -->
 			      	</div>
-							<form action="#" class="signin-form">
+			<form action="#" class="signin-form">
 			      		<div class="form-group mb-3">
-			      			<label class="label" for="name">STUDENT LRN NUMBER</label>
+			      			<label class="label" for="name">Username</label>
 			      			<input type="text" class="form-control" placeholder="Username" required>
 			      		</div>
 		            <div class="form-group mb-3">
@@ -68,7 +68,7 @@
 										<a href="#">Forgot Password</a>
 									</div>
 		            </div> -->
-		          </form>
+		    </form>
 		          <p class="text-center">Don't have an account yet? <a data-toggle="tab" href="/parentRegistration" style="color: #11CC72;">Sign Up</a></p>
 		        </div>
 		      </div>

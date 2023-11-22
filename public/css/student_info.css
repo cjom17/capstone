@@ -56,9 +56,8 @@
   }
 
 .my-info-container{
-    min-height: 100vh;
+    min-height: 80vh;
     height: auto;
-    background-color: white;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -67,13 +66,26 @@
     
 
 }
-
+.my-info-image{
+  height: auto;
+  min-height: 20vh;
+  width: 200px;
+  margin-left: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #052A56;
+}
+#forInfo .prof{
+  padding-left: 100px;
+  padding-top: 10px;
+}
 .my-info-container p{
     padding: 2px 0px;
 }
 
 #forInfo{
-    margin-top: 10vh;
+    margin-top: 13vh;
 }
 
 
@@ -116,6 +128,7 @@
     color: #11CC72;
   }
   
+
   
 
  
@@ -123,7 +136,7 @@
  
           @media screen and (max-width: 768px) {
             #forFooter {
-              margin-top: 40vh;
+              margin-top: 60vh;
                 height: auto; /* Adjust height as needed for smaller screens */
             }
 
@@ -131,6 +144,12 @@
             .my-info-container{
                 padding-left: 30px;
             }
+            .my-info-image{
+              margin-left: 30px;
+          }
+          #forInfo .prof{
+            padding-left: 30px;
+          }
         
             .footer-container {
                 flex-direction: column; /* Stack elements vertically for smaller screens */
