@@ -5,10 +5,38 @@ use App\Models\Form;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class FormController extends Controller
 {
     
+    public function showForms()
+    {
+        // Assuming your model is named Form and it has a 'form_type' field
+        $enrollmentForms = Form::where('form_type', 'Enrollment')->get();
+        $requirementForms = Form::where('form_type', 'Requirements')->get();
+
+        return view('admission', compact('enrollmentForms', 'requirementForms'));
+    }
+
+    public function downloadForm($formType)
+    {
+        // Assuming your model is named Form and it has a 'form_type' field
+        $form = Form::where('form_type', $formType)->first();
+
+        if (!$form) {
+            abort(404, 'Form not found');
+        }
+
+        $filePath = public_path("images/{$form->form_file}");
+
+        if (!File::exists($filePath)) {
+            abort(404, 'File not found');
+        }
+
+        return response()->download($filePath, $form->form_name);
+    }
     public function showAddForm()
     {
         return view ('/add_form');

@@ -25,32 +25,38 @@
        </div>
 	</section>
 
-    <section id="forForms">
-        <div class="for-form-container">
-            <div class="form-card form-left-card">
-                <h2>Enrollment Forms</h2>
-                <div class="form-section">
-                    <p>Junior High School</p>
-                    <button class="download-button">Download Now</button>
-                </div>
-                <div class="form-section">
-                    <p>Senior High School</p>
-                    <button class="download-button">Download Now</button>
-                </div>
-            </div>
-            <div class="form-card form-right-card">
-                <h2>Enrollment Forms</h2>
-                <div class="form-section">
-                    <p>New Student</p>
-                    <button class="download-button">Download Now</button>
-                </div>
-                <div class="form-section">
-                    <p>Transferee</p>
-                    <button class="download-button">Download Now</button>
-                </div>
-            </div>
+<section id="forForms">
+    <div class="for-form-container">
+        <div class="form-card form-left-card">
+            <h2>Enrollment Forms</h2>
+            @if($enrollmentForms->isEmpty())
+                <p>No enrollment forms available at the moment.</p>
+            @else
+                @foreach($enrollmentForms as $form)
+                    <div class="form-section">
+                        <p>{{ $form->form_name }}</p>
+                        <a href="{{ route('download.form', ['formType' => $form->form_type]) }}" class="download-button" target="_blank">Download Now</a>
+                    </div>
+                @endforeach
+            @endif
         </div>
-    </section>
+        <div class="form-card form-right-card">
+            <h2>Requirements Forms</h2>
+            @if($requirementForms->isEmpty())
+                <p>No requirement forms available at the moment.</p>
+            @else
+                @foreach($requirementForms as $form)
+                    <div class="form-section">
+                        <p>{{ $form->form_name }}</p>
+                        <a href="{{ route('download.form', ['formType' => $form->form_type]) }}" class="download-button" target="_blank">Download Now</a>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+    </div>
+</section>
+
+
     <section id="requirements">
         <div class="requirements-container">
             <div class="requirements-title">

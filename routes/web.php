@@ -330,4 +330,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/send-email', [ContactController::class, 'sendEmail'])->name('send-email');
 
+// Routes for FORM
 
+Route::get('/admission', [FormController::class, 'showForms'])->name('forms.show');
+Route::get('/download-form/{formType}', [FormController::class, 'downloadForm'])->name('download.form');
