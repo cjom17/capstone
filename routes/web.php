@@ -12,6 +12,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\ContactController;
 
 
 
@@ -324,3 +325,9 @@ Route::get('/parentLogout', [ParentController::class, 'parentLogout'])->name('pa
 Route::get('/teacherLogout', [TeacherController::class, 'teacherLogout'])->name('teacher.logout');
 Route::get('/studentLogout', [StudentController::class, 'studentLogout'])->name('student.logout');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Route for sendin EMAIL
+
+Route::post('/send-email', [ContactController::class, 'sendEmail'])->name('send-email');
+
+

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/donate.css">
     <link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
 
-    <title>Give to BNHS</title>
+    <title>Give to BNHS | Boljoon National High School</title>
 </head>
 <style>
 
