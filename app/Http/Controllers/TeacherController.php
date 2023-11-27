@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 
 class TeacherController extends Controller
 {
+    
     function showManageTeacher(){
         return view('manage_teachers');
     }

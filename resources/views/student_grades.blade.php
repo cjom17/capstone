@@ -272,14 +272,14 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Students</li>
+									<li class="breadcrumb-item active" aria-current="page">Enrolled Subjects</li>
 								</ol>
 							</nav>
 						</div>
 						<div class="col-md-6 col-sm-12 text-right">
 							<div class="dropdown">
 								<a class="btn btn-primary" href="/add_student">
-									ADD NEW STUDENT
+									ASSIGN SUBJECT
 								</a>
 							
 							</div>
@@ -289,7 +289,12 @@
 				</div>
 				<div class="card-box mb-30">
 					<div class="pd-20">
-						<h4 class="text-blue h4">List of Students</h4>
+						<h4 style="color: #052A56">List of Subjects</h4> <br>
+						<h6 style="color: #052A56">Student Name: </h6>
+						<p style="font-size: 14px; color: #052A56">LRN: </p>
+						<p style="font-size: 14px; color: #052A56">Grade Level: </p>
+						<p style="font-size: 14px; color: #052A56">Section: </p>
+						<p style="font-size: 14px; color: #052A56">School Year: </p>
 					</div>
 					<div class="pb-20">
 
@@ -297,36 +302,23 @@
 							<thead>
 
 								<tr>
-									<th class="datatable-nosort">LRN</th>
-									<th class="datatable-nosort">Name</th>
-									<th class="datatable-nosort">Age</th>
-									<th class="datatable-nosort">Grade Level</th>
-									<th class="datatable-nosort">Section</th>
+									<th class="datatable-nosort">Subject Name</th>
+									<th class="datatable-nosort">Subject Description</th>
 									<th class="datatable-nosort">Action</th>
-
-
 								</tr>
 							</thead>
 							<tbody>
-							@foreach($students as $student)
 
 								<tr>
-									<td class="table-plus">{{ $student->student_lrn }}</td>
-									<td>{{ $student->f_name }} {{ $student->l_name }}</td>
-									<td>{{ $student->age }}</td>
-									<td>{{ $student->year_lvl }}  </td>
-									<td>{{ $student->section_name }}</td>
+									<td class="table-plus">Sample Subject</td>
+									<td>Sample Description</td>
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 												<i class="dw dw-more"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<!-- Update the href attribute to include the student's ID -->
-												<a class="dropdown-item" href="{{ route('specStudent.show', ['student_id' => $student->id]) }}"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="{{ route('enrolledSub.show', ['student_id' => $student->id, 'student_lrn' => $student->student_lrn]) }}"><i class="dw dw-eye"></i> Enrolled Subjects</a>
-												<a class="dropdown-item" href="{{ route('remarks.show', ['student_id' => $student->id, 'student_lrn' => $student->student_lrn]) }}"><i class="dw dw-eye"></i> Grades</a>
+												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Add Grade</a>
 												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
 
 
@@ -334,9 +326,6 @@
 										</div>
 									</td>
 								</tr>
-								@endforeach
-
-							
 							</tbody>
 						</table>
 

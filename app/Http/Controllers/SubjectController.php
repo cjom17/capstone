@@ -12,7 +12,11 @@ class SubjectController extends Controller
 {
 
 
-
+    public function showSubjects()
+    {
+        $subjects = Subject::all();
+        return view('assign_subjects', compact('subjects'));
+    }
 
     public function showAddSubject()
     {
@@ -32,6 +36,9 @@ class SubjectController extends Controller
         $subjects = Subject::all();
         return view('manage_subjects', compact('subjects'));
     }
+
+   
+    
 
     public function addSubject(Request $request)
     {

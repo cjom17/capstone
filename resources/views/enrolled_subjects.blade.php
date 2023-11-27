@@ -3,17 +3,18 @@
 <head>
 	<meta charset="utf-8">
 	<title>Boljoon National High School</title>
-	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
+	<link rel="icon" type="image/x-icon" href="{{ asset('images/bnhs1-removebg-preview.png') }}">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/core.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/icon-font.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/style.css') }}">
+
 
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
@@ -23,6 +24,8 @@
 
 		gtag('config', 'UA-119386393-1');
 	</script>
+
+
 </head>
 <body>
 
@@ -216,8 +219,7 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/teacher_dashboard">
-				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-				<img src="images/logo3.PNG" alt="" class="light-logo">
+				<img src="{{ asset ('images/logo3.PNG') }}" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -272,15 +274,15 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Students</li>
+									<li class="breadcrumb-item active" aria-current="page">Enrolled Subjects</li>
 								</ol>
 							</nav>
 						</div>
 						<div class="col-md-6 col-sm-12 text-right">
 							<div class="dropdown">
-								<a class="btn btn-primary" href="/add_student">
-									ADD NEW STUDENT
-								</a>
+							<a class="btn btn-primary" href="/assign_subjects?student_lrn={{ $student->student_lrn }}">
+								ASSIGN SUBJECT
+							</a>
 							
 							</div>
 						</div>
@@ -289,83 +291,76 @@
 				</div>
 				<div class="card-box mb-30">
 					<div class="pd-20">
-						<h4 class="text-blue h4">List of Students</h4>
+						<h4 style="color: #052A56">List of Subjects</h4> <br>
+						<h6 style="color: #052A56">Student Name:{{ $student->f_name }} {{ $student->l_name }} </h6>
+						<p style="font-size: 14px; color: #052A56">LRN: {{ $student->student_lrn }}</p>
+						<p style="font-size: 14px; color: #052A56">Grade Level: {{ $student->year_lvl }} </p>
+						<p style="font-size: 14px; color: #052A56">Section: {{ $student->section_name }} </p>
+						<p style="font-size: 14px; color: #052A56">School Year: </p>
 					</div>
-					<div class="pb-20">
+					<!-- ... (existing code) ... -->
 
-						<table class="data-table table stripe hover nowrap">
-							<thead>
-
-								<tr>
-									<th class="datatable-nosort">LRN</th>
-									<th class="datatable-nosort">Name</th>
-									<th class="datatable-nosort">Age</th>
-									<th class="datatable-nosort">Grade Level</th>
-									<th class="datatable-nosort">Section</th>
-									<th class="datatable-nosort">Action</th>
-
-
-								</tr>
-							</thead>
-							<tbody>
-							@foreach($students as $student)
-
-								<tr>
-									<td class="table-plus">{{ $student->student_lrn }}</td>
-									<td>{{ $student->f_name }} {{ $student->l_name }}</td>
-									<td>{{ $student->age }}</td>
-									<td>{{ $student->year_lvl }}  </td>
-									<td>{{ $student->section_name }}</td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<!-- Update the href attribute to include the student's ID -->
-												<a class="dropdown-item" href="{{ route('specStudent.show', ['student_id' => $student->id]) }}"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="{{ route('enrolledSub.show', ['student_id' => $student->id, 'student_lrn' => $student->student_lrn]) }}"><i class="dw dw-eye"></i> Enrolled Subjects</a>
-												<a class="dropdown-item" href="{{ route('remarks.show', ['student_id' => $student->id, 'student_lrn' => $student->student_lrn]) }}"><i class="dw dw-eye"></i> Grades</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+				
+						<div class="pb-20">
+							<table class="data-table table stripe hover nowrap">
+								<thead>
+									<tr>
+										<th class="datatable-nosort">Subject Name</th>
+										<th class="datatable-nosort">Subject Description</th>
+										<th class="datatable-nosort">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach($enrolledSubjects as $subject)
+										<tr>
+											<td class="table-plus">{{ $subject->subject_name }}</td>
+											<td>{{ $subject->subject_desc }}</td>
+											<td>
+												<div class="dropdown">
+													<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+														<i class="dw dw-more"></i>
+													</a>
+													<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+														<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+													</div>
+												</div>
+											</td>
+										</tr>
+									@endforeach
+								</tbody>
+							</table>
+						</div>
+					
 
 
-											</div>
-										</div>
-									</td>
-								</tr>
-								@endforeach
 
-							
-							</tbody>
-						</table>
-
-					</div>
 				</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
 				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
 			</div>
 		</div>
 	</div>
+	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-	<!-- js -->
-	<script src="vendors/scripts/core.js"></script>
-	<script src="vendors/scripts/script.min.js"></script>
-	<script src="vendors/scripts/process.js"></script>
-	<script src="vendors/scripts/layout-settings.js"></script>
-	<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-	<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+	<script src="{{ asset('vendors/scripts/core.js') }}"></script>
+	<script src="{{ asset('vendors/scripts/script.min.js') }}"></script>
+	<script src="{{ asset('vendors/scripts/process.js') }}"></script>
+	<script src="{{ asset('vendors/scripts/layout-settings.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
 	<!-- buttons for Export datatable -->
-	<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
-	<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
-	<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
+	<script src="{{ asset('src/plugins/datatables/js/dataTables.buttons.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/buttons.bootstrap4.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/buttons.print.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/buttons.html5.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/buttons.flash.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/pdfmake.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/vfs_fonts.js') }}"></script>
 	<!-- Datatable Setting js -->
-	<script src="vendors/scripts/datatable-setting.js"></script></body>
+	<script src="{{ asset('vendors/scripts/datatable-setting.js') }}"></script>
+
+</body>
 </html>

@@ -20,111 +20,41 @@
 
     @include('parent_header')
       
+      
     <section id="forCard">
         <div class="report-card-container">
         <h4>Report Card of Student</h4>
-        <p>LRN: <span>12392939293</span></p>
-        <P>Name: <span>John Doe</span></P>
+        <p>LRN: <span>{{ $student_lrn }}</span></p>
+        <P>Name: <span>{{ $student_fname }} {{ $student_lname }}</span></P>
         <p>SY: <span>2021 - 2022</span></p>
         <table class="table table-striped">
             <thead>
                 <tr>
-                <th scope="col">Subject</th>
-                <th scope="col">Description</th>
+                <th scope="col">Subject Id</th>
+                <th scope="col">Subject Name</th>
                 <th scope="col">1st</th>
                 <th scope="col">2nd</th>
                 <th scope="col">3rd</th>
-
                 <th scope="col">4th</th>
+                <th scope="col">Final</th>
                 <th scope="col">Remarks</th>
-
-
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
+            @foreach($enrolledSubjects as $subject)
+                    <tr>
+                        <td>{{ $subject->subject_id }}</td>
+                        <td>{{ $subject->subject_name }}</td>
+                        <td>{{ $subject->first_qtr }}</td>
+                        <td>{{ $subject->second_qtr }}</td>
+                        <td>{{ $subject->third_qtr }}</td>
+                        <td>{{ $subject->fourth_qtr }}</td>
+                        <td>{{ $subject->final }}</td>
+                        <td>{{ $subject->remarks }}</td>
+                    </tr>
+            @endforeach
                
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-               
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-               
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-               
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-               
-                </tr>
 
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-               
-                </tr>
-
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-               
-                </tr>
-
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-               
-                </tr>
             </tbody>
         </table>
         </div>

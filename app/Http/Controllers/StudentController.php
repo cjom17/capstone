@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\EnrolledSubject;
 
 use App\Models\Teacher;
 use Illuminate\Support\Facades\File;
@@ -14,11 +15,40 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
-    function showManageStudents(){
-        return view('manage_students');
+
+    public function getStudents()
+    {
+        $students = Student::all();
+        return view('manage_students', compact('students'));
     }
+
+    public function getEnrolledSubs()
+    {
+        $enrolledSubs = EnrolledSubject::all();
+        return view('enrolled_subjects', compact('enrolledSubs'));
+    }
+    // function showManageStudents(){
+    //     return view('manage_students');
+    // }
     function showStudentLogin(){
         return view('student_login');
+    }
+
+    public function specStudent($id)
+{
+    // Fetch the student details from the database based on the provided ID
+    $student = Student::find($id);
+
+    // Pass the student details to the view
+    return view('view_student_data', compact('student'));
+}
+    public function enrolledSub($id)
+    {
+        // Fetch the student details from the database based on the provided ID
+        $student = Student::find($id);
+
+        // Pass the student details to the view
+        return view('enrolled_subjects', compact('student'));
     }
 
     function showStudentLanding(){

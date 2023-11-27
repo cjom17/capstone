@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Boljoon National High School</title>
 	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
+
+	<title>Boljoon National High School</title>
+
+	<!-- Site favicon -->
+	<!-- <link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png"> -->
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
 
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
@@ -26,20 +39,7 @@
 </head>
 <body>
 
-	<!-- <div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="images/logo.PNG" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div> -->
-
-	<div class="header">
+<div class="header">
 		<div class="header-left">
 			<div class="menu-icon dw dw-menu"></div>
 			<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
@@ -120,16 +120,27 @@
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<span class="user-icon">
-							<img src="vendors/images/photo1.jpg" alt="">
+
+					
+						<span class="user-icon" >
+						@if(auth('teacher')->user()->profile_picture)
+						<img src="{{ asset('/' . auth('teacher')->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
+						@else
+							{{-- Default image if the user doesn't have a profile picture --}}
+							<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+						@endif
+							
+							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
 						</span>
-						<span class="user-name">Ross C. Lopez</span>
+						@auth
+						<span class="user-name">{{auth('teacher')->user()->fullname}} </span>
+						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
 						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-						<a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="{{ route('teacher.logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
 			</div>
@@ -212,12 +223,11 @@
 		</div>
 	</div>
 
-	
+		
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/teacher_dashboard">
-				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-				<img src="images/logo3.PNG" alt="" class="light-logo">
+				<img src="{{ asset ('images/logo3.PNG') }}" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -258,12 +268,71 @@
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
-	
+
+
+
+
+
 
 	<div class="main-container">
-		<div class="pd-ltr-20 xs-pd-20-10">
-			<div class="min-height-200px">
-				<div class="page-header">
+		<div class="pd-ltr-20">
+		
+			<div class="row">
+				<div class="col-xl-3 mb-30">
+					<div class="card-box height-100-p widget-style1">
+						<div class="d-flex flex-wrap align-items-center">
+							<div class="progress-data">
+								<div id="chart"></div>
+							</div>
+							<div class="widget-data">
+								<div class="h4 mb-0">2020</div>
+								<div class="weight-600 font-14">Contact</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 mb-30">
+					<div class="card-box height-100-p widget-style1">
+						<div class="d-flex flex-wrap align-items-center">
+							<div class="progress-data">
+								<div id="chart2"></div>
+							</div>
+							<div class="widget-data">
+								<div class="h4 mb-0">400</div>
+								<div class="weight-600 font-14">Deals</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 mb-30">
+					<div class="card-box height-100-p widget-style1">
+						<div class="d-flex flex-wrap align-items-center">
+							<div class="progress-data">
+								<div id="chart3"></div>
+							</div>
+							<div class="widget-data">
+								<div class="h4 mb-0">350</div>
+								<div class="weight-600 font-14">Campaign</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 mb-30">
+					<div class="card-box height-100-p widget-style1">
+						<div class="d-flex flex-wrap align-items-center">
+							<div class="progress-data">
+								<div id="chart4"></div>
+							</div>
+							<div class="widget-data">
+								<div class="h4 mb-0">$6060</div>
+								<div class="weight-600 font-14">Worth</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="page-header">
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<!-- <div class="title">
@@ -272,100 +341,158 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Students</li>
+									<li class="breadcrumb-item active" aria-current="page">Subjects</li>
 								</ol>
 							</nav>
 						</div>
-						<div class="col-md-6 col-sm-12 text-right">
-							<div class="dropdown">
-								<a class="btn btn-primary" href="/add_student">
-									ADD NEW STUDENT
-								</a>
-							
-							</div>
-						</div>
-					
 					</div>
 				</div>
+		
 				<div class="card-box mb-30">
-					<div class="pd-20">
-						<h4 class="text-blue h4">List of Students</h4>
-					</div>
-					<div class="pb-20">
+    <div class="pd-20">
+        <h4 class="text-blue h4">List of Subjects</h4>
+    </div>
+	<div class="pb-20">
+	<div class="mt-5">
+            @if($errors->any())
+                <div class="col-12">
+                    @foreach($errors->all() as $error)
+                        <div class="alert alert-danger">{{$error}}</div>
 
-						<table class="data-table table stripe hover nowrap">
-							<thead>
+                    @endforeach
+                </div>
+            @endif
 
-								<tr>
-									<th class="datatable-nosort">LRN</th>
-									<th class="datatable-nosort">Name</th>
-									<th class="datatable-nosort">Age</th>
-									<th class="datatable-nosort">Grade Level</th>
-									<th class="datatable-nosort">Section</th>
-									<th class="datatable-nosort">Action</th>
+            @if(session()->has('error'))
+            <div class="alert alert-danger">{{session('error')}}</div>
+
+            @endif
+
+            @if(session()->has('success'))
+            <div class="alert alert-success">{{session('success')}}</div>
+
+            @endif
+        </div>
+<form method="post" action="{{ route('handle_assignment') }}" id="assignSubjectsForm">
+    @csrf
+    <input type="hidden" name="student_lrn" value="{{ request('student_lrn') }}">
+    <table class="checkbox-datatable table nowrap">
+        <!-- Your table headers... -->
+        <tbody>
+            @foreach($subjects as $subject)
+                <tr>
+                    <td>
+                        <div class="dt-checkbox">
+                            <input type="checkbox" name="selected_subjects[{{ $subject->id }}][subject_id]" value="{{ $subject->id }}">
+                            <span class="dt-checkbox-label"></span>
+                        </div>
+                    </td>
+                    <td>{{ $subject->id }}</td>
+                    <td>{{ $subject->subject_name }}</td>
+                    <td>{{ $subject->subject_desc }}</td>
+                    <td>{{ $subject->sub_gradelvl }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">ASSIGN SELECTED SUBJECT</button>
+</form>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#assignSubjectsForm').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            var studentLRN = $('[name="student_lrn"]').val();
+            console.log('Student LRN:', studentLRN);
+
+            var selectedSubjects = [];
+
+            $('input[name^="selected_subjects["]:checked').each(function () {
+                var subjectId = $(this).val();
+                console.log('Subject ID:', subjectId);
+
+                // Adjust the following selectors based on your table structure
+                var subjectRow = $(this).closest('tr');
+                var subjectName = subjectRow.find('td:eq(2)').text(); // Adjust the index based on your table structure
+                console.log('Subject Name:', subjectName);
+
+                var subjectDesc = subjectRow.find('td:eq(3)').text(); // Adjust the index based on your table structure
+                console.log('Subject Desc:', subjectDesc);
+
+                selectedSubjects.push({
+                    id: subjectId,
+                    subject_name: subjectName,
+                    subject_desc: subjectDesc
+                });
+            });
+
+            console.log('Selected Subjects:', selectedSubjects);
+
+            // Prepare the form data
+            var formData = {
+                student_lrn: studentLRN,
+                selected_subjects: selectedSubjects
+            };
+
+            // Add CSRF token to headers
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // Submit the form data using AJAX
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('handle_assignment') }}',
+                data: formData,
+                dataType: 'json',
+                success: function (response) {
+                    alert('Subjects assigned successfully');
+                    // Handle success, e.g., redirect or update UI
+                },
+                error: function (error) {
+                    console.error('Error response:', error.responseText);
+                    try {
+                        var errorMessage = JSON.parse(error.responseText).error;
+                        if (errorMessage === 'Record already exists') {
+                            alert('Record already exists. Please select different subjects.');
+                        } else {
+                            alert('Error assigning subjects. Check console for details.');
+                        }
+                    } catch (e) {
+                        alert('Error assigning subjects. Check console for details.');
+                    }
+                }
+            });
+
+        });
+    });
+</script>
 
 
-								</tr>
-							</thead>
-							<tbody>
-							@foreach($students as $student)
-
-								<tr>
-									<td class="table-plus">{{ $student->student_lrn }}</td>
-									<td>{{ $student->f_name }} {{ $student->l_name }}</td>
-									<td>{{ $student->age }}</td>
-									<td>{{ $student->year_lvl }}  </td>
-									<td>{{ $student->section_name }}</td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<!-- Update the href attribute to include the student's ID -->
-												<a class="dropdown-item" href="{{ route('specStudent.show', ['student_id' => $student->id]) }}"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="{{ route('enrolledSub.show', ['student_id' => $student->id, 'student_lrn' => $student->student_lrn]) }}"><i class="dw dw-eye"></i> Enrolled Subjects</a>
-												<a class="dropdown-item" href="{{ route('remarks.show', ['student_id' => $student->id, 'student_lrn' => $student->student_lrn]) }}"><i class="dw dw-eye"></i> Grades</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
 
 
-											</div>
-										</div>
-									</td>
-								</tr>
-								@endforeach
 
-							
-							</tbody>
-						</table>
+</div>
 
-					</div>
-				</div>
-			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
-			</div>
+
 		</div>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>
 	<script src="vendors/scripts/script.min.js"></script>
 	<script src="vendors/scripts/process.js"></script>
 	<script src="vendors/scripts/layout-settings.js"></script>
+	<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
 	<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 	<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 	<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 	<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-	<!-- buttons for Export datatable -->
-	<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
-	<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
-	<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
-	<!-- Datatable Setting js -->
-	<script src="vendors/scripts/datatable-setting.js"></script></body>
+	<script src="vendors/scripts/dashboard.js"></script>
+</body>
 </html>

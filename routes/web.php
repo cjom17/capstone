@@ -13,6 +13,8 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EnrolledSubjectController;
+
 
 
 
@@ -113,10 +115,7 @@ Route::get('/parent_landing', function(){
 
 });
 
-Route::get('/sview_grades', function(){
-    return view('sview_grades');
 
-});
 
 
 
@@ -281,14 +280,45 @@ Route::middleware(['auth:teacher', 'role:teacher'])->group(function () {
     Route::get('/manage_subjects', [SubjectController::class, 'showManageSubject'])->name('subject.manage');
     Route::post('/add_subject', [SubjectController::class, 'addSubject'])->name('subjects.addsubject')->middleware('auth');
     Route::get('/manage_subjects', [SubjectController::class, 'getSubject'])->name('subject.display');
+    Route::get('/assign_subjects', [SubjectController::class, 'showSubjects'])->name('assignSubject.display');
+    Route::post('/handle_assignment', [EnrolledSubjectController::class, 'handleAssignment'])->name('handle_assignment');
 
     //Routes for Students
-    Route::get('/manage_student', [StudentController::class, 'showManageStudent'])->name('manage.student');
+    Route::get('/manage_students', [StudentController::class, 'getStudents'])->name('manage.student');
     Route::get('/add_student', [StudentController::class, 'showAddStudent'])->name('addStudent.show');
     Route::post('/add_student', [StudentController::class, 'addStudent'])->name('add.student');     
+    // Route::get('/manage_student', [EventController::class, 'getEvents'])->name('events.display');
+    Route::get('/view_student_data/{student_id}', [StudentController::class, 'specStudent'])->name('specStudent.show');    
+
     
+    // Route::get('/enrolledSub/{student_id}', [StudentController::class, 'enrolledSub'])->name('enrolledSub.show'); 
+    
+    Route::get('/enrolled-subjects/{student_id}/{student_lrn}', [EnrolledSubjectController::class, 'showSpecEnrolledSub'])->name('enrolledSub.show');  
+    
+    Route::get('/remarks/{student_id}/{student_lrn}', [EnrolledSubjectController::class, 'showRemarks'])->name('remarks.show');   
+
+    Route::get('/add_grade', [EnrolledSubjectController::class, 'showAddGrade'])->name('add_grade.show');  
+
+    Route::post('/update_grades', [EnrolledSubjectController::class, 'updateGrades'])->name('update_grades');
+ 
+
+
+
+
     Route::get('/teacher_dashboard', [TeacherController::class, 'showTeacherDashboard'])->name('teacher.dashboard'); 
 });
+
+Route::get('/api/enrolled_subjects/{student_lrn}', [EnrolledSubjectController::class, 'getEnrolledSubjects']);
+
+
+
+
+Route::get('/view_student_data', function(){
+    return view('view_student_data');
+
+});
+
+
 
 // PARENT LOGIN
 Route::get('/parentLogin', [ParentController::class, 'showParentLogin'])->name('parent.login');
@@ -298,6 +328,8 @@ Route::post('/parentLogin', [ParentController::class, 'parentLoginPost'])->name(
 
 Route::middleware(['auth:parent', 'role:parent'])->group(function () {
     Route::get('/parent_landing', [ParentController::class, 'showParentLanding'])->name('parent.landing');
+    Route::get('/pview_grades', [EnrolledSubjectController::class, 'showReportCardParent'])->name('report-card');
+
     Route::get('/parent_info', function(){
         return view('parent_info');
     });
@@ -315,6 +347,8 @@ Route::post('/studentLogin', [StudentController::class, 'studentLoginPost'])->na
 
 Route::middleware(['auth:student', 'role:student'])->group(function () {
     Route::get('/student_landing', [StudentController::class, 'showStudentLanding'])->name('student.landing');
+    Route::get('/sview_grades', [EnrolledSubjectController::class, 'showReportCard'])->name('report-card');
+
     Route::get('/student_info', function(){
         return view('student_info');
     });
