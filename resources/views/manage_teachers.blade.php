@@ -362,8 +362,13 @@
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 												<a class="dropdown-item" href="{{ route('specTeacher.show', ['teacher_id' => $teacher->id]) }}"><i class="dw dw-eye"></i> View</a>
 												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#" onclick="deleteTeacher({{ $teacher->id }})">
-													<i class="dw dw-delete-3"></i> Delete
+												<form action="{{ route('delete.teacher', ['id' => $teacher->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this teacher?')">
+													@csrf
+													@method('DELETE')
+													<button type="submit" class="dropdown-item" style="background: none; border: none; cursor: pointer;">
+														<i class="dw dw-delete-3"></i> Delete
+													</button>
+												</form>	
 												</a>
 											</div>
 										</div>
@@ -381,39 +386,7 @@
 			</div>
 		</div>
 	</div>
-<script>
-    function deleteTeacher(teacherId) {
-        if (confirm('Are you sure you want to delete this teacher?')) {
-            $.ajax({
-                url: '/delete-teacher/' + teacherId,
-                type: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(response) {
-                    // Handle success
-                    console.log(response); // Log the response for debugging
 
-                    // Optionally, check if the response indicates success before redirecting
-                    if (response.success) {
-                        // Redirect to another page
-                        window.location.href = '/manage_teachers'; // Adjust the URL as needed
-                    } else {
-                        // Handle failure (if needed)
-                        alert('Error deleting teacher: ' + response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    // Handle error
-                    console.error('Error deleting teacher:', error);
-
-                    // Show a user-friendly alert
-                    alert('An error occurred while deleting the teacher.');
-                }
-            });
-        }
-    }
-</script>
 
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>
