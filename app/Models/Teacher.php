@@ -15,7 +15,6 @@ class Teacher extends Authenticatable
     protected $fillable = [
         'admin_id',
         'profile_picture', // Profile Picture
-        'image_id',
         'fullname', 
         'position', 
         'id_number', 

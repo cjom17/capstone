@@ -65,7 +65,7 @@
 				</div>
 			</div>
 			<div class="user-notification">
-				<div class="dropdown">
+				<!-- <div class="dropdown">
 					<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 						<i class="icon-copy dw dw-notification"></i>
 						<span class="badge notification-active"></span>
@@ -118,21 +118,31 @@
 							</ul>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<span class="user-icon">
-							<img src="vendors/images/photo1.jpg" alt="">
+
+					
+						<span class="user-icon" >
+						@if(auth('teacher')->user()->profile_picture)
+						<img src="{{ asset('/' . auth('teacher')->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
+						@else
+							{{-- Default image if the user doesn't have a profile picture --}}
+							<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+						@endif
+							
+							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
 						</span>
-						<span class="user-name">Ross C. Lopez</span>
+						@auth
+						<span class="user-name">{{auth('teacher')->user()->fullname}} </span>
+						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-						<a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
+						<a class="dropdown-item" href="{{ route('teacher.logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
 			</div>
@@ -219,7 +229,8 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/teacher_dashboard">
-				<img src="{{ asset ('images/logo3.PNG') }}" alt="" class="light-logo">
+				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
+				<img src="{{ asset('images/logo3.PNG' ) }}" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -241,20 +252,7 @@
                         <span class="micon dw dw-user"></span><span class="mtext" href=>Students</span>
 						</a>
 					</li>
-					<li>
-						<a href="/manage_subjects" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-book"></span><span class="mtext" href=>Subjects</span>
-						</a>
-					</li>
-			
-					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-sections"></span><span class="mtext" href=>Grades</span>
-						</a>
-					</li>
-	
-					
-	
+
 				</ul>
 			</div>
 		</div>

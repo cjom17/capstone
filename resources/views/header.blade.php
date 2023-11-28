@@ -115,7 +115,7 @@
 
                   <li class="dropdown__item">
                      <div class="nav__link" style="font-size: 13px; font-weight: 400;">
-                        <a href="">MORE </a>  <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        <a href="#">MORE </a>  <i class="ri-arrow-down-s-line dropdown__arrow"></i>
                      </div>
 
                      <ul class="dropdown__menu">

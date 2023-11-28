@@ -45,7 +45,7 @@ class SubjectController extends Controller
         $request->validate([
             'subject_name' => 'required|string',
             'subject_desc' => 'required|string',
-            'sub_gradelvl' => 'required|in:Grade 7,Grade 8',
+            'sub_gradelvl' => 'required|',
 
         ]);
     
@@ -61,10 +61,10 @@ class SubjectController extends Controller
     
        $subject = Subject::create($data);
         if (!$subject) {
-            return redirect(route('subject.index'))->with("error", "Try again");
+            return redirect(route('gradelvlSub.display'))->with("error", "Try again");
         }
 
-        return redirect()->route('subject.index')->with("success", "New subject added successfully");
+        return redirect()->route('gradelvlSub.display')->with("success", "New subject added successfully");
     
     }
 

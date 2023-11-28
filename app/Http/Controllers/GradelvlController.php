@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\GradeLevel;
+use App\Models\Section;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -25,6 +26,19 @@ class GradelvlController extends Controller
     {
         $gradelvls = GradeLevel::all();
         return view('manage_gradelvl', compact('gradelvls'));
+    }
+
+    public function getGradelvlSub()
+    {
+        $gradelvls = GradeLevel::all();
+        return view('add_subject', compact('gradelvls'));
+    }
+
+    public function getGradelvlTeach()
+    {
+        $gradelvls = GradeLevel::all();
+        $sections = Section::all();
+        return view('add_teacher', compact('gradelvls', 'sections'));
     }
 
     public function addGradelvl(Request $request)

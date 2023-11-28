@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->string('profile_picture')->nullable(); // Profile Picture (you can make this field nullable if you want to allow users to have no profile picture)
-            $table->string('image_id')->nullable();
             $table->integer('admin_id')->nullable(); 
             $table->string('fullname'); // Fullname
             $table->string('position')->default('Teacher'); // Position

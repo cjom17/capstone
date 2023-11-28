@@ -229,18 +229,32 @@ Route::post('/addAdmin', [AuthController::class, 'addAdmin'])->name('add.admin')
 Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('addAdmin.show');
 
 Route::middleware(['auth:web', 'role:admin'])->group(function () {
+       // Routes for Subjects
+    //    Route::get('/show-add-subject', [SubjectController::class, 'showAddSubject'])->name('subject.index');
+       Route::get('/manage_subjects', [SubjectController::class, 'showManageSubject'])->name('subject.manage');
+       Route::post('/add_subject', [SubjectController::class, 'addSubject'])->name('subjects.addsubject')->middleware('auth');
+       Route::get('/manage_subjects', [SubjectController::class, 'getSubject'])->name('subject.display');
     // Routes for grade level
     Route::get('/add_gradelvl', [GradelvlController::class, 'showAddGradelvl'])->name('gradelvl.index');
     Route::get('/manage_gradelvl', [GradelvlController::class, 'showManageGradelvl'])->name('gradelvl.manage');
     Route::post('/add_gradelvl', [GradelvlController::class, 'addGradelvl'])->name('gradelvls.addGradelvl')->middleware('auth');
     Route::get('/manage_gradelvl', [GradelvlController::class, 'getGradelvl'])->name('gradelvl.display');
+    Route::get('/add_subject', [GradelvlController::class, 'getGradelvlSub'])->name('gradelvlSub.display');
+
 
     // Routes for managing Admin
     Route::get('/adminDashboard', [AuthController::class, 'showAdminDashboard'])->name('admin.dashboard');
 
     // Routes for managing teacher
-    Route::get('/manage_teacher', [TeacherController::class, 'showManageTeacher'])->name('manage.teacher');
-    Route::get('/add_teacher', [TeacherController::class, 'showAddTeacher'])->name('addTeacher.show');
+    Route::get('/manage_teachers', [TeacherController::class, 'getAllTeacher'])->name('manage.teacher');
+
+
+    Route::get('/add_teacher', [GradelvlController::class, 'getGradelvlTeach'])->name('addTeacher.show');
+    Route::get('/view_teacher_data/{teacher_id}', [TeacherController::class, 'specTeacher'])->name('specTeacher.show');    
+   
+    Route::delete('/delete-teacher/{id}', [TeacherController::class, 'deleteTeacher'])->name('delete.teacher');
+
+
     Route::post('/add_teacher', [TeacherController::class, 'addTeacher'])->name('add.teacher');     
     
     // Routes for FORMS
@@ -275,11 +289,7 @@ Route::post('/teacherLogin', [TeacherController::class, 'teacherLoginPost'])->na
 
 // ROUTE GROUP FOR TEACHER
 Route::middleware(['auth:teacher', 'role:teacher'])->group(function () {
-    // Routes for Subjects
-    Route::get('/add_subject', [SubjectController::class, 'showAddSubject'])->name('subject.index');
-    Route::get('/manage_subjects', [SubjectController::class, 'showManageSubject'])->name('subject.manage');
-    Route::post('/add_subject', [SubjectController::class, 'addSubject'])->name('subjects.addsubject')->middleware('auth');
-    Route::get('/manage_subjects', [SubjectController::class, 'getSubject'])->name('subject.display');
+ 
     Route::get('/assign_subjects', [SubjectController::class, 'showSubjects'])->name('assignSubject.display');
     Route::post('/handle_assignment', [EnrolledSubjectController::class, 'handleAssignment'])->name('handle_assignment');
 

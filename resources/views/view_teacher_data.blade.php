@@ -4,8 +4,6 @@
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
 	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
-	<meta name="csrf-token" content="{{ csrf_token() }}">
-
 
 	<title>Boljoon National High School</title>
 
@@ -19,13 +17,11 @@
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/core.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/icon-font.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/style.css') }}">
 
 
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -38,8 +34,20 @@
 	</script>
 </head>
 <body>
+	<!-- <div class="pre-loader">
+		<div class="pre-loader-box">
+			<div class="loader-logo"><img src="images/logo.PNG" alt=""></div>
+			<div class='loader-progress' id="progress_div">
+				<div class='bar' id='bar1'></div>
+			</div>
+			<div class='percent' id='percent1'>0%</div>
+			<div class="loading-text">
+				Loading...
+			</div>
+		</div>
+	</div> -->
 
-<div class="header">
+	<div class="header">
 		<div class="header-left">
 			<div class="menu-icon dw dw-menu"></div>
 			<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
@@ -123,8 +131,8 @@
 
 					
 						<span class="user-icon" >
-						@if(auth('teacher')->user()->profile_picture)
-						<img src="{{ asset('/' . auth('teacher')->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
+						@if(auth()->user()->profile_picture)
+						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}" style="width: 170x; " alt="Profile Image" style="width: 170px; border: 3px solid;">
 						@else
 							{{-- Default image if the user doesn't have a profile picture --}}
 							<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
@@ -133,14 +141,14 @@
 							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
 						</span>
 						@auth
-						<span class="user-name">{{auth('teacher')->user()->fullname}} </span>
+						<span class="user-name">{{auth()->user()->name}} </span>
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
 						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-						<a class="dropdown-item" href="{{ route('teacher.logout') }}"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
 			</div>
@@ -148,7 +156,7 @@
 		</div>
 	</div>
 
-<div class="right-sidebar">
+	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
 				Layout Settings
@@ -223,12 +231,11 @@
 		</div>
 	</div>
 
-		
-<div class="left-side-bar">
+
+	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="/teacher_dashboard">
-				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-				<img src="{{ asset('images/logo3.PNG' ) }}" alt="" class="light-logo">
+			<a href="/adminDashboard">
+				<img src="{{ asset ('images/logo3.PNG') }}" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -239,22 +246,71 @@
 				<ul id="accordion-menu">
 			
                     <li>
-						<a href="/teacher_dashboard" class="dropdown-toggle no-arrow">
+						<a href="/adminDashboard" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-house-1"></span><span class="mtext" href=>Home</span>
+						</a>
+					</li>
+
+                    <li>
+						<a href="/manageAdmin" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user1"></span><span class="mtext" href=>Admins</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_teachers" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user2"></span><span class="mtext" href=>Teachers</span>
 						</a>
 					</li>
 
 					
 					<li>
-						<a href="/manage_students" class="dropdown-toggle no-arrow">
+						<a href="/admin_manage_students" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user"></span><span class="mtext" href=>Students</span>
 						</a>
 					</li>
+						
+					<li>
+						<a href="/manage_parents" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user"></span><span class="mtext" href=>Parents</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_subjects" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-book"></span><span class="mtext" href=>Subjects</span>
+						</a>
+					</li>
 
+
+					<li>
+						<a href="/manage_forms" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-file"></span><span class="mtext" href=>Forms</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_events" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-calendar"></span><span class="mtext" href=>Events</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_updates" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-pencil"></span><span class="mtext" href=>Updates</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="/manage_gradelvl" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-lines"></span><span class="mtext" href=>Grade Level</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_sections" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-sections"></span><span class="mtext" href=>Section</span>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
-</div>
+	</div>
 	<div class="mobile-menu-overlay"></div>
 
 
@@ -263,85 +319,45 @@
 
 
 	<div class="main-container">
-		<div class="pd-ltr-20">
-		
-			<div class="row">
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">2020</div>
-								<div class="weight-600 font-14">Contact</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart2"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">400</div>
-								<div class="weight-600 font-14">Deals</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart3"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">350</div>
-								<div class="weight-600 font-14">Campaign</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart4"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">$6060</div>
-								<div class="weight-600 font-14">Worth</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="page-header">
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+				<div class="page-header">
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
-							<!-- <div class="title">
-								<h4>List of Admins</h4>
-							</div> -->
+							<div class="title">
+								<h4>Form Wizards</h4>
+							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Subjects</li>
+									<li class="breadcrumb-item active" aria-current="page">Manage Teachers</li>
+									<li class="breadcrumb-item active" aria-current="page">Teacher Data</li>
+
 								</ol>
 							</nav>
 						</div>
+						<!-- <div class="col-md-6 col-sm-12 text-right">
+							<div class="dropdown">
+								<a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+									January 2018
+								</a>
+								<div class="dropdown-menu dropdown-menu-right">
+									<a class="dropdown-item" href="#">Export List</a>
+									<a class="dropdown-item" href="#">Policies</a>
+									<a class="dropdown-item" href="#">View Assets</a>
+								</div>
+							</div>
+						</div> -->
 					</div>
 				</div>
-		
-				<div class="card-box mb-30">
-    <div class="pd-20">
-        <h4 class="text-blue h4">List of Subjects</h4>
-    </div>
-	<div class="pb-20">
-	<div class="mt-5">
+
+				<div class="pd-20 card-box mb-30">
+					<div class="clearfix">
+						<h4 class="text-blue h4">Below is the teacher details.</h4>
+						
+					</div>
+					<div class="wizard-content">
+		<div class="mt-5">
             @if($errors->any())
                 <div class="col-12">
                     @foreach($errors->all() as $error)
@@ -361,126 +377,142 @@
 
             @endif
         </div>
-<form method="post" action="{{ route('handle_assignment') }}" id="assignSubjectsForm">
-    @csrf
-    <input type="hidden" name="student_lrn" value="{{ request('student_lrn') }}">
-    <table class="checkbox-datatable table nowrap">
-        <!-- Your table headers... -->
-        <tbody>
-            @foreach($subjects as $subject)
-                <tr>
-                    <td>
-                        <div class="dt-checkbox">
-                            <input type="checkbox" name="selected_subjects[{{ $subject->id }}][subject_id]" value="{{ $subject->id }}">
-                            <span class="dt-checkbox-label"></span>
-                        </div>
-                    </td>
-                    <td>{{ $subject->id }}</td>
-                    <td>{{ $subject->subject_name }}</td>
-                    <td>{{ $subject->subject_desc }}</td>
-                    <td>{{ $subject->sub_gradelvl }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <button type="submit" class="btn btn-primary">ASSIGN SELECTED SUBJECT</button>
-</form>
+			
+					<form >
 
-</div>
+						<div class="row">
+							<div class="col-md-6">
+									<div class="form-group">
+									@if($teacher->profile_picture)
+										<img src="{{ asset($teacher->profile_picture) }}" alt="Profile Picture" style="width: 100px">
+									@else
+										<p>No profile picture available</p>
+									@endif
+									</div>
+							</div>
+						
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label>Fullname: </label>
+									<input type="text" id="fullname" name="fullname" class="form-control" value="{{ $teacher->fullname }}" readonly>
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label>Position: </label>
+									<input type="text" id="position" name="position" class="form-control" placeholder="Teacher" value="{{ $teacher->position }}" readonly disabled>
+								</div>
+							</div>
+							
+							<div class="col-md-4 col-sm-12">
+								<label>ID number: </label>
+								<input type="text" id="id_number" name="id_number" class="form-control" value="{{ $teacher->id_number }}" readonly>	
+							</div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#assignSubjectsForm').submit(function (e) {
-            e.preventDefault(); // Prevent the default form submission
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+										<label>Advisory Level :</label>
+										<select class="custom-select form-control" name="advisory_lvl" id="advisory_lvl"  readonly>	
+										<option value="{{ $teacher->advisory_lvl }}" selected>{{ ucfirst($teacher->advisory_lvl) }}</option>
+																						
+										</select>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+										<label>Section :</label>
+										<select class="custom-select form-control" name="section_name" id="section_name" readonly>
+										<option value="{{ $teacher->section_name }}" selected>{{ ucfirst($teacher->section_name) }}</option>
+									
+										
+										</select>
+								</div>
+							</div>
 
-            var studentLRN = $('[name="student_lrn"]').val();
-            console.log('Student LRN:', studentLRN);
+							<div class="col-md-4 col-sm-12">
+								<label>Date of Birth : </label>
+								<input type="date" id="date_of_birth" name="date_of_birth" class="form-control" value="{{ $teacher->date_of_birth }}" readonly>	
+							</div>
 
-            var selectedSubjects = [];
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+										<label>Gender :</label>
+										<select class="custom-select form-control" name="gender" id="gender" readonly>
+										<option value="{{ $teacher->gender }}" selected>{{ ucfirst($teacher->gender) }}</option>
+								
+										</select>
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label>Civil Status :</label>
+									<select class="custom-select form-control" name="civil_status" id="civil_status" readonly>
+										<option value="{{ $teacher->civil_status }}" selected>{{ ucfirst($teacher->civil_status) }}</option>
+									
+									</select>
+								</div>
+							</div>
 
-            $('input[name^="selected_subjects["]:checked').each(function () {
-                var subjectId = $(this).val();
-                console.log('Subject ID:', subjectId);
+						
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label>Address : </label>
+									<input type="text" id="address" name="address" class="form-control" value="{{ $teacher->address }}" readonly>	
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+								<label>Phone Number: </label>
+								<input type="text" id="phone_number" name="phone_number" class="form-control" value="{{ $teacher->phone_number }}" readonly>	
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+								<label>Username: </label>
+								<input type="text" id="username" name="username" class="form-control" value="{{ $teacher->username }}" readonly>	
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+								<label>Email: </label>
+								<input type="email" id="email" name="email" class="form-control" value="{{ $teacher->email }}" readonly>	
+								</div>
+							</div>
+					
 
-                // Adjust the following selectors based on your table structure
-                var subjectRow = $(this).closest('tr');
-                var subjectName = subjectRow.find('td:eq(2)').text(); // Adjust the index based on your table structure
-                console.log('Subject Name:', subjectName);
+						<!-- <div class="row">
+							<div class="col-md-12 col-sm-12">
+								<div class="form-group">
+									<label>col-md-12</label>
+									<input type="text" class="form-control">
+								</div>
+							</div>
+						</div> -->
 
-                var subjectDesc = subjectRow.find('td:eq(3)').text(); // Adjust the index based on your table structure
-                console.log('Subject Desc:', subjectDesc);
-
-                selectedSubjects.push({
-                    id: subjectId,
-                    subject_name: subjectName,
-                    subject_desc: subjectDesc
-                });
-            });
-
-            console.log('Selected Subjects:', selectedSubjects);
-
-            // Prepare the form data
-            var formData = {
-                student_lrn: studentLRN,
-                selected_subjects: selectedSubjects
-            };
-
-            // Add CSRF token to headers
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            // Submit the form data using AJAX
-            $.ajax({
-                type: 'POST',
-                url: '{{ route('handle_assignment') }}',
-                data: formData,
-                dataType: 'json',
-                success: function (response) {
-                    alert('Subjects assigned successfully');
-                    // Handle success, e.g., redirect or update UI
-                },
-                error: function (error) {
-                    console.error('Error response:', error.responseText);
-                    try {
-                        var errorMessage = JSON.parse(error.responseText).error;
-                        if (errorMessage === 'Record already exists') {
-                            alert('Record already exists. Please select different subjects.');
-                        } else {
-                            alert('Error assigning subjects. Check console for details.');
-                        }
-                    } catch (e) {
-                        alert('Error assigning subjects. Check console for details.');
-                    }
-                }
-            });
-
-        });
-    });
-</script>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
 
 
+					</form>					
+					</div>
+				</div>
 
-
-
-</div>
-
-
+			</div>
+			<div class="footer-wrap pd-20 mb-20 card-box">
+				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+			</div>
 		</div>
 	</div>
 	<!-- js -->
-	<script src="vendors/scripts/core.js"></script>
-	<script src="vendors/scripts/script.min.js"></script>
-	<script src="vendors/scripts/process.js"></script>
-	<script src="vendors/scripts/layout-settings.js"></script>
-	<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
-	<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-	<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-	<script src="vendors/scripts/dashboard.js"></script>
+	<script src="{{ asset('vendors/scripts/core.js') }}"></script>
+    <script src="{{ asset('vendors/scripts/script.min.js') }}"></script>
+    <script src="{{ asset('vendors/scripts/process.js') }}"></script>
+    <script src="{{ asset('vendors/scripts/layout-settings.js') }}"></script>
+    <script src="{{ asset('src/plugins/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('vendors/scripts/dashboard.js') }}"></script>
 </body>
 </html>

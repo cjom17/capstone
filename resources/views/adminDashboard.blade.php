@@ -69,7 +69,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="user-notification">
+			<!-- <div class="user-notification">
 				<div class="dropdown">
 					<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 						<i class="icon-copy dw dw-notification"></i>
@@ -124,7 +124,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -145,9 +145,8 @@
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
 						<a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
@@ -264,8 +263,14 @@
 
 					
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/admin_manage_students" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user"></span><span class="mtext" href=>Students</span>
+						</a>
+					</li>
+						
+					<li>
+						<a href="/manage_parents" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user"></span><span class="mtext" href=>Parents</span>
 						</a>
 					</li>
 					<li>
@@ -328,7 +333,7 @@
 			<div class="card-box pd-20 height-100-p mb-30">
 				<div class="row align-items-center">
 					<div class="col-md-4">
-						<img src="vendors/images/banner-img.png" alt="">
+						<img src="images/admin.png" alt="">
 					</div>
 					<div class="col-md-8">
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
@@ -336,11 +341,11 @@
 							Welcome back <div class="weight-600 font-30 text-blue">{{auth()->user()->username}} </div>
 							@endauth
 						</h4>
-						<p class="font-18 max-width-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde hic non repellendus debitis iure, doloremque assumenda. Autem modi, corrupti, nobis ea iure fugiat, veniam non quaerat mollitia animi error corporis.</p>
+						<p class="font-18 max-width-600">"Administrators are the backbone of an institution, orchestrating the symphony of efficiency and ensuring that every note of progress is harmonious. With wisdom, vision, and leadership, they navigate the path of success, turning challenges into opportunities and fostering a culture of excellence."</p>
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-xl-3 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
@@ -393,9 +398,9 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		
-			<div class="card-box mb-30">
+			<!-- <div class="card-box mb-30">
 				<h2 class="h4 pd-20">Best Selling Products</h2>
 				<table class="data-table table nowrap">
 					<thead>
@@ -537,9 +542,9 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
+			</div> -->
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				Boljoon National High School | All rights reserved.
 			</div>
 		</div>
 	</div>

@@ -235,7 +235,8 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/teacher_dashboard">
-				<img src="{{ asset ('images/logo3.PNG') }}" alt="" class="light-logo">
+				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
+				<img src="{{ asset('images/logo3.PNG' ) }}" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -257,18 +258,7 @@
                         <span class="micon dw dw-user"></span><span class="mtext" href=>Students</span>
 						</a>
 					</li>
-					<li>
-						<a href="/manage_subjects" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-book"></span><span class="mtext" href=>Subjects</span>
-						</a>
-					</li>
-			
-					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-sections"></span><span class="mtext" href=>Grades</span>
-						</a>
-					</li>
-	
+
 				</ul>
 			</div>
 		</div>
@@ -410,9 +400,7 @@
 							<label>Gender :</label>
 							<select class="custom-select form-control" name="gender" id="gender" value="{{ $student->gender }}" readonly>
 							<option value="" selected disabled>Select Gender</option>
-							<option value="male">Male</option>
-							<option value="female">Female</option>
-							<option value="others">Others</option>
+				
 							</select>
 					</div>
 				</div>

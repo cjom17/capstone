@@ -231,9 +231,10 @@
 		</div>
 	</div>
 
+
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="/">
+			<a href="/adminDashboard">
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="images/logo3.PNG" alt="" class="light-logo">
 			</a>
@@ -257,26 +258,32 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_teachers" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user2"></span><span class="mtext" href=>Teachers</span>
 						</a>
 					</li>
 
 					
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/admin_manage_students" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user"></span><span class="mtext" href=>Students</span>
 						</a>
 					</li>
+						
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_parents" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user"></span><span class="mtext" href=>Parents</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_subjects" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-book"></span><span class="mtext" href=>Subjects</span>
 						</a>
 					</li>
 
 
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_forms" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-file"></span><span class="mtext" href=>Forms</span>
 						</a>
 					</li>
@@ -286,32 +293,21 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_updates" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-pencil"></span><span class="mtext" href=>Updates</span>
 						</a>
 					</li>
 
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_gradelvl" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-lines"></span><span class="mtext" href=>Grade Level</span>
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_sections" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-sections"></span><span class="mtext" href=>Section</span>
 						</a>
 					</li>
-
-
-				
-				
-
-				
-				
-				
-	
-					
-	
 				</ul>
 			</div>
 		</div>
@@ -335,7 +331,9 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Form Wizards</li>
+									<li class="breadcrumb-item active" aria-current="page">Manage Teachers</li>
+									<li class="breadcrumb-item active" aria-current="page">Add Teacher</li>
+
 								</ol>
 							</nav>
 						</div>
@@ -356,8 +354,8 @@
 
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
-						<h4 class="text-blue h4">Step wizard</h4>
-						<p class="mb-30">jQuery Step wizard</p>
+						<h4 class="text-blue h4">Complete the form by providing all necessary details.</h4>
+						
 					</div>
 					<div class="wizard-content">
 		<div class="mt-5">
@@ -390,12 +388,7 @@
 							<input type="file" name="profile_picture" id="profile_picture" accept="image/*">
 						</div>
 				</div>
-				<div class="col-md-6">
-						<div class="form-group">
-							<label>Id Image:</label>
-							<input type="file" name="image_id" id="image_id" accept="image/*">
-						</div>
-				</div>
+			
 				<div class="col-md-6 col-sm-12">
 					<div class="form-group">
 						<label>Fullname: </label>
@@ -419,7 +412,9 @@
 							<label>Advisory Level :</label>
 							<select class="custom-select form-control" name="advisory_lvl" id="advisory_lvl">
 							<option value="" selected disabled>Select Advisory Level</option>
-							<option>Grade 9</option>
+							@foreach($gradelvls as $grade)
+								<option value="{{ $grade->grade_lvl }}">{{ $grade->grade_lvl }}</option>
+							@endforeach							
 							</select>
 					</div>
 				</div>
@@ -428,7 +423,9 @@
 							<label>Section :</label>
 							<select class="custom-select form-control" name="section_name" id="section_name">
 							<option value="" selected disabled>Select Section</option>
-							<option>Sunflower</option>
+							@foreach($sections as $section)
+								<option value="{{ $section->section_name }}">{{ $section->section_name }}</option>
+							@endforeach	
 							</select>
 					</div>
 				</div>
@@ -438,18 +435,17 @@
 					<input type="date" id="date_of_birth" name="date_of_birth" class="form-control">	
 				</div>
 
-				<div class="col-md-4 col-sm-12">
+				<div class="col-md-6 col-sm-12">
 					<div class="form-group">
 							<label>Gender :</label>
 							<select class="custom-select form-control" name="gender" id="gender">
 							<option value="" selected disabled>Select Gender</option>
 							<option value="male">Male</option>
-							<option value="female">Female</option>
 							<option value="others">Others</option>
 							</select>
 					</div>
 				</div>
-				<div class="col-md-4 col-sm-12">
+				<div class="col-md-6 col-sm-12">
 					<div class="form-group">
 							<label>Civil Status :</label>
 							<select class="custom-select form-control" name="civil_status" id="civil_status">
