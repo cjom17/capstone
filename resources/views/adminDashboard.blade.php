@@ -306,17 +306,6 @@
                         <span class="micon dw dw-sections"></span><span class="mtext" href=>Section</span>
 						</a>
 					</li>
-
-
-				
-				
-
-				
-				
-				
-	
-					
-	
 				</ul>
 			</div>
 		</div>

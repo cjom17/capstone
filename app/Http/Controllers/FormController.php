@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\File;
 
 class FormController extends Controller
 {
+    public function deleteForm($id)
+    {
+        $form = Form::find($id);
+        if (!$form) {
+            return redirect()->route('form.display')->with('error', 'Form not found.');
+        }
+        $form->delete();
+        return redirect()->route('form.display')->with('success', 'Form deleted successfully.');
+    }
+
     
     public function showForms()
     {

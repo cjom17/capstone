@@ -34,7 +34,7 @@
 	</script>
 </head>
 <body>
-	<div class="pre-loader">
+	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="images/logo.PNG" alt=""></div>
 			<div class='loader-progress' id="progress_div">
@@ -45,7 +45,7 @@
 				Loading...
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<div class="header">
 		<div class="header-left">
@@ -69,7 +69,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="user-notification">
+			<!-- <div class="user-notification">
 				<div class="dropdown">
 					<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 						<i class="icon-copy dw dw-notification"></i>
@@ -124,29 +124,36 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<span class="user-icon">
-							<img src="vendors/images/photo1.jpg" alt="">
+
+					
+						<span class="user-icon" >
+						@if(auth()->user()->profile_picture)
+						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
+						@else
+							{{-- Default image if the user doesn't have a profile picture --}}
+							<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+						@endif
+							
+							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
 						</span>
 						@auth
 						<span class="user-name">{{auth()->user()->name}} </span>
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-						<a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
+						<a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
 			</div>
 			
 		</div>
 	</div>
-
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -224,7 +231,7 @@
 
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="/">
+			<a href="/adminDashboard">
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="images/logo3.PNG" alt="" class="light-logo">
 			</a>
@@ -248,61 +255,56 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_teachers" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user2"></span><span class="mtext" href=>Teachers</span>
 						</a>
 					</li>
 
 					
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/admin_manage_students" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user"></span><span class="mtext" href=>Students</span>
 						</a>
 					</li>
+						
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_parents" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user"></span><span class="mtext" href=>Parents</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_subjects" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-book"></span><span class="mtext" href=>Subjects</span>
 						</a>
 					</li>
 
 
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_forms" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-file"></span><span class="mtext" href=>Forms</span>
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_events" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-calendar"></span><span class="mtext" href=>Events</span>
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_updates" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-pencil"></span><span class="mtext" href=>Updates</span>
 						</a>
 					</li>
 
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_gradelvl" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-lines"></span><span class="mtext" href=>Grade Level</span>
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_sections" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-sections"></span><span class="mtext" href=>Section</span>
 						</a>
 					</li>
-
-
-				
-				
-
-				
-				
-				
-	
-					
-	
 				</ul>
 			</div>
 		</div>
@@ -317,61 +319,6 @@
 	<div class="main-container">
 		<div class="pd-ltr-20">
 		
-			<div class="row">
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">2020</div>
-								<div class="weight-600 font-14">Contact</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart2"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">400</div>
-								<div class="weight-600 font-14">Deals</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart3"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">350</div>
-								<div class="weight-600 font-14">Campaign</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart4"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">$6060</div>
-								<div class="weight-600 font-14">Worth</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
 			<div class="page-header">
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
@@ -417,7 +364,7 @@
 								<h5 class="font-16">{{ $form->form_name }}</h5>
 							</td>
 							<td>{{ $form->form_desc }}</td>					
-							<td>
+							
 							<td>{{ $form->form_type }}</td>					
 							<td>
 								<div class="dropdown">
@@ -425,9 +372,14 @@
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
 										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+										<form action="{{ route('delete.form', ['id' => $form->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this form?')">
+													@csrf
+													@method('DELETE')
+													<button type="submit" class="dropdown-item" style="background: none; border: none; cursor: pointer;">
+														<i class="dw dw-delete-3"></i> Delete
+													</button>	
+										</form>	
 									</div>
 								</div>
 							</td>
@@ -438,7 +390,7 @@
 
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				Boljoon National High School | All rights reserved.
 			</div>
 		</div>
 	</div>

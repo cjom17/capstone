@@ -24,7 +24,7 @@
 	</script>
 </head>
 <body>
-
+<!-- 
 	<div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="images/logo.PNG" alt=""></div>
@@ -36,7 +36,7 @@
 				Loading...
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<div class="header">
 		<div class="header-left">
@@ -60,7 +60,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="user-notification">
+			<!-- <div class="user-notification">
 				<div class="dropdown">
 					<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 						<i class="icon-copy dw dw-notification"></i>
@@ -115,20 +115,30 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<span class="user-icon">
-							<img src="vendors/images/photo1.jpg" alt="">
+
+					
+						<span class="user-icon" >
+						@if(auth()->user()->profile_picture)
+						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
+						@else
+							{{-- Default image if the user doesn't have a profile picture --}}
+							<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+						@endif
+							
+							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
 						</span>
-						<span class="user-name">Ross C. Lopez</span>
+						@auth
+						<span class="user-name">{{auth()->user()->name}} </span>
+						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-						<a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
+						<a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
 			</div>
@@ -210,10 +220,9 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="/">
+			<a href="/adminDashboard">
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="images/logo3.PNG" alt="" class="light-logo">
 			</a>
@@ -237,26 +246,32 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_teachers" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user2"></span><span class="mtext" href=>Teachers</span>
 						</a>
 					</li>
 
 					
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/admin_manage_students" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user"></span><span class="mtext" href=>Students</span>
 						</a>
 					</li>
+						
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_parents" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user"></span><span class="mtext" href=>Parents</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_subjects" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-book"></span><span class="mtext" href=>Subjects</span>
 						</a>
 					</li>
 
 
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_forms" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-file"></span><span class="mtext" href=>Forms</span>
 						</a>
 					</li>
@@ -266,32 +281,21 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_updates" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-pencil"></span><span class="mtext" href=>Updates</span>
 						</a>
 					</li>
 
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_gradelvl" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-lines"></span><span class="mtext" href=>Grade Level</span>
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_sections" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-sections"></span><span class="mtext" href=>Section</span>
 						</a>
 					</li>
-
-
-				
-				
-
-				
-				
-				
-	
-					
-	
 				</ul>
 			</div>
 		</div>
@@ -327,209 +331,60 @@
 					</div>
 				</div>
 				<!-- Checkbox select Datatable start -->
-			<div class="card-box mb-30">
+				<div class="card-box mb-30">
 					<div class="pd-20">
-						<h4 class="text-blue h4">Data Table Simple</h4>
-						<p class="mb-0">you can find more options <a class="text-primary" href="https://datatables.net/" target="_blank">Click Here</a></p>
+						<h4 class="text-blue h4">List of Admins</h4>
 					</div>
 					<div class="pb-20">
 						<table class="data-table table stripe hover nowrap">
 							<thead>
-								<tr>
-									<th class="datatable-nosort">Name</th>
-									<th class="datatable-nosort">Age</th>
-									<th class="datatable-nosort">Office</th>
-									<th class="datatable-nosort">Address</th>
-									<th class="datatable-nosort">Start Date</th>
-									<th class="datatable-nosort">More</th>
 
+								<tr>
+									<th class="table-plus datatable-nosort">Name</th>
+									<th class="datatable-nosort">Username</th>
+									<th class="datatable-nosort">Email</th>
+									<th class="datatable-nosort">Phone Number</th>
+									<th class="datatable-nosort">Address </th>
 									<th class="datatable-nosort">Action</th>
 								</tr>
 							</thead>
 							<tbody>
-						
-								<tr>
-									<td class="table-plus">Andrea J. Cagle</td>
-									<td>30</td>
-									<td>Sagittarius</td>
-									<td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-									<td>29-03-2018</td>
-									<td>Sample</td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="table-plus">Andrea J. Cagle</td>
-									<td>25</td>
-									<td>Gemini</td>
-									<td>2829 Trainer Avenue Peoria, IL 61602 </td>
-									<td>29-03-2018</td>
-									<td>Sample</td>
+							@foreach($admins as $admin)
 
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
-								</tr>
 								<tr>
-									<td class="table-plus">Andrea J. Cagle</td>
-									<td>20</td>
-									<td>Sagittarius</td>
-									<td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-									<td>29-03-2018</td>
+									<td class="table-plus">{{ $admin->name }}</td>
+									<td>{{ $admin->username }}</td>
+									<td>{{ $admin->email }}</td>
+									<td>{{ $admin->phone_number }} </td>
+									<td>{{ $admin->address }}</td>
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 												<i class="dw dw-more"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
+											<a class="dropdown-item" href="{{ route('specAdmin.show', ['admin_id' => $admin->id]) }}"><i class="dw dw-eye"></i> View</a>
 												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+												<form action="{{ route('delete.admin', ['id' => $admin->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this admin?')">
+													@csrf
+													@method('DELETE')
+													<button type="submit" class="dropdown-item" style="background: none; border: none; cursor: pointer;">
+														<i class="dw dw-delete-3"></i> Delete
+													</button>
+												</form>												
 											</div>
 										</div>
 									</td>
 								</tr>
-								<tr>
-									<td class="table-plus">Andrea J. Cagle</td>
-									<td>18</td>
-									<td>Gemini</td>
-									<td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-									<td>29-03-2018</td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="table-plus">Andrea J. Cagle</td>
-									<td>30</td>
-									<td>Sagittarius</td>
-									<td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-									<td>29-03-2018</td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="table-plus">Andrea J. Cagle</td>
-									<td>30</td>
-									<td>Sagittarius</td>
-									<td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-									<td>29-03-2018</td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="table-plus">Andrea J. Cagle</td>
-									<td>30</td>
-									<td>Gemini</td>
-									<td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-									<td>29-03-2018</td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="table-plus">Andrea J. Cagle</td>
-									<td>30</td>
-									<td>Gemini</td>
-									<td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-									<td>29-03-2018</td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="table-plus">Andrea J. Cagle</td>
-									<td>30</td>
-									<td>Gemini</td>
-									<td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-									<td>29-03-2018</td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
-								</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>
 				</div>
-			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				Boljoon National High School | All rights reserved.
 			</div>
+		</div>
 		</div>
 	</div>
 	<!-- js -->

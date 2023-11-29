@@ -90,10 +90,6 @@ Route::get('/adminDashboard', function(){
 
 });
 
-Route::get('/manageAdmin', function(){
-    return view('manageAdmin');
-
-});
 
 Route::get('/teacher_dashboard', function(){
     return view('teacher_dashboard');
@@ -231,55 +227,79 @@ Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('addAdm
 Route::middleware(['auth:web', 'role:admin'])->group(function () {
        // Routes for Subjects
     //    Route::get('/show-add-subject', [SubjectController::class, 'showAddSubject'])->name('subject.index');
-       Route::get('/manage_subjects', [SubjectController::class, 'showManageSubject'])->name('subject.manage');
-       Route::post('/add_subject', [SubjectController::class, 'addSubject'])->name('subjects.addsubject')->middleware('auth');
-       Route::get('/manage_subjects', [SubjectController::class, 'getSubject'])->name('subject.display');
+    Route::get('/manage_subjects', [SubjectController::class, 'showManageSubject'])->name('subject.manage');
+    Route::post('/add_subject', [SubjectController::class, 'addSubject'])->name('subjects.addsubject')->middleware('auth');
+    Route::get('/manage_subjects', [SubjectController::class, 'getSubject'])->name('subject.display');
+    Route::delete('/delete-subject/{id}', [SubjectController::class, 'deleteSubject'])->name('delete.subject');
+
+
     // Routes for grade level
     Route::get('/add_gradelvl', [GradelvlController::class, 'showAddGradelvl'])->name('gradelvl.index');
     Route::get('/manage_gradelvl', [GradelvlController::class, 'showManageGradelvl'])->name('gradelvl.manage');
     Route::post('/add_gradelvl', [GradelvlController::class, 'addGradelvl'])->name('gradelvls.addGradelvl')->middleware('auth');
     Route::get('/manage_gradelvl', [GradelvlController::class, 'getGradelvl'])->name('gradelvl.display');
     Route::get('/add_subject', [GradelvlController::class, 'getGradelvlSub'])->name('gradelvlSub.display');
+    Route::delete('/delete-gradelvl/{id}', [GradelvlController::class, 'deleteGradelvl'])->name('delete.gradelvl');
+
 
 
     // Routes for managing Admin
     Route::get('/adminDashboard', [AuthController::class, 'showAdminDashboard'])->name('admin.dashboard');
+    Route::get('/manageAdmin', [AuthController::class, 'getAllAdmin'])->name('manage.admin');
+    Route::get('/view_admin_data/{admin_id}', [AuthController::class, 'specAdmin'])->name('specAdmin.show');  
+    Route::delete('/delete-admin/{id}', [AuthController::class, 'deleteAdmin'])->name('delete.admin');
+  
 
     // Routes for managing teacher
     Route::get('/manage_teachers', [TeacherController::class, 'getAllTeacher'])->name('manage.teacher');
-
-
     Route::get('/add_teacher', [GradelvlController::class, 'getGradelvlTeach'])->name('addTeacher.show');
     Route::get('/view_teacher_data/{teacher_id}', [TeacherController::class, 'specTeacher'])->name('specTeacher.show');    
-   
     Route::delete('/delete-teacher/{id}', [TeacherController::class, 'deleteTeacher'])->name('delete.teacher');
-
-
     Route::post('/add_teacher', [TeacherController::class, 'addTeacher'])->name('add.teacher');     
     
+    
+    // Routes for managing PARENTS
+    Route::get('/manage_parents', [ParentController::class, 'getAllParent'])->name('manage.parent');
+    Route::get('/view_parent_data/{parent_id}', [ParentController::class, 'specParent'])->name('specParent.show');  
+    Route::delete('/delete-parent/{id}', [ParentController::class, 'deleteParent'])->name('delete.parent');
+  
+    // Routes for managing STUDENTS
+    Route::get('/admin_manage_students', [StudentController::class, 'getStudentsForAdmin'])->name('adminManage.student');
+    Route::get('/admin_view_student_data/{student_id}', [StudentController::class, 'specStudentForAdmin'])->name('specStudentForAdmin.show');    
+
+
+
     // Routes for FORMS
     Route::get('/add_form', [FormController::class, 'showAddForm'])->name('form.index');
     Route::get('/manage_forms', [FormController::class, 'showManageForm'])->name('form.manage');
     Route::post('/add_form', [FormController::class, 'addForm'])->name('form.addForm')->middleware('auth');
     Route::get('/manage_forms', [FormController::class, 'getForm'])->name('form.display');
+    Route::delete('/delete-form/{id}', [FormController::class, 'deleteForm'])->name('delete.form');
+
 
     // Routes for Sections
     Route::get('/add_section', [SectionController::class, 'showAddSection'])->name('section.index');
     Route::get('/manage_sections', [SectionController::class, 'showManageSection'])->name('section.manage');
     Route::post('/add_section', [SectionController::class, 'addSection'])->name('section.addsection')->middleware('auth');
     Route::get('/manage_sections', [SectionController::class, 'getSection'])->name('section.display');
+    Route::delete('/delete-section/{id}', [SectionController::class, 'deleteSection'])->name('delete.section');
+
 
     // Routes for Events
     Route::get('/add_events', [EventController::class, 'showAddEvent'])->name('events.index');
     Route::get('/manage_events', [EventController::class, 'showManageEvent'])->name('events.manage');
     Route::post('/add_events', [EventController::class, 'addEvent'])->name('events.addEvent')->middleware('auth');
     Route::get('/manage_events', [EventController::class, 'getEvents'])->name('events.display');
+    Route::delete('/delete-event/{id}', [EventController::class, 'deleteEvent'])->name('delete.event');
+
 
     // Route for Updates
     Route::get('/add_updates', [UpdateController::class, 'showAddUpdate'])->name('updates.index');
     Route::get('/manage_updates', [UpdateController::class, 'showManageUpdate'])->name('updates.manage');
     Route::post('/add_updates', [UpdateController::class, 'addUpdate'])->name('updates.addUpdate')->middleware('auth');
     Route::get('/manage_updates', [UpdateController::class, 'getUpdates'])->name('updates.display');
+    Route::delete('/delete-update{id}', [UpdateController::class, 'deleteUpdate'])->name('delete.update');
+
         
 });
 
@@ -310,23 +330,19 @@ Route::middleware(['auth:teacher', 'role:teacher'])->group(function () {
     Route::get('/add_grade', [EnrolledSubjectController::class, 'showAddGrade'])->name('add_grade.show');  
 
     Route::post('/update_grades', [EnrolledSubjectController::class, 'updateGrades'])->name('update_grades');
- 
-
-
-
-
     Route::get('/teacher_dashboard', [TeacherController::class, 'showTeacherDashboard'])->name('teacher.dashboard'); 
+    Route::get('/api/enrolled_subjects/{student_lrn}', [EnrolledSubjectController::class, 'getEnrolledSubjects']);
+    Route::get('/view_student_data', function(){
+        return view('view_student_data');
+    
+    });
+    
+
+
+
+
 });
 
-Route::get('/api/enrolled_subjects/{student_lrn}', [EnrolledSubjectController::class, 'getEnrolledSubjects']);
-
-
-
-
-Route::get('/view_student_data', function(){
-    return view('view_student_data');
-
-});
 
 
 

@@ -18,6 +18,37 @@ class AuthController extends Controller
     function showAdminDashboard(){
         return view('adminDashboard');
     }
+    public function specAdmin($id)
+    {
+        // Fetch the student details from the database based on the provided ID
+        $admin = User::find($id);
+    
+        // Pass the student details to the view
+        return view('view_admin_data', compact('admin'));
+    }
+
+
+    public function deleteAdmin($id)
+    {
+        // Fetch the teacher details from the database based on the provided ID
+        $admin = User::find($id);
+
+        // Check if the teacher exists
+        if (!$admin) {
+            return redirect()->route('manage.admin')->with('error', 'Admin not found.');
+        }
+
+        $admin->delete();
+
+        // Redirect to a page (e.g., a list of teachers) after deletion
+        return redirect()->route('manage.admin')->with('success', 'Admin deleted successfully.');
+    }
+    
+    public function getAllAdmin()
+    {
+        $admins = User::all();
+        return view('manageAdmin', compact('admins'));
+    }
 
     function login(){
         if(Auth::check()){

@@ -3,7 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
+	<link rel="icon" type="image/x-icon" href="{{ asset('images/bnhs1-removebg-preview.png') }}">
 
 	<title>Boljoon National High School</title>
 
@@ -17,11 +17,14 @@
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/core.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/icon-font.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
+
+	<link rel="stylesheet" type="text/css" href=" {{ asset ('src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset ('vendors/styles/style.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 
 
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -69,7 +72,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="user-notification">
+			<!-- <div class="user-notification">
 				<div class="dropdown">
 					<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 						<i class="icon-copy dw dw-notification"></i>
@@ -124,7 +127,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -132,7 +135,7 @@
 					
 						<span class="user-icon" >
 						@if(auth()->user()->profile_picture)
-						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}" style="width: 170x; " alt="Profile Image" style="width: 170px; border: 3px solid;">
+						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
 						@else
 							{{-- Default image if the user doesn't have a profile picture --}}
 							<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
@@ -145,17 +148,15 @@
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-						<a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
+						<a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
 			</div>
 			
 		</div>
 	</div>
-
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -230,13 +231,10 @@
 			</div>
 		</div>
 	</div>
-
-
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/adminDashboard">
-				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-				<img src="images/logo3.PNG" alt="" class="light-logo">
+				<img src="{{ asset ('images/logo3.PNG') }}" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -312,6 +310,8 @@
 			</div>
 		</div>
 	</div>
+
+
 	<div class="mobile-menu-overlay"></div>
 
 
@@ -331,9 +331,7 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Manage Teachers</li>
-									<li class="breadcrumb-item active" aria-current="page">Add Teacher</li>
-
+									<li class="breadcrumb-item active" aria-current="page">ADD A STUDENT</li>
 								</ol>
 							</nav>
 						</div>
@@ -354,11 +352,11 @@
 
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
-						<h4 class="text-blue h4">Complete the form by providing all necessary details.</h4>
-						
+						<h4 class="text-blue h4">Step wizard</h4>
+						<p class="mb-30">jQuery Step wizard</p>
 					</div>
 					<div class="wizard-content">
-		<div class="mt-5">
+					<div class="mt-5">
             @if($errors->any())
                 <div class="col-12">
                     @foreach($errors->all() as $error)
@@ -379,77 +377,84 @@
             @endif
         </div>
 			
-		<form action="{{route('add.teacher')}}" method="POST" enctype="multipart/form-data">
-		@csrf
+		<form >
+
 			<div class="row">
+				
 				<div class="col-md-6">
 						<div class="form-group">
-							<label>Profile Picture:</label>
-							<input type="file" name="profile_picture" id="profile_picture" accept="image/*">
+						<label>Profile Picture:</label>
+						@if($student->profile_picture)
+							<img src="{{ asset($student->profile_picture) }}" alt="Profile Picture" style="width: 100px">
+						@else
+							<p>No profile picture available</p>
+						@endif
 						</div>
 				</div>
-			
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-						<label>Fullname: </label>
-						<input type="text" id="fullname" name="fullname" class="form-control">
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-						<label>Position: </label>
-						<input type="text" id="position" name="position" class="form-control" placeholder="Teacher" disabled>
-					</div>
-				</div>
 				
-				<div class="col-md-4 col-sm-12">
-					<label>ID number: </label>
-					<input type="text" id="id_number" name="id_number" class="form-control">	
-				</div>
-
-				<div class="col-md-4 col-sm-12">
-					<div class="form-group">
-							<label>Advisory Level :</label>
-							<select class="custom-select form-control" name="advisory_lvl" id="advisory_lvl">
-							<option value="" selected disabled>Select Advisory Level</option>
-							@foreach($gradelvls as $grade)
-								<option value="{{ $grade->grade_lvl }}">{{ $grade->grade_lvl }}</option>
-							@endforeach							
-							</select>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-12">
-					<div class="form-group">
-							<label>Section :</label>
-							<select class="custom-select form-control" name="section_name" id="section_name">
-							<option value="" selected disabled>Select Section</option>
-							@foreach($sections as $section)
-								<option value="{{ $section->section_name }}">{{ $section->section_name }}</option>
-							@endforeach	
-							</select>
-					</div>
-				</div>
-
-				<div class="col-md-4 col-sm-12">
-					<label>Date of Birth : </label>
-					<input type="date" id="date_of_birth" name="date_of_birth" class="form-control">	
-				</div>
-
 				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+						<label>Student LRN: </label>
+						<input type="text" id="student_lrn" name="student_lrn" class="form-control" value="{{ $student->student_lrn }}" readonly>
+					</div>
+				</div>
+
+				
+				<div class="col-md-3 col-sm-12">
+					<div class="form-group">
+					<label>First Name: </label>
+					<input type="text" id="f_name" name="f_name" class="form-control" value="{{ $student->f_name }}" readonly>	
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-12">
+					<div class="form-group">
+						<label>Last Name: </label>
+						<input type="text" id="l_name" name="l_name" class="form-control" value="{{ $student->l_name }}" readonly>	
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-12">
+				
+						<div class="form-group">
+							<label>Middle Name: </label>
+							<input type="text" id="m_name" name="m_name" class="form-control" value="{{ $student->m_name }}" readonly> 	
+						</div>
+					
+				</div>
+				<div class="col-md-3 col-sm-12">
+					<div class="form-group">
+						<div class="form-group">
+						@if($student->x_name)
+						<label>Extension: </label>
+						<input type="text" id="x_name" name="x_name" class="form-control" value="{{ $student->x_name }}" readonly>	
+						@else
+							<p>NA</p>
+						@endif
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-md-4 col-sm-12">
+					<div class="form-group">
+					<label>Date of Birth : </label>
+					<input type="date" id="date_of_birth" name="date_of_birth" class="form-control" value="{{ $student->date_of_birth }}" readonly>
+					</div>
+				</div>
+
+				<div class="col-md-4 col-sm-12">
 					<div class="form-group">
 							<label>Gender :</label>
-							<select class="custom-select form-control" name="gender" id="gender">
+							<select class="custom-select form-control" name="gender" id="gender" value="{{ $student->gender }}" readonly>
 							<option value="" selected disabled>Select Gender</option>
-							<option value="male">Male</option>
-							<option value="female">Female</option>
-							<option value="others">Others</option>
+				
 							</select>
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-12">
+				<div class="col-md-4 col-sm-12">
 					<div class="form-group">
 							<label>Civil Status :</label>
-							<select class="custom-select form-control" name="civil_status" id="civil_status">
+							<select class="custom-select form-control" name="civil_status" id="civil_status" value="{{ $student->gender }}" readonly>
 							<option value="" selected disabled>Select Civil Status</option>
 							<option value="single">Single</option>
 							<option value="married">Married</option>
@@ -458,45 +463,64 @@
 							</select>
 					</div>
 				</div>
-			
+
+				<div class="col-md-4 col-sm-12">
+						<div class="form-group">
+						<label>Age: </label>
+						<input type="text" id="age" name="age" class="form-control" value="{{ $student->age }}" readonly>	
+						</div>	
+				</div>
+
+				<div class="col-md-4 col-sm-12">
+						<div class="form-group">
+						<label>Religion: </label>
+						<input type="text" id="religion" name="religion" class="form-control" value="{{ $student->religion }}" readonly>	
+						</div>	
+				</div>
+				<div class="col-md-4 col-sm-12">
+						<div class="form-group">
+						<label>Nationality: </label>
+						<input type="text" id="nationality" name="nationality" class="form-control" value="{{ $student->nationality }}" readonly>	
+						</div>	
+				</div>
+		
 				<div class="col-md-6 col-sm-12">
 					<div class="form-group">
 						<label>Address : </label>
-						<input type="text" id="address" name="address" class="form-control">	
+						<input type="text" id="address" name="address" class="form-control" value="{{ $student->address }}" readonly>	
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12">
 					<div class="form-group">
 					<label>Phone Number: </label>
-					<input type="text" id="phone_number" name="phone_number" class="form-control">	
+					<input type="text" id="phone_number" name="phone_number" class="form-control" value="{{ $student->phone_number }}" readonly>	
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+						<label>Mother's Name: </label>
+						<input type="text" id="mother_name" name="mother_name" class="form-control" value="{{ $student->mother_name }}" readonly>	
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+					<label>Father's Name: </label>
+					<input type="text" id="father_name" name="father_name" class="form-control" value="{{ $student->father_name }}" readonly>	
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12">
 					<div class="form-group">
 					<label>Username: </label>
-					<input type="text" id="username" name="username" class="form-control">	
+					<input type="text" id="username" name="username" class="form-control" value="{{ $student->username }}" readonly>	
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12">
 					<div class="form-group">
 					<label>Email: </label>
-					<input type="email" id="email" name="email" class="form-control">	
+					<input type="email" id="email" name="email" class="form-control" value="{{ $student->email }}" readonly>	
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-					<label>Password: </label>
-					<input type="password" id="password" name="password" class="form-control">	
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-					<label>Confirm Password: </label>
-					<input type="password" id="password_confirmation" name="password_confirmation" class="form-control">	
-					</div>
-				</div>
-			
-
+		
 			<!-- <div class="row">
 				<div class="col-md-12 col-sm-12">
 					<div class="form-group">
@@ -507,7 +531,7 @@
 			</div> -->
 
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 
 
 		</form>
@@ -524,18 +548,18 @@
 				Boljoon National High School | All rights reserved.
 			</div>
 		</div>
-		</div>
 	</div>
 	<!-- js -->
-	<script src="vendors/scripts/core.js"></script>
-	<script src="vendors/scripts/script.min.js"></script>
-	<script src="vendors/scripts/process.js"></script>
-	<script src="vendors/scripts/layout-settings.js"></script>
-	<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
-	<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-	<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-	<script src="vendors/scripts/dashboard.js"></script>
+	<script src="{{ asset('vendors/scripts/core.js') }}"></script>
+	<script src="{{ asset('vendors/scripts/script.min.js') }}"></script>
+	<script src="{{ asset('vendors/scripts/process.js') }}"></script>
+	<script src="{{ asset('vendors/scripts/layout-settings.js') }}"></script>
+	<script src="{{ asset('src/plugins/apexcharts/apexcharts.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
+	<script src="{{ asset('src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
+	<script src="{{ asset('vendors/scripts/dashboard.js') }}"></script>
+
 </body>
 </html>

@@ -52,7 +52,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="user-notification">
+			<!-- <div class="user-notification">
 				<div class="dropdown">
 					<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 						<i class="icon-copy dw dw-notification"></i>
@@ -107,22 +107,30 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<span class="user-icon">
-							<img src="vendors/images/photo1.jpg" alt="">
+
+					
+						<span class="user-icon" >
+						@if(auth()->user()->profile_picture)
+						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
+						@else
+							{{-- Default image if the user doesn't have a profile picture --}}
+							<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+						@endif
+							
+							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
 						</span>
 						@auth
 						<span class="user-name">{{auth()->user()->name}} </span>
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-						<a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
+						<a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
 			</div>
@@ -207,7 +215,7 @@
 
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="/">
+			<a href="/adminDashboard">
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="images/logo3.PNG" alt="" class="light-logo">
 			</a>
@@ -231,26 +239,32 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_teachers" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user2"></span><span class="mtext" href=>Teachers</span>
 						</a>
 					</li>
 
 					
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/admin_manage_students" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user"></span><span class="mtext" href=>Students</span>
 						</a>
 					</li>
+						
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_parents" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user"></span><span class="mtext" href=>Parents</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_subjects" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-book"></span><span class="mtext" href=>Subjects</span>
 						</a>
 					</li>
 
 
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_forms" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-file"></span><span class="mtext" href=>Forms</span>
 						</a>
 					</li>
@@ -260,32 +274,21 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_updates" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-pencil"></span><span class="mtext" href=>Updates</span>
 						</a>
 					</li>
 
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_gradelvl" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-lines"></span><span class="mtext" href=>Grade Level</span>
 						</a>
 					</li>
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="/manage_sections" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-sections"></span><span class="mtext" href=>Section</span>
 						</a>
 					</li>
-
-
-				
-				
-
-				
-				
-				
-	
-					
-	
 				</ul>
 			</div>
 		</div>
@@ -300,13 +303,13 @@
 				<div class="page-header">
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
-							<div class="title">
-								<h4>Form Wizards</h4>
-							</div>
+							
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Form Wizards</li>
+									<li class="breadcrumb-item active" aria-current="page">Manage Admins</li>
+									<li class="breadcrumb-item active" aria-current="page">Add Admin</li>
+
 								</ol>
 							</nav>
 						</div>
@@ -327,8 +330,7 @@
 
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
-						<h4 class="text-blue h4">Step wizard</h4>
-						<p class="mb-30">jQuery Step wizard</p>
+						<h4 class="text-blue h4">Complete all necessary fields below.</h4>
 					</div>
 					<div class="wizard-content">
 					<div class="mt-5">
@@ -473,25 +475,9 @@
 
 				
 
-				<!-- success Popup html Start -->
-				<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-body text-center font-18">
-								<h3 class="mb-20">Form Submitted!</h3>
-								<div class="mb-30 text-center"><img src="vendors/images/success.png"></div>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							</div>
-							<div class="modal-footer justify-content-center">
-								<button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- success Popup html End -->
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				Boljoon National High School | All rights reserved.
 			</div>
 		</div>
 	</div>

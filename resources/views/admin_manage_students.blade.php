@@ -61,8 +61,8 @@
 					</a>
 				</div>
 			</div>
-			<div class="user-notification">
-				<!-- <div class="dropdown">
+			<!-- <div class="user-notification">
+				<div class="dropdown">
 					<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 						<i class="icon-copy dw dw-notification"></i>
 						<span class="badge notification-active"></span>
@@ -115,16 +115,16 @@
 							</ul>
 						</div>
 					</div>
-				</div> -->
-			</div>
+				</div>
+			</div> -->
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 
 					
 						<span class="user-icon" >
-						@if(auth('teacher')->user()->profile_picture)
-						<img src="{{ asset('/' . auth('teacher')->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
+						@if(auth()->user()->profile_picture)
+						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
 						@else
 							{{-- Default image if the user doesn't have a profile picture --}}
 							<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
@@ -133,19 +133,20 @@
 							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
 						</span>
 						@auth
-						<span class="user-name">{{auth('teacher')->user()->fullname}} </span>
+						<span class="user-name">{{auth()->user()->name}} </span>
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
 						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
-						<a class="dropdown-item" href="{{ route('teacher.logout') }}"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
 			</div>
 			
 		</div>
 	</div>
+
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -224,7 +225,7 @@
 	
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="/teacher_dashboard">
+			<a href="/adminDashboard">
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="images/logo3.PNG" alt="" class="light-logo">
 			</a>
@@ -237,27 +238,67 @@
 				<ul id="accordion-menu">
 			
                     <li>
-						<a href="/teacher_dashboard" class="dropdown-toggle no-arrow">
+						<a href="/adminDashboard" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-house-1"></span><span class="mtext" href=>Home</span>
+						</a>
+					</li>
+
+                    <li>
+						<a href="/manageAdmin" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user1"></span><span class="mtext" href=>Admins</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_teachers" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user2"></span><span class="mtext" href=>Teachers</span>
 						</a>
 					</li>
 
 					
 					<li>
-						<a href="/manage_students" class="dropdown-toggle no-arrow">
+						<a href="/admin_manage_students" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user"></span><span class="mtext" href=>Students</span>
 						</a>
 					</li>
-	
-				
-				
+						
+					<li>
+						<a href="/manage_parents" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user"></span><span class="mtext" href=>Parents</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_subjects" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-book"></span><span class="mtext" href=>Subjects</span>
+						</a>
+					</li>
 
-				
-				
-				
-	
-					
-	
+
+					<li>
+						<a href="/manage_forms" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-file"></span><span class="mtext" href=>Forms</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_events" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-calendar"></span><span class="mtext" href=>Events</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_updates" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-pencil"></span><span class="mtext" href=>Updates</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="/manage_gradelvl" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-lines"></span><span class="mtext" href=>Grade Level</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manage_sections" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-sections"></span><span class="mtext" href=>Section</span>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -304,7 +345,6 @@
 								<tr>
 									<th class="datatable-nosort">LRN</th>
 									<th class="datatable-nosort">Name</th>
-									<th class="datatable-nosort">Age</th>
 									<th class="datatable-nosort">Grade Level</th>
 									<th class="datatable-nosort">Section</th>
 									<th class="datatable-nosort">Action</th>
@@ -318,7 +358,6 @@
 								<tr>
 									<td class="table-plus">{{ $student->student_lrn }}</td>
 									<td>{{ $student->f_name }} {{ $student->l_name }}</td>
-									<td>{{ $student->age }}</td>
 									<td>{{ $student->year_lvl }}  </td>
 									<td>{{ $student->section_name }}</td>
 									<td>
@@ -328,11 +367,8 @@
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 												<!-- Update the href attribute to include the student's ID -->
-												<a class="dropdown-item" href="{{ route('specStudent.show', ['student_id' => $student->id]) }}"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="{{ route('enrolledSub.show', ['student_id' => $student->id, 'student_lrn' => $student->student_lrn]) }}"><i class="dw dw-book"></i> Enrolled Subjects</a>
-												<a class="dropdown-item" href="{{ route('remarks.show', ['student_id' => $student->id, 'student_lrn' => $student->student_lrn]) }}"><i class="dw dw-file"></i> Grades</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+												<a class="dropdown-item" href="{{ route('specStudentForAdmin.show', ['student_id' => $student->id]) }}"><i class="dw dw-eye"></i> View</a>
+											
 
 
 											</div>
@@ -347,8 +383,8 @@
 
 					</div>
 				</div>
-			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				<div class="footer-wrap pd-20 mb-20 card-box">
+				Boljoon National High School | All rights reserved.
 			</div>
 		</div>
 	</div>

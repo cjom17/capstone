@@ -18,10 +18,39 @@ class ParentController extends Controller
         return view('parentLogin');
     }
 
+    public function getAllParent()
+    {
+        $parents = ParentModel::all();
+        return view('manage_parents', compact('parents'));
+    }
+
+    public function deleteParent($id)
+    {
+        // Fetch the teacher details from the database based on the provided ID
+        $parent = ParentModel::find($id);
+
+        // Check if the teacher exists
+        if (!$parent) {
+            return redirect()->route('manage.parent')->with('error', 'Parent not found.');
+        }
+
+        $parent->delete();
+
+        // Redirect to a page (e.g., a list of teachers) after deletion
+        return redirect()->route('manage.parent')->with('success', 'Parent deleted successfully.');
+    }
     function showParentRegistration(){
         return view('parentRegistration');
     }
 
+    public function specParent($id)
+    {
+        // Fetch the student details from the database based on the provided ID
+        $parent = ParentModel::find($id);
+    
+        // Pass the student details to the view
+        return view('view_parent_data', compact('parent'));
+    }
     function showParentLanding(){
         $user = Auth::user();
         if (!$user || $user->role !== 'parent') {

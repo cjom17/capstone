@@ -11,9 +11,16 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function deleteEvent($id)
+    {
+        $event = Event::find($id);
+        if (!$event) {
+            return redirect()->route('events.display')->with('error', 'Event not found.');
+        }
+        $event->delete();
+        return redirect()->route('events.display')->with('success', 'Event deleted successfully.');
+    }
+
     public function showAddEvent()
     {
         return view ('/add_events');

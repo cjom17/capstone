@@ -16,6 +16,17 @@ class UpdateController extends Controller
         return view ('/add_updates');
     }
 
+    public function deleteUpdate($id)
+    {
+        $update = Update::find($id);
+        if (!$update) {
+            return redirect()->route('updates.display')->with('error', 'Update not found.');
+        }
+        $update->delete();
+        return redirect()->route('updates.display')->with('success', 'Update deleted successfully.');
+    }
+
+
     public function showManageUpdate()
     {
         return view ('/manage_updates');

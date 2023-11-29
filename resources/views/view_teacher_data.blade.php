@@ -324,9 +324,7 @@
 				<div class="page-header">
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
-							<div class="title">
-								<h4>Form Wizards</h4>
-							</div>
+							
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -490,7 +488,6 @@
 						</div> -->
 
 						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
 
 
 					</form>					
@@ -499,8 +496,9 @@
 
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				Boljoon National High School | All rights reserved.
 			</div>
+		</div>
 		</div>
 	</div>
 	<!-- js -->

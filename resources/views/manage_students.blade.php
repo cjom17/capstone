@@ -304,7 +304,6 @@
 								<tr>
 									<th class="datatable-nosort">LRN</th>
 									<th class="datatable-nosort">Name</th>
-									<th class="datatable-nosort">Age</th>
 									<th class="datatable-nosort">Grade Level</th>
 									<th class="datatable-nosort">Section</th>
 									<th class="datatable-nosort">Action</th>
@@ -318,7 +317,6 @@
 								<tr>
 									<td class="table-plus">{{ $student->student_lrn }}</td>
 									<td>{{ $student->f_name }} {{ $student->l_name }}</td>
-									<td>{{ $student->age }}</td>
 									<td>{{ $student->year_lvl }}  </td>
 									<td>{{ $student->section_name }}</td>
 									<td>

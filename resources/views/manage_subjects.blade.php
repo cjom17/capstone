@@ -34,7 +34,7 @@
 	</script>
 </head>
 <body>
-	<div class="pre-loader">
+	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="images/logo.PNG" alt=""></div>
 			<div class='loader-progress' id="progress_div">
@@ -45,7 +45,7 @@
 				Loading...
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div class="header">
 		<div class="header-left">
 			<div class="menu-icon dw dw-menu"></div>
@@ -406,8 +406,9 @@
 			<table class="data-table table nowrap">
 				<thead>
 					<tr>
-						<th class="table-plus datatable-nosort">Grade Level</th>
-						<th>Grade Desc</th>
+						<th class="table-plus datatable-nosort">Subject Name</th>
+						<th>Subject Description</th>
+						<th>Grade Level </th>
 						<th class="datatable-nosort">Action</th>
 					</tr>
 				</thead>
@@ -426,9 +427,14 @@
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
 										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+										<form action="{{ route('delete.subject', ['id' => $subject->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this subject?')">
+													@csrf
+													@method('DELETE')
+													<button type="submit" class="dropdown-item" style="background: none; border: none; cursor: pointer;">
+														<i class="dw dw-delete-3"></i> Delete
+													</button>	
+										</form>								
 									</div>
 								</div>
 							</td>

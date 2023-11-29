@@ -22,6 +22,16 @@ class SectionController extends Controller
         return view ('/manage_sections');
     }
 
+    public function deleteSection($id)
+    {
+        $section = Section::find($id);
+        if (!$section) {
+            return redirect()->route('section.display')->with('error', 'Section not found.');
+        }
+        $section->delete();
+        return redirect()->route('section.display')->with('success', 'Section deleted successfully.');
+    }
+
 
 
 

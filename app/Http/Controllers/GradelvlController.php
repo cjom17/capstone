@@ -13,6 +13,16 @@ class GradelvlController extends Controller
     {
         return view ('/add_gradelvl');
     }
+    public function deleteGradelvl($id)
+    {
+        $gradelvl = GradeLevel::find($id);
+        if (!$gradelvl) {
+            return redirect()->route('gradelvl.display')->with('error', 'Grade level not found.');
+        }
+        $gradelvl->delete();
+        return redirect()->route('gradelvl.display')->with('success', 'Grade level deleted successfully.');
+    }
+
 
     public function showManageGradelvl()
     {

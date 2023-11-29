@@ -17,6 +17,15 @@ class SubjectController extends Controller
         $subjects = Subject::all();
         return view('assign_subjects', compact('subjects'));
     }
+    public function deleteSubject($id)
+    {
+        $subject = Subject::find($id);
+        if (!$subject) {
+            return redirect()->route('subject.display')->with('error', 'Subject not found.');
+        }
+        $subject->delete();
+        return redirect()->route('subject.display')->with('success', 'Subject deleted successfully.');
+    }
 
     public function showAddSubject()
     {
@@ -28,17 +37,11 @@ class SubjectController extends Controller
         return view ('/manage_subjects');
     }
 
-
-
-
     public function getSubject()
     {
         $subjects = Subject::all();
         return view('manage_subjects', compact('subjects'));
     }
-
-   
-    
 
     public function addSubject(Request $request)
     {

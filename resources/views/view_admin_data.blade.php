@@ -17,11 +17,11 @@
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/core.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/icon-font.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/style.css') }}">
 
 
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -34,9 +34,9 @@
 	</script>
 </head>
 <body>
-	<!-- <div class="pre-loader">
+	<div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="images/logo.PNG" alt=""></div>
+			<div class="loader-logo"><img src=" {{ asset ('images/logo.PNG') }}" alt=""></div>
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -45,7 +45,7 @@
 				Loading...
 			</div>
 		</div>
-	</div> -->
+	</div>
 
 	<div class="header">
 		<div class="header-left">
@@ -235,8 +235,7 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/adminDashboard">
-				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-				<img src="images/logo3.PNG" alt="" class="light-logo">
+				<img src="{{ asset ('images/logo3.PNG') }}" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -325,14 +324,12 @@
 				<div class="page-header">
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
-							<div class="title">
-								<h4>Form Wizards</h4>
-							</div>
+							
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Manage Teachers</li>
-									<li class="breadcrumb-item active" aria-current="page">Add Teacher</li>
+									<li class="breadcrumb-item active" aria-current="page">Manage Admin</li>
+									<li class="breadcrumb-item active" aria-current="page">Admin Data</li>
 
 								</ol>
 							</nav>
@@ -354,7 +351,7 @@
 
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
-						<h4 class="text-blue h4">Complete the form by providing all necessary details.</h4>
+						<h4 class="text-blue h4">Below is the admin details.</h4>
 						
 					</div>
 					<div class="wizard-content">
@@ -379,146 +376,102 @@
             @endif
         </div>
 			
-		<form action="{{route('add.teacher')}}" method="POST" enctype="multipart/form-data">
-		@csrf
-			<div class="row">
-				<div class="col-md-6">
-						<div class="form-group">
-							<label>Profile Picture:</label>
-							<input type="file" name="profile_picture" id="profile_picture" accept="image/*">
-						</div>
-				</div>
-			
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-						<label>Fullname: </label>
-						<input type="text" id="fullname" name="fullname" class="form-control">
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-						<label>Position: </label>
-						<input type="text" id="position" name="position" class="form-control" placeholder="Teacher" disabled>
-					</div>
-				</div>
-				
-				<div class="col-md-4 col-sm-12">
-					<label>ID number: </label>
-					<input type="text" id="id_number" name="id_number" class="form-control">	
-				</div>
+					<form >
 
-				<div class="col-md-4 col-sm-12">
-					<div class="form-group">
-							<label>Advisory Level :</label>
-							<select class="custom-select form-control" name="advisory_lvl" id="advisory_lvl">
-							<option value="" selected disabled>Select Advisory Level</option>
-							@foreach($gradelvls as $grade)
-								<option value="{{ $grade->grade_lvl }}">{{ $grade->grade_lvl }}</option>
-							@endforeach							
-							</select>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-12">
-					<div class="form-group">
-							<label>Section :</label>
-							<select class="custom-select form-control" name="section_name" id="section_name">
-							<option value="" selected disabled>Select Section</option>
-							@foreach($sections as $section)
-								<option value="{{ $section->section_name }}">{{ $section->section_name }}</option>
-							@endforeach	
-							</select>
-					</div>
-				</div>
-
-				<div class="col-md-4 col-sm-12">
-					<label>Date of Birth : </label>
-					<input type="date" id="date_of_birth" name="date_of_birth" class="form-control">	
-				</div>
-
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-							<label>Gender :</label>
-							<select class="custom-select form-control" name="gender" id="gender">
-							<option value="" selected disabled>Select Gender</option>
-							<option value="male">Male</option>
-							<option value="female">Female</option>
-							<option value="others">Others</option>
-							</select>
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-							<label>Civil Status :</label>
-							<select class="custom-select form-control" name="civil_status" id="civil_status">
-							<option value="" selected disabled>Select Civil Status</option>
-							<option value="single">Single</option>
-							<option value="married">Married</option>
-							<option value="divorced">Divorced</option>
-							<option value="widowed">Widowed</option>
-							</select>
-					</div>
-				</div>
-			
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-						<label>Address : </label>
-						<input type="text" id="address" name="address" class="form-control">	
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-					<label>Phone Number: </label>
-					<input type="text" id="phone_number" name="phone_number" class="form-control">	
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-					<label>Username: </label>
-					<input type="text" id="username" name="username" class="form-control">	
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-					<label>Email: </label>
-					<input type="email" id="email" name="email" class="form-control">	
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-					<label>Password: </label>
-					<input type="password" id="password" name="password" class="form-control">	
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12">
-					<div class="form-group">
-					<label>Confirm Password: </label>
-					<input type="password" id="password_confirmation" name="password_confirmation" class="form-control">	
-					</div>
-				</div>
-			
-
-			<!-- <div class="row">
-				<div class="col-md-12 col-sm-12">
-					<div class="form-group">
-						<label>col-md-12</label>
-						<input type="text" class="form-control">
-					</div>
-				</div>
-			</div> -->
-
-			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
-
-
-		</form>
+						<div class="row">
+							<div class="col-md-6">
+									<div class="form-group">
+										@if($admin->profile_picture)
+											<img src="{{ asset('images/' . $admin->profile_picture) }}" alt="Profile Picture" style="width: 100px">
+										@else
+											<p>No profile picture available</p>
+										@endif
+									</div>
+									
+							</div>
+						
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label>Fullname: </label>
+									<input type="text" id="name" name="name" class="form-control" value="{{ $admin->name }}" readonly>
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label>Position: </label>
+									<input type="text" id="position" name="position" class="form-control" placeholder="" value="{{ $admin->position }}" readonly disabled>
+								</div>
+							</div>
 							
 					
+
+							<div class="col-md-6 col-sm-12">
+								<label>Date of Birth : </label>
+								<input type="date" id="date_of_birth" name="date_of_birth" class="form-control" value="{{ $admin->date_of_birth }}" readonly>	
+							</div>
+
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+										<label>Gender :</label>
+										<select class="custom-select form-control" name="gender" id="gender" readonly>
+										<option value="{{ $admin->gender }}" selected>{{ ucfirst($admin->gender) }}</option>
+								
+										</select>
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label>Civil Status :</label>
+									<select class="custom-select form-control" name="civil_status" id="civil_status" readonly>
+										<option value="{{ $admin->civil_status }}" selected>{{ ucfirst($admin->civil_status) }}</option>
+									
+									</select>
+								</div>
+							</div>
+
+						
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label>Address : </label>
+									<input type="text" id="address" name="address" class="form-control" value="{{ $admin->address }}" readonly>	
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+								<label>Phone Number: </label>
+								<input type="text" id="phone_number" name="phone_number" class="form-control" value="{{ $admin->phone_number }}" readonly>	
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+								<label>Username: </label>
+								<input type="text" id="username" name="username" class="form-control" value="{{ $admin->username }}" readonly>	
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+								<label>Email: </label>
+								<input type="email" id="email" name="email" class="form-control" value="{{ $admin->email }}" readonly>	
+								</div>
+							</div>
+					
+
+						<!-- <div class="row">
+							<div class="col-md-12 col-sm-12">
+								<div class="form-group">
+									<label>col-md-12</label>
+									<input type="text" class="form-control">
+								</div>
+							</div>
+						</div> -->
+
+						</div>
+
+
+					</form>					
 					</div>
 				</div>
 
-				
-
-		
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
 				Boljoon National High School | All rights reserved.
@@ -527,15 +480,15 @@
 		</div>
 	</div>
 	<!-- js -->
-	<script src="vendors/scripts/core.js"></script>
-	<script src="vendors/scripts/script.min.js"></script>
-	<script src="vendors/scripts/process.js"></script>
-	<script src="vendors/scripts/layout-settings.js"></script>
-	<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
-	<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-	<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-	<script src="vendors/scripts/dashboard.js"></script>
+	<script src="{{ asset('vendors/scripts/core.js') }}"></script>
+    <script src="{{ asset('vendors/scripts/script.min.js') }}"></script>
+    <script src="{{ asset('vendors/scripts/process.js') }}"></script>
+    <script src="{{ asset('vendors/scripts/layout-settings.js') }}"></script>
+    <script src="{{ asset('src/plugins/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('vendors/scripts/dashboard.js') }}"></script>
 </body>
 </html>
