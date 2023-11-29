@@ -187,6 +187,13 @@ public function updateTeacher(Request $request, $id)
         ]);
 
         $teacher = Teacher::find($id);
+     
+
+        // Ensure the student exists
+        if (!$teacher) {
+            return back()->with("error", "Teacher not found.");
+        }
+
 
 
         // Handle file upload for profile picture if provided

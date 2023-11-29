@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Subject;
+use App\Models\GradeLevel;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\DB;
@@ -25,6 +26,13 @@ class SubjectController extends Controller
         }
         $subject->delete();
         return redirect()->route('subject.display')->with('success', 'Subject deleted successfully.');
+    }
+    
+    public function updateSubjectShow($id)
+    {
+        $subject = Subject::find($id);
+        $gradelvls = GradeLevel::all();
+        return view('update_subject', compact('subject', 'gradelvls'));
     }
 
     public function showAddSubject()
@@ -70,44 +78,39 @@ class SubjectController extends Controller
         return redirect()->route('gradelvlSub.display')->with("success", "New subject added successfully");
     
     }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function updateSubject(Request $request, $id)
     {
-        //
-    }
+        // Validate the incoming request data
+        $request->validate([
+            'subject_name' => 'required|string',
+            'subject_desc' => 'required|string',
+            'sub_gradelvl' => 'required|string',
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Find the record in the database
+        $subject = Subject::find($id);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        // Check if the record exists
+        if (!$subject) {
+            return back()->with("error", "Subject not found.");
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        // Get the currently authenticated user
+        $user = Auth::user();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        // Update the record with the new data
+        $subject->admin_id = $user->id; // Assuming the admin_id is the ID of the user
+        $subject->subject_name = $request->input('subject_name');
+        $subject->subject_desc = $request->input('subject_desc');
+        $subject->sub_gradelvl = $request->input('sub_gradelvl');
+        
+        // Save the changes
+        $subject->save();
+
+        // Return a response
+        return back()->with("success", "Subject updated successfully.");
+
     }
+    
+
 }

@@ -378,13 +378,13 @@
 					<div class="form-group row">
 						<label for="grade_lvl" class="col-sm-2 col-form-label">Grade Level</label>
 						<div class="col-sm-10"> 
-						<input type="text" class="form-control" name="grade_lvl" id="grade_lvl" placeholder="Enter the event title here">
+						<input type="text" class="form-control" name="grade_lvl" id="grade_lvl" placeholder="Enter the grade level title here">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="gradelvl_desc" class="col-sm-2 col-form-label">Grade Level Description</label>
 						<div class="col-sm-10">
-						<textarea class="form-control" name="gradelvl_desc" id="gradelvl_desc" placeholder="Enter the event description here..."></textarea>
+						<textarea class="form-control" name="gradelvl_desc" id="gradelvl_desc" placeholder="Enter the grade level description here..."></textarea>
 						</div>
 					</div>
 			

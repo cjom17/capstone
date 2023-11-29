@@ -55,6 +55,12 @@ public function updateAdmin(Request $request, $id)
 
         $admin = User::find($id);
 
+        // Ensure the student exists
+        if (!$user) {
+            return back()->with("error", "Admin not found.");
+        }
+
+
      
         $profilePicturePath = $admin->profile_picture;
         // Check if a new profile picture is provided

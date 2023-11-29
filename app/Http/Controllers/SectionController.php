@@ -77,28 +77,46 @@ class SectionController extends Controller
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function updateSectionShow($id)
     {
-        //
+        $section = Section::find($id);
+        return view('update_section', compact('section'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function updateSection(Request $request, $id)
     {
-        //
-    }
+        // Validate the incoming request data
+        $request->validate([
+            'section_name' => 'required|string',
+            'section_desc' => 'required|string',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        // Find the record in the database
+        $section = Section::find($id);
+
+        // Check if the record exists
+        if (!$section) {
+            return back()->with("error", "Section not found.");
+        }
+
+        // Get the currently authenticated user
+        $user = Auth::user();
+
+        // Update the record with the new data
+        $section->admin_id = $user->id; // Assuming the admin_id is the ID of the user
+        $section->section_name = $request->input('section_name');
+        $section->section_desc = $request->input('section_desc');
+        
+        // Save the changes
+        $section->save();
+
+        // Return a response
+        return back()->with("success", "Section updated successfully.");
+
     }
+    
+
+
+    
+
 }

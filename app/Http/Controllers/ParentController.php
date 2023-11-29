@@ -194,6 +194,9 @@ public function updateParent(Request $request, $id)
     ]);
 
     $parent = ParentModel::find($id);
+    if (!$parent) {
+        return back()->with("error", "Parent not found.");
+    }
 
     // Handle file upload for profile picture if provided
     $profilePicturePath = $parent->profile_picture;

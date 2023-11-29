@@ -227,6 +227,8 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::post('/add_subject', [SubjectController::class, 'addSubject'])->name('subjects.addsubject')->middleware('auth');
     Route::get('/manage_subjects', [SubjectController::class, 'getSubject'])->name('subject.display');
     Route::delete('/delete-subject/{id}', [SubjectController::class, 'deleteSubject'])->name('delete.subject');
+    Route::get('/update_subject_data/{subject_id}', [SubjectController::class, 'updateSubjectShow'])->name('updateSubject.show');  
+    Route::put('/update-subject/{subject_id}', [SubjectController::class, 'updateSubject'])->name('update.subject');
 
     // Routes for grade level
     Route::get('/add_gradelvl', [GradelvlController::class, 'showAddGradelvl'])->name('gradelvl.index');
@@ -235,6 +237,8 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::get('/manage_gradelvl', [GradelvlController::class, 'getGradelvl'])->name('gradelvl.display');
     Route::get('/add_subject', [GradelvlController::class, 'getGradelvlSub'])->name('gradelvlSub.display');
     Route::delete('/delete-gradelvl/{id}', [GradelvlController::class, 'deleteGradelvl'])->name('delete.gradelvl');
+    Route::get('/update_gradelvl_data/{gradelvl_id}', [GradelvlController::class, 'updateGradelvlShow'])->name('updateGradelvl.show');  
+    Route::put('/update-gradelvl/{gradelvl_id}', [GradelvlController::class, 'updateGradelvl'])->name('update.gradelvl');
 
     // Routes for managing Admin
     Route::get('/adminDashboard', [AuthController::class, 'showAdminDashboard'])->name('admin.dashboard');
@@ -279,6 +283,8 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::post('/add_section', [SectionController::class, 'addSection'])->name('section.addsection')->middleware('auth');
     Route::get('/manage_sections', [SectionController::class, 'getSection'])->name('section.display');
     Route::delete('/delete-section/{id}', [SectionController::class, 'deleteSection'])->name('delete.section');
+    Route::get('/update_section_data/{section_id}', [SectionController::class, 'updateSectionShow'])->name('updateSection.show');  
+    Route::put('/update-section/{section_id}', [SectionController::class, 'updateSection'])->name('update.section');
 
     // Routes for Events
     Route::get('/add_events', [EventController::class, 'showAddEvent'])->name('events.index');

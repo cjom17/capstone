@@ -3,7 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
+	<link rel="icon" type="image/x-icon" href="{{ asset ('images/bnhs1-removebg-preview.png') }}">
 
 	<title>Boljoon National High School</title>
 
@@ -427,7 +427,7 @@
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+									<a class="dropdown-item" href="{{ route('updateSubject.show', ['subject_id' => $subject->id]) }}"><i class="dw dw-edit"></i> Edit</a>
 										<form action="{{ route('delete.subject', ['id' => $subject->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this subject?')">
 													@csrf
 													@method('DELETE')

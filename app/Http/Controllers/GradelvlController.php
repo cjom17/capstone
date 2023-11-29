@@ -81,36 +81,39 @@ class GradelvlController extends Controller
         return redirect()->route('gradelvl.index')->with("success", "New grade level added successfully");
     
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+       
+    public function updateGradelvlShow($id)
     {
-        //
+        $gradelvl = GradeLevel::find($id);
+        return view('update_gradelvl', compact('gradelvl'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    public function updateGradelvl(Request $request, $id)
+{
+    $request->validate([
+        'grade_lvl' => 'required|string',
+        'gradelvl_desc' => 'required|string',
+    ]);
+
+    $gradeLevel = GradeLevel::find($id);
+
+    if (!$gradeLevel) {
+        return back()->with("error", "Grade Level not found");
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    $user = Auth::user();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    $gradeLevel->admin_id = $user->id; 
+    $gradeLevel->grade_lvl = $request->grade_lvl;
+    $gradeLevel->gradelvl_desc = $request->gradelvl_desc;
+
+    // Save the changes
+    $gradeLevel->save();
+
+    return back()->with("success", "Grade Level is updated successfully");
+}
+
+
+   
+ 
 }

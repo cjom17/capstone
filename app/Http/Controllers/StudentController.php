@@ -239,7 +239,7 @@ public function addStudent(Request $request)
 
         // Ensure the student exists
         if (!$student) {
-            return redirect()->route('addStudent.show')->with("error", "Student not found");
+            return back()->with("error", "Student not found.");
         }
 
         // Handle file upload for profile picture if provided
