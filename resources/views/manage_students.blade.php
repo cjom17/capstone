@@ -327,11 +327,16 @@
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 												<!-- Update the href attribute to include the student's ID -->
 												<a class="dropdown-item" href="{{ route('specStudent.show', ['student_id' => $student->id]) }}"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+												<a class="dropdown-item" href="{{ route('updateStudent.show', ['student_id' => $student->id]) }}"><i class="dw dw-edit"></i> Edit</a>
 												<a class="dropdown-item" href="{{ route('enrolledSub.show', ['student_id' => $student->id, 'student_lrn' => $student->student_lrn]) }}"><i class="dw dw-book"></i> Enrolled Subjects</a>
 												<a class="dropdown-item" href="{{ route('remarks.show', ['student_id' => $student->id, 'student_lrn' => $student->student_lrn]) }}"><i class="dw dw-file"></i> Grades</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-
+												<form action="{{ route('delete.student', ['id' => $student->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this student?')">
+													@csrf
+													@method('DELETE')
+													<button type="submit" class="dropdown-item" style="background: none; border: none; cursor: pointer;">
+														<i class="dw dw-delete-3"></i> Delete
+													</button>	
+												</form>
 
 											</div>
 										</div>
@@ -345,8 +350,8 @@
 
 					</div>
 				</div>
-			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				<div class="footer-wrap pd-20 mb-20 card-box">
+				Boljoon National High School | All rights reserved.
 			</div>
 		</div>
 	</div>

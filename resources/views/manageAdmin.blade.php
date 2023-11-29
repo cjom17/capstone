@@ -364,7 +364,7 @@
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 											<a class="dropdown-item" href="{{ route('specAdmin.show', ['admin_id' => $admin->id]) }}"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+											<a class="dropdown-item" href="{{ route('updateAdmin.show', ['admin_id' => $admin->id]) }}"><i class="dw dw-edit"></i> Edit</a>
 												<form action="{{ route('delete.admin', ['id' => $admin->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this admin?')">
 													@csrf
 													@method('DELETE')

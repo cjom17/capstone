@@ -44,6 +44,13 @@ class GradelvlController extends Controller
         return view('add_subject', compact('gradelvls'));
     }
 
+    public function getGradelvlUpdate()
+    {
+        $gradelvls = GradeLevel::all();
+        return view('update_teacher_data', compact('gradelvls'));
+    }
+
+
     public function getGradelvlTeach()
     {
         $gradelvls = GradeLevel::all();

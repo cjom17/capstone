@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Models\Teacher;
+use App\Models\GradeLevel;
+use App\Models\Section;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
 
 class TeacherController extends Controller
 {
@@ -148,19 +151,96 @@ class TeacherController extends Controller
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function updateTeacherShow($id)
     {
-        //
+        $teacher = Teacher::find($id);
+        $gradelvls = GradeLevel::all();
+        $sections = Section::all();
+        return view('update_teacher_data', compact('teacher', 'gradelvls', 'sections'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+public function updateTeacher(Request $request, $id)
     {
-        //
+        $user = Auth::user();
+
+        // Ensure the user is a teacher
+        if (!$user || $user->role !== 'admin') {
+            return redirect()->route('login');
+        }
+
+        $request->validate([
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'fullname' => 'required|string',
+            'position' => 'required|string',
+            'id_number' => 'required|integer',
+            'advisory_lvl' => 'required|string',
+            'section_name' => 'required|string',
+            'gender' => 'required|in:male,female,others',
+            'date_of_birth' => 'required|date',
+            'address' => 'required|string',
+            'phone_number' => 'required|string',
+            'civil_status' => 'required|in:single,married,widowed,divorced',
+            'username' => 'required|string|unique:teachers,username,' . $id,
+            'email' => 'required|email|unique:teachers,email,' . $id,
+            'password' => 'nullable|string',
+        ]);
+
+        $teacher = Teacher::find($id);
+
+
+        // Handle file upload for profile picture if provided
+        $profilePicturePath = $teacher->profile_picture;
+        if ($request->hasFile('profile_picture')) {
+            $profilePicture = $request->file('profile_picture');
+            if ($profilePicture->isValid()) {
+                $destinationPath = 'images'; // Change this to your desired directory
+                $profileImage = date('YmdHis') . '.' . $profilePicture->getClientOriginalExtension();
+                $profilePicture->move($destinationPath, $profileImage);
+                $profilePicturePath = $destinationPath . '/' . $profileImage;
+
+                // Delete old profile picture if it exists
+                if ($teacher->profile_picture) {
+                    File::delete($teacher->profile_picture);
+                }
+            } else {
+                return back()->with('error', 'File upload error: ' . $profilePicture->getErrorMessage());
+            }
+        }
+
+        // Password logic
+        $password = $teacher->password; // Default to the existing password
+
+        if ($request->filled('new_password')) {
+            // If new_password field is filled, check old password and update if correct
+            if (!Hash::check($request->password, $teacher->password)) {
+                // Old password is incorrect, return with an error message
+                return back()->with("error", "Old password is incorrect. Password not updated.");
+            }
+
+            // New password is provided, update the password
+            $password = bcrypt($request->new_password);
+        }
+
+        // Update teacher information without modifying profile_picture if not provided
+        $teacher->update([
+            'profile_picture' => $profilePicturePath,
+            'fullname' => $request->fullname,
+            'position' => $request->position,
+            'id_number' => $request->id_number,
+            'advisory_lvl' => $request->advisory_lvl,
+            'section_name' => $request->section_name,
+            'gender' => $request->gender,
+            'date_of_birth' => $request->date_of_birth,
+            'address' => $request->address,
+            'phone_number' => $request->phone_number,
+            'civil_status' => $request->civil_status,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => $password,
+        ]);
+
+        return back()->with("success", "Teacher Information updated successfully");
     }
+
 }

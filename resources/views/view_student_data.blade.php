@@ -73,7 +73,7 @@
 				</div>
 			</div>
 			<div class="user-notification">
-				<div class="dropdown">
+				<!-- <div class="dropdown">
 					<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 						<i class="icon-copy dw dw-notification"></i>
 						<span class="badge notification-active"></span>
@@ -126,7 +126,7 @@
 							</ul>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="user-info-dropdown">
 				<div class="dropdown">
@@ -148,9 +148,8 @@
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
 						<a class="dropdown-item" href="{{ route('teacher.logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
@@ -266,10 +265,6 @@
 
 
 	<div class="mobile-menu-overlay"></div>
-
-
-
-
 
 
 	<div class="main-container">
@@ -398,8 +393,8 @@
 				<div class="col-md-4 col-sm-12">
 					<div class="form-group">
 							<label>Gender :</label>
-							<select class="custom-select form-control" name="gender" id="gender" value="{{ $student->gender }}" readonly>
-							<option value="" selected disabled>Select Gender</option>
+							<select class="custom-select form-control" name="gender" id="gender" readonly>
+							<option value="{{ $student->gender }}" selected>{{ ucfirst($student->gender) }}</option>
 				
 							</select>
 					</div>
@@ -407,12 +402,8 @@
 				<div class="col-md-4 col-sm-12">
 					<div class="form-group">
 							<label>Civil Status :</label>
-							<select class="custom-select form-control" name="civil_status" id="civil_status" value="{{ $student->gender }}" readonly>
-							<option value="" selected disabled>Select Civil Status</option>
-							<option value="single">Single</option>
-							<option value="married">Married</option>
-							<option value="divorced">Divorced</option>
-							<option value="widowed">Widowed</option>
+							<select class="custom-select form-control" name="civil_status" id="civil_status" readonly>
+							<option value="{{ $student->civil_status }}" selected>{{ ucfirst($student->civil_status) }}</option>
 							</select>
 					</div>
 				</div>
@@ -498,7 +489,7 @@
 		
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				Boljoon National High School | All rights reserved.
 			</div>
 		</div>
 	</div>

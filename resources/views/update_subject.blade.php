@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Boljoon National High School</title>
 	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
-	<meta name="csrf-token" content="{{ csrf_token() }}">
+
+	<title>Boljoon National High School</title>
+
+	<!-- Site favicon -->
+	<!-- <link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png"> -->
+
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -23,7 +34,6 @@
 	</script>
 </head>
 <body>
-
 	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="images/logo.PNG" alt=""></div>
@@ -36,6 +46,7 @@
 			</div>
 		</div>
 	</div> -->
+
 	<div class="header">
 		<div class="header-left">
 			<div class="menu-icon dw dw-menu"></div>
@@ -143,6 +154,7 @@
 			
 		</div>
 	</div>
+
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -217,7 +229,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/adminDashboard">
@@ -299,7 +310,11 @@
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
-	
+
+
+
+
+
 
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
@@ -307,104 +322,117 @@
 				<div class="page-header">
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
-							<!-- <div class="title">
-								<h4>List of Admins</h4>
-							</div> -->
+						
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Teachers</li>
+									<li class="breadcrumb-item active" aria-current="page">Manage Subjects</li>
+									<li class="breadcrumb-item active" aria-current="page">Add Subjects</li>
+
 								</ol>
 							</nav>
 						</div>
-						<div class="col-md-6 col-sm-12 text-right">
+						<!-- <div class="col-md-6 col-sm-12 text-right">
 							<div class="dropdown">
-								<a class="btn btn-primary" href="/add_teacher">
-									ADD NEW TEACHER
+								<a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+									January 2018
 								</a>
-							
+								<div class="dropdown-menu dropdown-menu-right">
+									<a class="dropdown-item" href="#">Export List</a>
+									<a class="dropdown-item" href="#">Policies</a>
+									<a class="dropdown-item" href="#">View Assets</a>
+								</div>
 							</div>
+						</div> -->
+					</div>
+				</div>
+
+				<div class="pd-20 card-box mb-30">
+					<div class="clearfix">
+						<h4 class="text-blue h4">Enter Subject Details</h4>
+					
+					</div>
+					<div class="wizard-content">
+					<div class="mt-5">
+           	 @if($errors->any())
+                <div class="col-12">
+                    @foreach($errors->all() as $error)
+                        <div class="alert alert-danger">{{$error}}</div>
+
+                    @endforeach
+                </div>
+            @endif
+
+            @if(session()->has('error'))
+            <div class="alert alert-danger">{{session('error')}}</div>
+
+            @endif
+
+            @if(session()->has('success'))
+            <div class="alert alert-success">{{session('success')}}</div>
+
+            @endif
+        </div>
+				<form action="{{ route('update.subject', ['subject_id' => $subject->id]) }}" method="post"  enctype="multipart/form-data">
+						@csrf
+						@method('PUT')
+					<div class="form-group row">
+						<label for="subject_name" class="col-sm-2 col-form-label">Subject Name</label>
+						<div class="col-sm-10"> 
+						<input type="text" class="form-control" name="subject_name" id="subject_name" placeholder="Enter the subject title here"  value="{{ $subject->subject_name }}">
 						</div>
+					</div>
+					<div class="form-group row">
+						<label for="subject_desc" class="col-sm-2 col-form-label">Subject Description</label>
+						<div class="col-sm-10">
+						<textarea class="form-control" name="subject_desc" id="subject_desc" placeholder="Enter the subject description here..."  value="{{ $subject->subject_desc }}"></textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Grade Level</label>
+							<div class="col-sm-10">
+							<select class="custom-select form-control" name="sub_gradelvl" id="sub_gradelvl">
+							<option value="{{ $subject->sub_gradelvl }}" selected>{{ ucfirst($subject->sub_gradelvl) }}</option>
+								@foreach($gradelvls as $grade)
+								<option value="{{ $grade->grade_lvl }}">{{ $grade->grade_lvl }}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+
+					
+			
+					
+					
+					<div class="form-group row">
+						<div class="col-sm-10">
+						<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+			</form>
 					
 					</div>
 				</div>
-				<!-- Checkbox select Datatable start -->
-			<div class="card-box mb-30">
-					<div class="pd-20">
-						<h4 class="text-blue h4">List of teachers</h4>
-					</div>
-					<div class="pb-20">
-						<table class="data-table table stripe hover nowrap">
-							<thead>
-								<tr>
-									<th class="datatable-nosort">ID Number</th>
-									<th class="datatable-nosort">Name</th>
-									<th class="datatable-nosort">Address</th>
-									<th class="datatable-nosort">Email</th>
-									<th class="datatable-nosort">Action</th>
-								</tr>
-							</thead>
-							<tbody>
-							@foreach($teachers as $teacher)
-						
-								<tr>
-									<td class="table-plus">{{ $teacher->id_number }}</td>
-									<td>{{ $teacher->fullname }}</td>
-									<td>{{ $teacher->address }} </td>
-									<td>{{ $teacher->email }} </td>
-									
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="{{ route('specTeacher.show', ['teacher_id' => $teacher->id]) }}"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="{{ route('updateTeacher.show', ['teacher_id' => $teacher->id]) }}"><i class="dw dw-edit"></i> Edit</a>
-												<form action="{{ route('delete.teacher', ['id' => $teacher->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this teacher?')">
-													@csrf
-													@method('DELETE')
-													<button type="submit" class="dropdown-item" style="background: none; border: none; cursor: pointer;">
-														<i class="dw dw-delete-3"></i> Delete
-													</button>
-												</form>	
-												</a>
-											</div>
-										</div>
-									</td>
-								</tr>
-							
-							@endforeach
-							</tbody>
-						</table>
-					</div>
-				</div>
+
+				
+
+		
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
 				Boljoon National High School | All rights reserved.
 			</div>
 		</div>
-		</div>
 	</div>
-
-
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>
 	<script src="vendors/scripts/script.min.js"></script>
 	<script src="vendors/scripts/process.js"></script>
 	<script src="vendors/scripts/layout-settings.js"></script>
+	<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
 	<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 	<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 	<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 	<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-	<!-- buttons for Export datatable -->
-	<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
-	<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
-	<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
-	<!-- Datatable Setting js -->
-	<script src="vendors/scripts/datatable-setting.js"></script></body>
+	<script src="vendors/scripts/dashboard.js"></script>
+</body>
 </html>

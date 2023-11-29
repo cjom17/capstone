@@ -319,8 +319,14 @@
 														<i class="dw dw-more"></i>
 													</a>
 													<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-														<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-													</div>
+													<form action="{{ route('delete.enrolledSubject', ['id' => $subject->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this Subject?')">
+													@csrf
+													@method('DELETE')
+													<button type="submit" class="dropdown-item" style="background: none; border: none; cursor: pointer;">
+														<i class="dw dw-delete-3"></i> Delete
+													</button>	
+												</form>													
+											</div>
 												</div>
 											</td>
 										</tr>
@@ -333,8 +339,8 @@
 
 
 				</div>
-			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				<div class="footer-wrap pd-20 mb-20 card-box">
+				Boljoon National High School | All rights reserved.
 			</div>
 		</div>
 	</div>

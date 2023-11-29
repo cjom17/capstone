@@ -12,7 +12,18 @@ use Illuminate\Support\Facades\Auth;
 
 class EnrolledSubjectController extends Controller
 {
-  
+
+    public function deleteEnrolledSubject($id)
+    {
+        $subject = EnrolledSubject::find($id);
+        if (!$subject) {
+            return back()->with('error', 'Subject not found.');
+        }
+        $subject->delete();
+        // Refresh the current page
+        return back()->with('success', 'Subject deleted successfully.');
+    }
+    
 
 
     public function handleAssignment(Request $request)

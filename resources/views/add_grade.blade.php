@@ -281,7 +281,7 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">ADD A GRADE</li>
+									<li class="breadcrumb-item active" aria-current="page">Manage Grade</li>
 								</ol>
 							</nav>
 						</div>
@@ -302,8 +302,6 @@
 
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
-						<h4 class="text-blue h4">Step wizard</h4>
-						<p class="mb-30">jQuery Step wizard</p>
 					</div>
 					<div class="wizard-content">
 					<div class="mt-5">
@@ -439,7 +437,7 @@
 		
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				Boljoon National High School | All rights reserved.
 			</div>
 		</div>
 	</div>

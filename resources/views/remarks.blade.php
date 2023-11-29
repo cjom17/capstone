@@ -322,7 +322,6 @@
 														<i class="dw dw-more"></i>
 													</a>
 													<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-														<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
 														<a class="dropdown-item" href="{{ route('add_grade.show', ['student_lrn' => $student->student_lrn, 'subject_id' => $subject->subject_id]) }}">
 														<i class="dw dw-delete-3"></i> Add Grades
 													</a>
@@ -340,8 +339,8 @@
 
 
 				</div>
-			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+				<div class="footer-wrap pd-20 mb-20 card-box">
+				Boljoon National High School | All rights reserved.
 			</div>
 		</div>
 	</div>

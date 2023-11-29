@@ -48,11 +48,7 @@
                            </a>                          
                         </li>
 
-                        <li>
-                           <a href="#" class="dropdown__link">
-                           <i class="ri-organization-chart"></i></i> ORGANIZATIONAL STRUCTURE
-                           </a>
-                        </li>
+             
 
                         <li>
                            <a href="/about#StudentHeader" class="dropdown__link">

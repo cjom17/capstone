@@ -210,11 +210,7 @@ Route::get('/add_student', function(){
 
 //Routes for Home
 Route::get('/', [HomeController::class, 'showLandingPage'])->name('landing-page');
-
 Route::get('/events_updates', [HomeController::class, 'displayEvents'])->name('events.display');
-
-
-
 
 // Admin Login
 Route::post('/adminLogin', [AuthController::class, 'loginPost'])->name('login.post');
@@ -232,7 +228,6 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::get('/manage_subjects', [SubjectController::class, 'getSubject'])->name('subject.display');
     Route::delete('/delete-subject/{id}', [SubjectController::class, 'deleteSubject'])->name('delete.subject');
 
-
     // Routes for grade level
     Route::get('/add_gradelvl', [GradelvlController::class, 'showAddGradelvl'])->name('gradelvl.index');
     Route::get('/manage_gradelvl', [GradelvlController::class, 'showManageGradelvl'])->name('gradelvl.manage');
@@ -241,33 +236,35 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::get('/add_subject', [GradelvlController::class, 'getGradelvlSub'])->name('gradelvlSub.display');
     Route::delete('/delete-gradelvl/{id}', [GradelvlController::class, 'deleteGradelvl'])->name('delete.gradelvl');
 
-
-
     // Routes for managing Admin
     Route::get('/adminDashboard', [AuthController::class, 'showAdminDashboard'])->name('admin.dashboard');
     Route::get('/manageAdmin', [AuthController::class, 'getAllAdmin'])->name('manage.admin');
     Route::get('/view_admin_data/{admin_id}', [AuthController::class, 'specAdmin'])->name('specAdmin.show');  
     Route::delete('/delete-admin/{id}', [AuthController::class, 'deleteAdmin'])->name('delete.admin');
-  
+    Route::get('/update_admin_data/{admin_id}', [AuthController::class, 'updateAdminShow'])->name('updateAdmin.show');  
+    Route::put('/update-admin/{admin_id}', [AuthController::class, 'updateAdmin'])->name('update.admin');
+
 
     // Routes for managing teacher
     Route::get('/manage_teachers', [TeacherController::class, 'getAllTeacher'])->name('manage.teacher');
     Route::get('/add_teacher', [GradelvlController::class, 'getGradelvlTeach'])->name('addTeacher.show');
     Route::get('/view_teacher_data/{teacher_id}', [TeacherController::class, 'specTeacher'])->name('specTeacher.show');    
     Route::delete('/delete-teacher/{id}', [TeacherController::class, 'deleteTeacher'])->name('delete.teacher');
-    Route::post('/add_teacher', [TeacherController::class, 'addTeacher'])->name('add.teacher');     
-    
+    Route::post('/add_teacher', [TeacherController::class, 'addTeacher'])->name('add.teacher');  
+    Route::get('/update_teacher_data/{teacher_id}', [TeacherController::class, 'updateTeacherShow'])->name('updateTeacher.show');  
+    Route::put('/update-teacher/{teacher_id}', [TeacherController::class, 'updateTeacher'])->name('update.teacher');
+   
     
     // Routes for managing PARENTS
     Route::get('/manage_parents', [ParentController::class, 'getAllParent'])->name('manage.parent');
     Route::get('/view_parent_data/{parent_id}', [ParentController::class, 'specParent'])->name('specParent.show');  
     Route::delete('/delete-parent/{id}', [ParentController::class, 'deleteParent'])->name('delete.parent');
+    Route::get('/update_parent_data/{parent_id}', [ParentController::class, 'updateParentShow'])->name('updateParent.show');  
+    Route::put('/update-parent/{parent_id}', [ParentController::class, 'updateParent'])->name('update.parent');
   
     // Routes for managing STUDENTS
     Route::get('/admin_manage_students', [StudentController::class, 'getStudentsForAdmin'])->name('adminManage.student');
     Route::get('/admin_view_student_data/{student_id}', [StudentController::class, 'specStudentForAdmin'])->name('specStudentForAdmin.show');    
-
-
 
     // Routes for FORMS
     Route::get('/add_form', [FormController::class, 'showAddForm'])->name('form.index');
@@ -276,14 +273,12 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::get('/manage_forms', [FormController::class, 'getForm'])->name('form.display');
     Route::delete('/delete-form/{id}', [FormController::class, 'deleteForm'])->name('delete.form');
 
-
     // Routes for Sections
     Route::get('/add_section', [SectionController::class, 'showAddSection'])->name('section.index');
     Route::get('/manage_sections', [SectionController::class, 'showManageSection'])->name('section.manage');
     Route::post('/add_section', [SectionController::class, 'addSection'])->name('section.addsection')->middleware('auth');
     Route::get('/manage_sections', [SectionController::class, 'getSection'])->name('section.display');
     Route::delete('/delete-section/{id}', [SectionController::class, 'deleteSection'])->name('delete.section');
-
 
     // Routes for Events
     Route::get('/add_events', [EventController::class, 'showAddEvent'])->name('events.index');
@@ -292,15 +287,12 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::get('/manage_events', [EventController::class, 'getEvents'])->name('events.display');
     Route::delete('/delete-event/{id}', [EventController::class, 'deleteEvent'])->name('delete.event');
 
-
     // Route for Updates
     Route::get('/add_updates', [UpdateController::class, 'showAddUpdate'])->name('updates.index');
     Route::get('/manage_updates', [UpdateController::class, 'showManageUpdate'])->name('updates.manage');
     Route::post('/add_updates', [UpdateController::class, 'addUpdate'])->name('updates.addUpdate')->middleware('auth');
     Route::get('/manage_updates', [UpdateController::class, 'getUpdates'])->name('updates.display');
     Route::delete('/delete-update{id}', [UpdateController::class, 'deleteUpdate'])->name('delete.update');
-
-        
 });
 
 // Teacher Login
@@ -316,19 +308,23 @@ Route::middleware(['auth:teacher', 'role:teacher'])->group(function () {
     //Routes for Students
     Route::get('/manage_students', [StudentController::class, 'getStudents'])->name('manage.student');
     Route::get('/add_student', [StudentController::class, 'showAddStudent'])->name('addStudent.show');
-    Route::post('/add_student', [StudentController::class, 'addStudent'])->name('add.student');     
-    // Route::get('/manage_student', [EventController::class, 'getEvents'])->name('events.display');
-    Route::get('/view_student_data/{student_id}', [StudentController::class, 'specStudent'])->name('specStudent.show');    
+    Route::post('/add_student', [StudentController::class, 'addStudent'])->name('add.student');   
+    Route::delete('/delete-update{id}', [UpdateController::class, 'deleteUpdate'])->name('delete.update');
+    Route::get('/view_student_data/{student_id}', [StudentController::class, 'specStudent'])->name('specStudent.show'); 
+    Route::get('/update_student_data/{student_id}', [StudentController::class, 'updateStudentShow'])->name('updateStudent.show');  
+    Route::put('/update-student/{student_id}', [StudentController::class, 'updateStudent'])->name('update.student');
+  
+   
 
-    
     // Route::get('/enrolledSub/{student_id}', [StudentController::class, 'enrolledSub'])->name('enrolledSub.show'); 
-    
-    Route::get('/enrolled-subjects/{student_id}/{student_lrn}', [EnrolledSubjectController::class, 'showSpecEnrolledSub'])->name('enrolledSub.show');  
-    
+    Route::delete('/delete-student{id}', [StudentController::class, 'deleteStudent'])->name('delete.student');
+    Route::delete('/delete-enrolled-subject{id}', [EnrolledSubjectController::class, 'deleteEnrolledSubject'])->name('delete.enrolledSubject');
+
+
+    Route::get('/enrolled-subjects/{student_id}/{student_lrn}', [EnrolledSubjectController::class, 'showSpecEnrolledSub'])->name('enrolledSub.show'); 
+ 
     Route::get('/remarks/{student_id}/{student_lrn}', [EnrolledSubjectController::class, 'showRemarks'])->name('remarks.show');   
-
     Route::get('/add_grade', [EnrolledSubjectController::class, 'showAddGrade'])->name('add_grade.show');  
-
     Route::post('/update_grades', [EnrolledSubjectController::class, 'updateGrades'])->name('update_grades');
     Route::get('/teacher_dashboard', [TeacherController::class, 'showTeacherDashboard'])->name('teacher.dashboard'); 
     Route::get('/api/enrolled_subjects/{student_lrn}', [EnrolledSubjectController::class, 'getEnrolledSubjects']);

@@ -353,7 +353,7 @@
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 												<a class="dropdown-item" href="{{ route('specParent.show', ['parent_id' => $parent->id]) }}"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+												<a class="dropdown-item" href="{{ route('updateParent.show', ['parent_id' => $parent->id]) }}"><i class="dw dw-edit"></i> Edit</a>
 												<form action="{{ route('delete.parent', ['id' => $parent->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this parent?')">
 													@csrf
 													@method('DELETE')
