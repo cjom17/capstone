@@ -4,7 +4,7 @@
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
 	<title>Boljoon National High School</title>
-	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
+	<link rel="icon" type="image/x-icon" href="/images/bnhs1-removebg-preview.png">
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -12,10 +12,10 @@
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/jquery-steps/jquery.steps.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/core.css">
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/src/plugins/jquery-steps/jquery.steps.css">
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/style.css">
 
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -474,11 +474,11 @@
 		</div>
 	</div>
 	<!-- js -->
-	<script src="vendors/scripts/core.js"></script>
-	<script src="vendors/scripts/script.min.js"></script>
-	<script src="vendors/scripts/process.js"></script>
-	<script src="vendors/scripts/layout-settings.js"></script>
-	<script src="src/plugins/jquery-steps/jquery.steps.js"></script>
-	<script src="vendors/scripts/steps-setting.js"></script>
+	<script src="/vendors/scripts/core.js"></script>
+	<script src="/vendors/scripts/script.min.js"></script>
+	<script src="/vendors/scripts/process.js"></script>
+	<script src="/vendors/scripts/layout-settings.js"></script>
+	<script src="/src/plugins/jquery-steps/jquery.steps.js"></script>
+	<script src="/vendors/scripts/steps-setting.js"></script>
 </body>
 </html>

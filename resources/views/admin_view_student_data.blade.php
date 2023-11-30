@@ -3,7 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<link rel="icon" type="image/x-icon" href="{{ asset('images/bnhs1-removebg-preview.png') }}">
+	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
 
 	<title>Boljoon National High School</title>
 
@@ -17,13 +17,13 @@
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/core.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/icon-font.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/core.css">
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 
-	<link rel="stylesheet" type="text/css" href=" {{ asset ('src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset ('vendors/styles/style.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/style.css">
+	<link rel="stylesheet" href="/css/style.css">
 
 
 
@@ -550,16 +550,16 @@
 		</div>
 	</div>
 	<!-- js -->
-	<script src="{{ asset('vendors/scripts/core.js') }}"></script>
-	<script src="{{ asset('vendors/scripts/script.min.js') }}"></script>
-	<script src="{{ asset('vendors/scripts/process.js') }}"></script>
-	<script src="{{ asset('vendors/scripts/layout-settings.js') }}"></script>
-	<script src="{{ asset('src/plugins/apexcharts/apexcharts.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
-	<script src="{{ asset('vendors/scripts/dashboard.js') }}"></script>
+	<script src="/vendors/scripts/core.js"></script>
+	<script src="/vendors/scripts/script.min.js"></script>
+	<script src="/vendors/scripts/process.js"></script>
+	<script src="/vendors/scripts/layout-settings.js"></script>
+	<script src="/src/plugins/apexcharts/apexcharts.min.js"></script>
+	<script src="/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+	<script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+	<script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+	<script src="/vendors/scripts/dashboard.js"></script>
 
 </body>
 </html>

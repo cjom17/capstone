@@ -3,7 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<link rel="icon" type="image/x-icon" href="{{ asset ('images/bnhs1-removebg-preview.png') }}">
+	<link rel="icon" type="image/x-icon" href="/images/bnhs1-removebg-preview.png">
 
 	<title>Boljoon National High School</title>
 
@@ -417,16 +417,15 @@
 			</div>
 		</div>
 	</div>
-	<!-- js -->
-	<script src="/vendors/scripts/core.js}"></script>
-<script src="/vendors/scripts/script.min.js"></script>
-<script src="/vendors/scripts/process.js"></script>
-<script src="/vendors/scripts/layout-settings.js"></script>
-<script src="/src/plugins/apexcharts/apexcharts.min.js"></script>
-<script src="/src/plugins/datatables/js/jquery.dataTables.min.js}"></script>
-<script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-<script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-<script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js'"></script>
-<script src="/vendors/scripts/dashboard.js"></script>
+	<script src="/vendors/scripts/core.js"></script>
+    <script src="/vendors/scripts/script.min.js"></script>
+    <script src="/vendors/scripts/process.js"></script>
+    <script src="/vendors/scripts/layout-settings.js"></script>
+    <script src="/src/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+    <script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+    <script src="/vendors/scripts/dashboard.js"></script>
 </body>
 </html>

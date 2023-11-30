@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<title>Boljoon National High School</title>
-	<link rel="icon" type="image/x-icon" href="{{ asset('images/bnhs1-removebg-preview.png') }}">
+	<link rel="icon" type="image/x-icon" href="/images/bnhs1-removebg-preview.png">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/core.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/icon-font.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/core.css">
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/style.css">
 
 
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -347,24 +347,24 @@
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-	<script src="{{ asset('vendors/scripts/core.js') }}"></script>
-	<script src="{{ asset('vendors/scripts/script.min.js') }}"></script>
-	<script src="{{ asset('vendors/scripts/process.js') }}"></script>
-	<script src="{{ asset('vendors/scripts/layout-settings.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
+	<script src="/vendors/scripts/core.js"></script>
+	<script src="/vendors/scripts/script.min.js"></script>
+	<script src="/vendors/scripts/process.js"></script>
+	<script src="/vendors/scripts/layout-settings.js"></script>
+	<script src="/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+	<script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+	<script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 	<!-- buttons for Export datatable -->
-	<script src="{{ asset('src/plugins/datatables/js/dataTables.buttons.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/buttons.bootstrap4.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/buttons.print.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/buttons.html5.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/buttons.flash.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/pdfmake.min.js') }}"></script>
-	<script src="{{ asset('src/plugins/datatables/js/vfs_fonts.js') }}"></script>
+	<script src="/src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+	<script src="/src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+	<script src="/src/plugins/datatables/js/buttons.print.min.js"></script>
+	<script src="/src/plugins/datatables/js/buttons.html5.min.js"></script>
+	<script src="/src/plugins/datatables/js/buttons.flash.min.js"></script>
+	<script src="/src/plugins/datatables/js/pdfmake.min.js"></script>
+	<script src="/src/plugins/datatables/js/vfs_fonts.js"></script>
 	<!-- Datatable Setting js -->
-	<script src="{{ asset('vendors/scripts/datatable-setting.js') }}"></script>
+	<script src="/vendors/scripts/datatable-setting.js"></script>
 
 </body>
 </html>
