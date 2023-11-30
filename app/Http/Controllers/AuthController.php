@@ -21,7 +21,7 @@ class AuthController extends Controller
         $defaultAdmin = new User([
             'name' => 'Default Admin',
             'position' => 'Administrator',
-            'gender' => 'Male', // Assuming a default gender
+            'gender' => 'male', // Assuming a default gender
             'date_of_birth' => now()->subYears(30)->toDateString(), // Example: 30 years old
             'address' => 'Default Address',
             'phone_number' => '1234567890',
