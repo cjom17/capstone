@@ -12,34 +12,34 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 { 
-    public function createDefaultAdmin()
-    {
-        $existingUserCount = User::count();
-    
-        // Check if there are no existing users
-        if ($existingUserCount === 0) {
-            $defaultAdmin = new User([
-                'name' => 'Default Admin',
-                'position' => 'Administrator',
-                'gender' => 'Male', // Assuming a default gender
-                'date_of_birth' => now()->subYears(30)->toDateString(), // Example: 30 years old
-                'address' => 'Default Address',
-                'phone_number' => '1234567890',
-                'civil_status' => 'Single', // Assuming a default civil status
-                'role' => 'admin',
-                'profile_picture' => 'default_profile_picture.jpg', // Assuming a default profile picture
-                'username' => 'admin',
-                'email' => 'admin@example.com',
-                'password' => Hash::make('defaultpassword'),
-            ]);
-    
-            $defaultAdmin->save();
-    
-            return 'Default admin created successfully.';
-        }
-    
-        return 'Users already exist. No action taken.';
+   public function createDefaultAdmin()
+{
+    $existingUserCount = User::count();
+
+    // Check if there are no existing users
+    if ($existingUserCount === 0) {
+        $defaultAdmin = new User([
+            'name' => 'Default Admin',
+            'position' => 'Administrator',
+            'gender' => 'Male', // Assuming a default gender
+            'date_of_birth' => now()->subYears(30)->toDateString(), // Example: 30 years old
+            'address' => 'Default Address',
+            'phone_number' => '1234567890',
+            'civil_status' => 'Single', // Assuming a default civil status
+            'role' => 'admin',
+            'profile_picture' => 'admin.png', // Assuming a default profile picture
+            'username' => 'admin',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('defaultpassword'),
+        ]);
+
+        $defaultAdmin->save();
+
+        return 'Default admin created successfully.';
     }
+
+    return 'Users already exist. No action taken.';
+}
     public function updateAdminShow($id)
     {
         $admin = User::find($id);
