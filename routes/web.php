@@ -247,7 +247,7 @@ Route::post('/parentLogin', [ParentController::class, 'parentLoginPost'])->name(
 
 Route::middleware(['auth:parent', 'role:parent'])->group(function () {
     Route::get('/parent_landing', [ParentController::class, 'showParentLanding'])->name('parent.landing');
-    Route::get('/pview_grades', [EnrolledSubjectController::class, 'showReportCardParent'])->name('report-card');
+    Route::get('/pview_grades', [EnrolledSubjectController::class, 'showReportCardParent']);
 
     Route::get('/parent_info', function(){
         return view('parent_info');
@@ -264,7 +264,7 @@ Route::post('/studentLogin', [StudentController::class, 'studentLoginPost'])->na
 
 Route::middleware(['auth:student', 'role:student'])->group(function () {
     Route::get('/student_landing', [StudentController::class, 'showStudentLanding'])->name('student.landing');
-    Route::get('/sview_grades', [EnrolledSubjectController::class, 'showReportCard'])->name('report-card');
+    Route::get('/sview_grades', [EnrolledSubjectController::class, 'showReportCard']);
 
     Route::get('/student_info', function(){
         return view('student_info');

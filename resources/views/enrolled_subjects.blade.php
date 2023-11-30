@@ -294,7 +294,7 @@
 						<p style="font-size: 14px; color: #052A56">LRN: {{ $student->student_lrn }}</p>
 						<p style="font-size: 14px; color: #052A56">Grade Level: {{ $student->year_lvl }} </p>
 						<p style="font-size: 14px; color: #052A56">Section: {{ $student->section_name }} </p>
-						<p style="font-size: 14px; color: #052A56">School Year: </p>
+						<!-- <p style="font-size: 14px; color: #052A56">School Year: </p> -->
 					</div>
 					<!-- ... (existing code) ... -->
 

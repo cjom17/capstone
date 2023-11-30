@@ -150,7 +150,7 @@ class EnrolledSubjectController extends Controller
                 'third_qtr' => $request->input('third_qtr'),
                 'fourth_qtr' => $request->input('fourth_qtr'),
                 'final' => $request->input('final'),
-                'remarks' => $request->input('remarks'),
+                'remarks' => $request->input('remarks') ?? 'NA', // Default value if not provided
 
 
                 // Add other fields as needed

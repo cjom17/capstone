@@ -26,7 +26,7 @@
         <h4>Report Card of Student</h4>
         <p>LRN: <span>{{ $student_lrn }}</span></p>
         <P>Name: <span>{{ $student_fname }} {{ $student_lname }}</span></P>
-        <p>SY: <span>2021 - 2022</span></p>
+        <!-- <p>SY: <span>2021 - 2022</span></p> -->
         <table class="table table-striped">
             <thead>
                 <tr>

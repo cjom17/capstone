@@ -28,7 +28,7 @@
         <h4>Report Card of Student</h4>
         <p>LRN: <span>{{auth('student')->user()->student_lrn}}</span></p>
         <P>Name: <span>{{auth('student')->user()->f_name}} {{auth('student')->user()->l_name}}</span></P>
-        <p>SY: <span>2021 - 2022</span></p>
+        <!-- <p>SY: <span>2021 - 2022</span></p> -->
         <table class="table table-striped">
             <thead>
                 <tr>
