@@ -196,7 +196,7 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
 });
 // Creating for default admin
 Route::get('/create-default-admin', [AuthController::class, 'createDefaultAdmin']);
-Route::get('/delete-all-users', [AuthController::class, 'deleteAllUsers']);
+Route::any('/delete-all-users', [AuthController::class, 'deleteAllUsers']);
 
 
 // Teacher Login

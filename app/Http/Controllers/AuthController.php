@@ -8,50 +8,51 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 // use App\Http\Controllers\Session;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
 
 
 class AuthController extends Controller
 { 
-   public function createDefaultAdmin()
-{
-    $existingUserCount = User::count();
+    public function createDefaultAdmin()
+    {
+        try {
+            // Disable foreign key checks to allow truncating the users table
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+            
+            // Truncate the users table to remove any existing users
+            User::truncate();
 
-    // Check if there are no existing users
-    if ($existingUserCount === 0) {
-        $defaultAdmin = new User([
-            'name' => 'Default Admin',
-            'position' => 'Administrator',
-            'gender' => 'Male', // Assuming a default gender
-            'date_of_birth' => now()->subYears(30)->toDateString(), // Example: 30 years old
-            'address' => 'Default Address',
-            'phone_number' => '1234567890',
-            'civil_status' => 'Single', // Assuming a default civil status
-            'role' => 'admin',
-            'profile_picture' => 'admin.png', // Assuming a default profile picture
-            'username' => 'admin',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('defaultpassword'),
-        ]);
+            // Create the default admin user
+            User::create([
+                'name' => 'Default Admin',
+                'position' => 'Administrator',
+                'gender' => 'Male',
+                'date_of_birth' => now()->subYears(30)->toDateString(),
+                'address' => 'Default Address',
+                'phone_number' => '1234567890',
+                'civil_status' => 'Single',
+                'role' => 'admin',
+                'profile_picture' => 'admin.png',
+                'username' => 'admin',
+                'email' => 'admin@example.com',
+                'password' => Hash::make('defaultpassword'),
+            ]);
 
-        $defaultAdmin->save();
-
-        return 'Default admin created successfully.';
+            return 'Default admin created successfully.';
+        } catch (\Exception $e) {
+            return 'Error creating default admin: ' . $e->getMessage();
+        } finally {
+            // Re-enable foreign key checks
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        }
     }
-
-    return 'Users already exist. No action taken.';
-}
     public function updateAdminShow($id)
     {
         $admin = User::find($id);
         return view('update_admin_data', compact('admin'));
     }
-        public function deleteAllUsers()
-    {
-        User::truncate();
-
-        return 'All users deleted successfully.';
-    }
-
+    
     function showAdminDashboard(){
         return view('adminDashboard');
     }
@@ -261,35 +262,20 @@ public function updateAdmin(Request $request, $id)
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+        public function deleteAllUsers(Request $request)
     {
-        //
+        // Fixed PIN for confirmation
+        $fixedPin = '12345678';
+
+        // Check if the provided PIN matches the fixed PIN
+        if ($request->filled('pin') && $request->input('pin') === $fixedPin) {
+            User::truncate();
+
+            return 'All users deleted successfully.';
+        }
+
+        return view('delete_users');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+   
 }
