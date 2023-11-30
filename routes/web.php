@@ -217,9 +217,6 @@ Route::post('/adminLogin', [AuthController::class, 'loginPost'])->name('login.po
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 // Route group for Admin
-Route::post('/addAdmin', [AuthController::class, 'addAdmin'])->name('add.admin'); 
-Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('addAdmin.show');
-
 Route::middleware(['auth:web', 'role:admin'])->group(function () {
        // Routes for Subjects
     //    Route::get('/show-add-subject', [SubjectController::class, 'showAddSubject'])->name('subject.index');
@@ -247,6 +244,8 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::delete('/delete-admin/{id}', [AuthController::class, 'deleteAdmin'])->name('delete.admin');
     Route::get('/update_admin_data/{admin_id}', [AuthController::class, 'updateAdminShow'])->name('updateAdmin.show');  
     Route::put('/update-admin/{admin_id}', [AuthController::class, 'updateAdmin'])->name('update.admin');
+    Route::post('/addAdmin', [AuthController::class, 'addAdmin'])->name('add.admin'); 
+    Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('addAdmin.show');
 
 
     // Routes for managing teacher
@@ -276,6 +275,8 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::post('/add_form', [FormController::class, 'addForm'])->name('form.addForm')->middleware('auth');
     Route::get('/manage_forms', [FormController::class, 'getForm'])->name('form.display');
     Route::delete('/delete-form/{id}', [FormController::class, 'deleteForm'])->name('delete.form');
+    Route::get('/update_form_data/{form_id}', [FormController::class, 'updateFormShow'])->name('updateForm.show');  
+    Route::put('/update-form/{form_id}', [FormController::class, 'updateForm'])->name('update.form');
 
     // Routes for Sections
     Route::get('/add_section', [SectionController::class, 'showAddSection'])->name('section.index');
@@ -292,6 +293,8 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::post('/add_events', [EventController::class, 'addEvent'])->name('events.addEvent')->middleware('auth');
     Route::get('/manage_events', [EventController::class, 'getEvents'])->name('events.display');
     Route::delete('/delete-event/{id}', [EventController::class, 'deleteEvent'])->name('delete.event');
+    Route::get('/update_event_data/{event_id}', [EventController::class, 'updateEventShow'])->name('updateEvent.show');  
+    Route::put('/update-event/{event_id}', [EventController::class, 'updateEvent'])->name('update.event');
 
     // Route for Updates
     Route::get('/add_updates', [UpdateController::class, 'showAddUpdate'])->name('updates.index');
@@ -299,7 +302,11 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::post('/add_updates', [UpdateController::class, 'addUpdate'])->name('updates.addUpdate')->middleware('auth');
     Route::get('/manage_updates', [UpdateController::class, 'getUpdates'])->name('updates.display');
     Route::delete('/delete-update{id}', [UpdateController::class, 'deleteUpdate'])->name('delete.update');
+    Route::get('/update_update_data/{update_id}', [UpdateController::class, 'updateUpdateShow'])->name('updateUpdate.show');  
+    Route::put('/update-update/{update_id}', [UpdateController::class, 'updateUpdate'])->name('update.update');
 });
+// Creating for default admin
+Route::get('/create-default-admin', [AuthController::class, 'createDefaultAdmin']);
 
 // Teacher Login
 Route::get('/teacherLogin', [TeacherController::class, 'showTeacherLogin'])->name('teacher.login');

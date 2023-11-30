@@ -379,7 +379,7 @@
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+									<a class="dropdown-item" href="{{ route('updateEvent.show', ['event_id' => $event->id]) }}"><i class="dw dw-edit"></i> Edit</a>
 										<form action="{{ route('delete.event', ['id' => $event->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this event?')">
 													@csrf
 													@method('DELETE')

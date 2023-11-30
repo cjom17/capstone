@@ -30,23 +30,33 @@ class FormController extends Controller
         return view('admission', compact('enrollmentForms', 'requirementForms'));
     }
 
-    public function downloadForm($formType)
-    {
-        // Assuming your model is named Form and it has a 'form_type' field
-        $form = Form::where('form_type', $formType)->first();
 
-        if (!$form) {
-            abort(404, 'Form not found');
-        }
+public function downloadForm($formType)
+{
+    // Assuming your model is named Form and it has a 'form_type' field
+    $form = Form::where('form_type', $formType)->first();
 
-        $filePath = public_path("images/{$form->form_file}");
-
-        if (!File::exists($filePath)) {
-            abort(404, 'File not found');
-        }
-
-        return response()->download($filePath, $form->form_name);
+    if (!$form) {
+        abort(404, 'Form not found');
     }
+
+    $filePath = public_path("images/{$form->form_file}");
+
+    if (!File::exists($filePath)) {
+        abort(404, 'File not found');
+    }
+
+    // Get the file extension
+    $extension = pathinfo($form->form_file, PATHINFO_EXTENSION);
+
+    // Set the appropriate headers for the file download
+    $headers = [
+        'Content-Type' => mime_content_type($filePath), // Automatically set the content type based on the file
+    ];
+
+    return response()->download($filePath, $form->form_name . '.' . $extension, $headers);
+}
+
     public function showAddForm()
     {
         return view ('/add_form');
@@ -107,27 +117,55 @@ class FormController extends Controller
 }
 
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function updateFormShow($id)
     {
-        //
+        $form = Form::find($id);
+        return view('update_form', compact('form'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function updateForm(Request $request, $formId)
+{
+    $request->validate([
+        'form_name' => 'required|string',
+        'form_desc' => 'required|string',
+        'form_type' => 'required|in:Enrollment,Requirements',
+    ]);
+
+    // Retrieve the form by its ID
+    $form = Form::find($formId);
+
+    if (!$form) {
+        return back()->with("error", "Form not found.");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    // Check if the authenticated user is the owner of the form
+    $user = Auth::user();
+   
+
+    $data = [
+        'admin_id' => $user->id,
+        'form_name' => $request->form_name,
+        'form_desc' => $request->form_desc,
+        'form_type' => $request->form_type,
+    ];
+
+    // Handle file update
+    if ($request->hasFile('form_file')) {
+        $file = $request->file('form_file');
+        if ($file->isValid()) {
+            $destinationPath = 'images'; // Change this to your desired directory
+            $fileName = date('YmdHis') . '.' . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $fileName);
+            $data['form_file'] = $fileName;
+        } else {
+            return back()->with('error', 'File upload error: ' . $file->getClientOriginalName());
+        }
     }
+
+    // Update the form
+    $form->update($data);
+
+    return back()->with("success", "Form updated successfully.");
+}
+
 }

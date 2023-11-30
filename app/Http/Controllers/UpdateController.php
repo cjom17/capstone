@@ -94,31 +94,56 @@ class UpdateController extends Controller
         return redirect()->route('updates.index')->with("success", "New update added successfully");
     
     }
-
-
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function updateUpdateShow($id)
     {
-        //
+        $update = Update::find($id);
+        return view('update_update', compact('update'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+
+    public function updateUpdate(Request $request, $updateId)
+{
+    $request->validate([
+        'update_title' => 'required|string',
+        'update_desc' => 'required|string',
+        'update_date' => 'required|date',
+        'update_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the validation rules for the image
+    ]);
+
+    // Retrieve the update by its ID
+    $update = Update::find($updateId);
+
+    if (!$update) {
+        return back()->with("error", "Event not found.");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    $user = Auth::user();
+
+    $data = [
+        'admin_id' => $user->id,
+        'update_title' => $request->update_title,
+        'update_desc' => $request->update_desc,
+        'update_date' => $request->update_date,
+    ];
+
+    // Handle image update
+    if ($request->hasFile('update_image')) {
+        $image = $request->file('update_image');
+        if ($image->isValid()) {
+            $destinationPath = 'images'; // Change this to your desired directory
+            $updateImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $updateImage);
+            $data['update_image'] = $updateImage;
+        } else {
+            return back()->with('error', 'File upload error: ' . $image->getClientOriginalName());
+        }
     }
+
+    // Update the update
+    $update->update($data);
+
+    return back()->with("success", "Update information is updated successfully.");
+}
+
+  
 }

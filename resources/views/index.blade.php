@@ -66,12 +66,10 @@
 </section>
 
 
-
-
       <section id="UpdatesHeader">
          <div class="update-header">
             <div class="left-text">Latest Updates</div>
-            <div class="right-button"><a href="/event_updates#UpdatesHeader">View all updates</a></div>
+            <div class="right-button"><a href="/events_updates#UpdatesHeader">View all updates</a></div>
         </div>
 
       </section>

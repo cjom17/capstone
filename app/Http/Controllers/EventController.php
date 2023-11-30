@@ -93,27 +93,56 @@ class EventController extends Controller
         return redirect()->route('events.index')->with("success", "New event added successfully");
     
     }
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function updateEventShow($id)
     {
-        //
+        $event = Event::find($id);
+        return view('update_event', compact('event'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function updateEvent(Request $request, $eventId)
+{
+    $request->validate([
+        'event_title' => 'required|string',
+        'event_desc' => 'required|string',
+        'event_date' => 'required|date',
+        'event_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the validation rules for the image
+    ]);
+
+    // Retrieve the event by its ID
+    $event = Event::find($eventId);
+
+    if (!$event) {
+        return back()->with("error", "Event not found.");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    $user = Auth::user();
+
+    $data = [
+        'admin_id' => $user->id,
+        'event_title' => $request->event_title,
+        'event_desc' => $request->event_desc,
+        'event_date' => $request->event_date,
+    ];
+
+    // Handle image update
+    if ($request->hasFile('event_image')) {
+        $image = $request->file('event_image');
+        if ($image->isValid()) {
+            $destinationPath = 'images'; // Change this to your desired directory
+            $eventImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $eventImage);
+            $data['event_image'] = $eventImage;
+        } else {
+            return back()->with('error', 'File upload error: ' . $image->getClientOriginalName());
+        }
     }
+
+    // Update the event
+    $event->update($data);
+
+    return back()->with("success", "Event updated successfully.");
+}
+
+
+
 }
