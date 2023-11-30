@@ -351,7 +351,7 @@
 					</div>
 				</div>
 
-				<div class="pd-20 card-box mb-30">
+		<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
 						<h4 class="text-blue h4">Complete the form by providing all necessary details.</h4>
 						

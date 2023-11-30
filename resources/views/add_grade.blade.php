@@ -323,7 +323,6 @@
 
             @endif
         </div>
-			
 	<form action="{{ route('update_grades') }}" method="post">
 		@csrf
 		<input type="hidden" name="subject_id" value="{{ $subjectID }}">
@@ -370,9 +369,6 @@
 					<input type="text" id="subject_desc" name="subject_desc" class="form-control" value="{{ $enrolledSubject->subject_desc }}" readonly>	
 					</div>
 				</div>
-
-
-		
 				<div class="col-md-6 col-sm-12">
 					<div class="form-group">
 						<label>First Grading : </label>
@@ -409,9 +405,6 @@
 					<input type="text" id="remarks" name="remarks" class="form-control" value="{{ $enrolledSubject->remarks }}" >	
 					</div>
 				</div>
-			
-			
-
 			<!-- <div class="row">
 				<div class="col-md-12 col-sm-12">
 					<div class="form-group">
@@ -423,17 +416,10 @@
 
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
-
-
 	</form>
 							
-					
 					</div>
 				</div>
-
-				
-
-		
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
 				Boljoon National High School | All rights reserved.

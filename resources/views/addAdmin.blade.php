@@ -303,7 +303,9 @@
 				<div class="page-header">
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
-							
+							<div class="title">
+								<h4>Form Wizards</h4>
+							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -328,12 +330,13 @@
 					</div>
 				</div>
 
-				<div class="pd-20 card-box mb-30">
+		<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
-						<h4 class="text-blue h4">Complete all necessary fields below.</h4>
+						<h4 class="text-blue h4">Complete the form by providing all necessary details.</h4>
+						
 					</div>
 					<div class="wizard-content">
-					<div class="mt-5">
+		<div class="mt-5">
             @if($errors->any())
                 <div class="col-12">
                     @foreach($errors->all() as $error)
@@ -353,132 +356,121 @@
 
             @endif
         </div>
-		
-						<form action="{{route('add.admin')}}" method="POST" class="tab-wizard wizard-circle wizard" enctype="multipart/form-data">
-						@csrf
-							<h5>Personal Info</h5>
-							<section>
-							<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Profile Picture:</label>
-											<label for="image">Choose an image:</label>
-											<input type="file" name="profile_picture" id="profile_picture" accept="image/*">
-											<!-- <input type="submit" value="Upload Image"> -->
-										</div>
-									</div>
-									
-							</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label >Full Name :</label>
-											<input type="text" name="name" id="name" class="form-control">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label >Position :</label>
-											<input type="text" name="position" id="position" class="form-control">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Gender :</label>
-											<select class="custom-select form-control" name="gender" id="gender">
-												<option value="" selected disabled>Select Gender</option>
-												<option value="male">Male</option>
-												<option value="female">Female</option>
-												<option value="others">Others</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label >Date of Birth :</label>
-											<input type="date" class="form-control date-picker" placeholder="Select Date" name="date_of_birth" id="date_of_birth">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Address :</label>
-											<input type="text" class="form-control" name="address" id="address">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Phone Number :</label>
-											<input type="text" class="form-control" name="phone_number" id="phone_number">
-										</div>
-									</div>
-								</div>
-								
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Civil Status :</label>
-											<select class="custom-select form-control" name="civil_status" id="civil_status">
-											<option value="" selected disabled>Select Civil Status</option>
-											<option value="single">Single</option>
-											<option value="married">Married</option>
-											<option value="divorced">Divorced</option>
-											<option value="widowed">Widowed</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label >Role:</label>
-											<input type="text" class="form-control" placeholder="Admin" disabled name="role" id="role">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label >Username :</label>
-											<input type="text" class="form-control" name="username" id="username">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label >Email Adress :</label>
-											<input type="email" class="form-control" name="email" id="email">
-										</div>
-									</div>
-							</div>
-
-							<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label >Password :</label>
-											<input type="password" class="form-control" name="password" id="password">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label >Confirm Password :</label>
-											<input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
-										</div>
-									</div>
-							</div>
-							</section>
-							<button type="submit" class="btn btn-primary">Submit</button>
-						
-						</form>
+			
+		<form action="{{route('add.admin')}}" method="POST" enctype="multipart/form-data">
+		@csrf
+			<div class="row">
+				<div class="col-md-6">
+						<div class="form-group">
+							<label>Profile Picture:</label>
+							<input type="file" name="profile_picture" id="profile_picture" accept="image/*">
+						</div>
+				</div>
+			
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+						<label>Fullname: </label>
+						<input type="text" id="name" name="name" class="form-control">
 					</div>
 				</div>
-
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+						<label>Position: </label>
+						<input type="text" id="position" name="position" class="form-control">
+					</div>
+				</div>
 				
+			
+
+				<div class="col-md-6 col-sm-12">
+					<label>Date of Birth : </label>
+					<input type="date" id="date_of_birth" name="date_of_birth" class="form-control">	
+				</div>
+
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+							<label>Gender :</label>
+							<select class="custom-select form-control" name="gender" id="gender">
+							<option value="" selected disabled>Select Gender</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+							</select>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+							<label>Civil Status :</label>
+							<select class="custom-select form-control" name="civil_status" id="civil_status">
+							<option value="" selected disabled>Select Civil Status</option>
+							<option value="single">Single</option>
+							<option value="married">Married</option>
+							<option value="divorced">Divorced</option>
+							<option value="widowed">Widowed</option>
+							</select>
+					</div>
+				</div>
+			
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+						<label>Address : </label>
+						<input type="text" id="address" name="address" class="form-control">	
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+					<label>Phone Number: </label>
+					<input type="text" id="phone_number" name="phone_number" class="form-control">	
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+					<label>Username: </label>
+					<input type="text" id="username" name="username" class="form-control">	
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+					<label>Email: </label>
+					<input type="email" id="email" name="email" class="form-control">	
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+					<label>Password: </label>
+					<input type="password" id="password" name="password" class="form-control">	
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+					<label>Confirm Password: </label>
+					<input type="password" id="password_confirmation" name="password_confirmation" class="form-control">	
+					</div>
+				</div>
+			
+
+			<!-- <div class="row">
+				<div class="col-md-12 col-sm-12">
+					<div class="form-group">
+						<label>col-md-12</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+			</div> -->
+
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+
+
+		</form>	
+					
+					</div>
+				</div>
 
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
 				Boljoon National High School | All rights reserved.
 			</div>
+		</div>
 		</div>
 	</div>
 	<!-- js -->

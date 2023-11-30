@@ -45,6 +45,12 @@ class AuthController extends Controller
         $admin = User::find($id);
         return view('update_admin_data', compact('admin'));
     }
+        public function deleteAllUsers()
+    {
+        User::truncate();
+
+        return 'All users deleted successfully.';
+    }
 
     function showAdminDashboard(){
         return view('adminDashboard');
