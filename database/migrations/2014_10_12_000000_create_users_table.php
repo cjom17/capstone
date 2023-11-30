@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('date_of_birth'); // Date of Birth
             $table->string('address'); // Address
             $table->string('phone_number'); // Phone Number
-            $table->enum('civil_status', ['single', 'married', 'widowed', 'divorced']); // Civil Status
+            $table->string('civil_status');
             $table->string('role')->default('admin'); // Role
             $table->string('profile_picture')->nullable(); // Profile Picture (you can make this field nullable if you want to allow users to have no profile picture)
             $table->string('username')->unique(); // Username
