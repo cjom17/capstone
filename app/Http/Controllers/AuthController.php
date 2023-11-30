@@ -8,45 +8,38 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 // use App\Http\Controllers\Session;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
-
 
 
 class AuthController extends Controller
 { 
-    public function createDefaultAdmin()
-    {
-        try {
-            // Disable foreign key checks to allow truncating the users table
-            DB::statement('SET FOREIGN_KEY_CHECKS=0');
-            
-            // Truncate the users table to remove any existing users
-            User::truncate();
+   public function createDefaultAdmin()
+{
+    $existingUserCount = User::count();
 
-            // Create the default admin user
-            User::create([
-                'name' => 'Default Admin',
-                'position' => 'Administrator',
-                'gender' => 'Male',
-                'date_of_birth' => now()->subYears(30)->toDateString(),
-                'address' => 'Default Address',
-                'phone_number' => '1234567890',
-                'civil_status' => 'Single',
-                'role' => 'admin',
-                'profile_picture' => 'admin.png',
-                'username' => 'admin',
-                'email' => 'admin@example.com',
-                'password' => Hash::make('defaultpassword'),
-            ]);
+    // Check if there are no existing users
+    if ($existingUserCount === 0) {
+        $defaultAdmin = new User([
+            'name' => 'Default Admin',
+            'position' => 'Administrator',
+            'gender' => 'Male', // Assuming a default gender
+            'date_of_birth' => now()->subYears(30)->toDateString(), // Example: 30 years old
+            'address' => 'Default Address',
+            'phone_number' => '1234567890',
+            'civil_status' => 'Single', // Assuming a default civil status
+            'role' => 'admin',
+            'profile_picture' => 'admin.png', // Assuming a default profile picture
+            'username' => 'admin',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('defaultpassword'),
+        ]);
 
-            return 'Default admin created successfully.';
-        } catch (\Exception $e) {
-            return 'Error creating default admin: ' . $e->getMessage();
-        } finally {
-            // Re-enable foreign key checks
-            DB::statement('SET FOREIGN_KEY_CHECKS=1');
-        }
+        $defaultAdmin->save();
+
+        return 'Default admin created successfully.';
     }
+
+    return 'Users already exist. No action taken.';
+}
     public function updateAdminShow($id)
     {
         $admin = User::find($id);
