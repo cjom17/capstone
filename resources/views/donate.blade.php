@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="css/donate.css">
     <link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <title>Give to BNHS | Boljoon National High School</title>
 </head>

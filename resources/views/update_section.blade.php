@@ -3,6 +3,8 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
 	<link rel="icon" type="image/x-icon" href="{{ asset ('images/bnhs1-removebg-preview.png') }}">
 
 	<title>Boljoon National High School</title>

@@ -14,10 +14,10 @@ class FormController extends Controller
     {
         $form = Form::find($id);
         if (!$form) {
-            return redirect()->route('form.display')->with('error', 'Form not found.');
+            return back()->with("error", "Form not found.");
         }
         $form->delete();
-        return redirect()->route('form.display')->with('success', 'Form deleted successfully.');
+        return back()->with("success", "Form deleted successfully");
     }
 
     
@@ -31,31 +31,31 @@ class FormController extends Controller
     }
 
 
-public function downloadForm($formType)
-{
-    // Assuming your model is named Form and it has a 'form_type' field
-    $form = Form::where('form_type', $formType)->first();
-
-    if (!$form) {
-        abort(404, 'Form not found');
+    public function downloadForm($formType)
+    {
+        $form = Form::where('form_type', $formType)->first();
+    
+        if (!$form) {
+            abort(404, 'Form not found');
+        }
+    
+        $filePath = public_path("images/{$form->form_file}");
+    
+        if (!File::exists($filePath)) {
+            abort(404, 'File not found');
+        }
+    
+        $extension = pathinfo($form->form_file, PATHINFO_EXTENSION);
+    
+        $headers = [
+            'Content-Type' => mime_content_type($filePath),
+            'Content-Disposition' => 'attachment; filename="' . $form->form_name . '.' . $extension . '"',
+            'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+        ];
+    
+        return response()->download($filePath, $form->form_name . '.' . $extension, $headers);
     }
-
-    $filePath = public_path("images/{$form->form_file}");
-
-    if (!File::exists($filePath)) {
-        abort(404, 'File not found');
-    }
-
-    // Get the file extension
-    $extension = pathinfo($form->form_file, PATHINFO_EXTENSION);
-
-    // Set the appropriate headers for the file download
-    $headers = [
-        'Content-Type' => mime_content_type($filePath), // Automatically set the content type based on the file
-    ];
-
-    return response()->download($filePath, $form->form_name . '.' . $extension, $headers);
-}
+    
 
     public function showAddForm()
     {
@@ -110,10 +110,10 @@ public function downloadForm($formType)
     $form = Form::create($data);
 
     if (!$form) {
-        return redirect(route('form.index'))->with("error", "Try again");
+        return back()->with("error", "Error, try again ");
     }
 
-    return redirect()->route('form.index')->with("success", "New form added successfully");
+    return back()->with("success", "New form added successfully.");
 }
 
 

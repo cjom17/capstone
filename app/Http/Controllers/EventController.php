@@ -15,10 +15,10 @@ class EventController extends Controller
     {
         $event = Event::find($id);
         if (!$event) {
-            return redirect()->route('events.display')->with('error', 'Event not found.');
+            return back()->with("error", "Event not found.");
         }
         $event->delete();
-        return redirect()->route('events.display')->with('success', 'Event deleted successfully.');
+        return back()->with("success", "Event deleted successfully.");
     }
 
     public function showAddEvent()
@@ -87,10 +87,10 @@ class EventController extends Controller
 
         
         if (!$event) {
-            return redirect(route('event.index'))->with("error", "Try again");
+            return back()->with("error", "Error, try again ");
         }
 
-        return redirect()->route('events.index')->with("success", "New event added successfully");
+        return back()->with("success", "New event added successfully. ");
     
     }
     public function updateEventShow($id)

@@ -22,10 +22,10 @@ class SubjectController extends Controller
     {
         $subject = Subject::find($id);
         if (!$subject) {
-            return redirect()->route('subject.display')->with('error', 'Subject not found.');
+            return back()->with("error", "Subject not found ");
         }
         $subject->delete();
-        return redirect()->route('subject.display')->with('success', 'Subject deleted successfully.');
+        return back()->with("success", "Subject deleted successfully. ");
     }
     
     public function updateSubjectShow($id)
@@ -72,10 +72,10 @@ class SubjectController extends Controller
     
        $subject = Subject::create($data);
         if (!$subject) {
-            return redirect(route('gradelvlSub.display'))->with("error", "Try again");
+            return back()->with("error", "Error, try again");
         }
 
-        return redirect()->route('gradelvlSub.display')->with("success", "New subject added successfully");
+        return back()->with("success", "New subject added successfully. ");
     
     }
     public function updateSubject(Request $request, $id)

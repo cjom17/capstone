@@ -20,10 +20,10 @@ class UpdateController extends Controller
     {
         $update = Update::find($id);
         if (!$update) {
-            return redirect()->route('updates.display')->with('error', 'Update not found.');
+            return back()->with("error", "Update not found ");
         }
         $update->delete();
-        return redirect()->route('updates.display')->with('success', 'Update deleted successfully.');
+        return back()->with("success", "Update deleted successfully. ");
     }
 
 
@@ -88,10 +88,10 @@ class UpdateController extends Controller
 
         
         if (!$update) {
-            return redirect(route('updates.index'))->with("error", "Try again");
+            return back()->with("error", "Error, try again ");
         }
 
-        return redirect()->route('updates.index')->with("success", "New update added successfully");
+        return back()->with("success", "New update added successfully");
     
     }
     public function updateUpdateShow($id)

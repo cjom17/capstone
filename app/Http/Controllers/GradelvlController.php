@@ -17,10 +17,10 @@ class GradelvlController extends Controller
     {
         $gradelvl = GradeLevel::find($id);
         if (!$gradelvl) {
-            return redirect()->route('gradelvl.display')->with('error', 'Grade level not found.');
+            return back()->with("error", "Grade level not found");
         }
         $gradelvl->delete();
-        return redirect()->route('gradelvl.display')->with('success', 'Grade level deleted successfully.');
+        return back()->with("success", "Grade level deleted successfully. ");
     }
 
 
@@ -75,10 +75,10 @@ class GradelvlController extends Controller
     
        $gradelvl = GradeLevel::create($data);
         if (!$gradelvl) {
-            return redirect(route('gradelvl.index'))->with("error", "Try again");
+            return back()->with("error", "Error, try again ");
         }
 
-        return redirect()->route('gradelvl.index')->with("success", "New grade level added successfully");
+        return back()->with("success", "New Grade level added successfully.");
     
     }
        

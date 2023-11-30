@@ -26,10 +26,10 @@ class SectionController extends Controller
     {
         $section = Section::find($id);
         if (!$section) {
-            return redirect()->route('section.display')->with('error', 'Section not found.');
+            return back()->with("error", "Section not found ");
         }
         $section->delete();
-        return redirect()->route('section.display')->with('success', 'Section deleted successfully.');
+        return back()->with("success", "Section is deleted successfully. ");
     }
 
 
@@ -58,10 +58,10 @@ class SectionController extends Controller
     
        $section = Section::create($data);
         if (!$section) {
-            return redirect(route('section.index'))->with("error", "Try again");
+            return back()->with("error", "Error, try again ");
         }
 
-        return redirect()->route('section.index')->with("success", "New section added successfully");
+        return back()->with("success", "New section added successfully. ");
     
     }
 

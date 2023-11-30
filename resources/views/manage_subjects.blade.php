@@ -4,6 +4,7 @@
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
 	<link rel="icon" type="image/x-icon" href="{{ asset ('images/bnhs1-removebg-preview.png') }}">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
 	<title>Boljoon National High School</title>
 

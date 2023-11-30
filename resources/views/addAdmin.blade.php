@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<title>Boljoon National High School</title>
 	<link rel="icon" type="image/x-icon" href="/images/bnhs1-removebg-preview.png">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">

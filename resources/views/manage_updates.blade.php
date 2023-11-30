@@ -6,6 +6,8 @@
 	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
 
 	<title>Boljoon National High School</title>
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
 
 	<!-- Site favicon -->
 	<!-- <link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
