@@ -17,11 +17,11 @@
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/core.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/icon-font.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/core.css">
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/style.css">
 
 
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -132,10 +132,10 @@
 					
 						<span class="user-icon" >
 						@if(auth()->user()->profile_picture)
-						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
+						<img src="/images/' . auth()->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
 						@else
 							{{-- Default image if the user doesn't have a profile picture --}}
-							<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+							<img src="/images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
 						@endif
 							
 							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
@@ -232,8 +232,7 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/adminDashboard">
-				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-				<img src="images/logo3.PNG" alt="" class="light-logo">
+				<img src="/images/logo3.PNG" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -419,15 +418,15 @@
 		</div>
 	</div>
 	<!-- js -->
-	<script src="{{ asset('vendors/scripts/core.js') }}"></script>
-<script src="{{ asset('vendors/scripts/script.min.js') }}"></script>
-<script src="{{ asset('vendors/scripts/process.js') }}"></script>
-<script src="{{ asset('vendors/scripts/layout-settings.js') }}"></script>
-<script src="{{ asset('src/plugins/apexcharts/apexcharts.min.js') }}"></script>
-<script src="{{ asset('src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('vendors/scripts/dashboard.js') }}"></script>
+	<script src="/vendors/scripts/core.js}"></script>
+<script src="/vendors/scripts/script.min.js"></script>
+<script src="/vendors/scripts/process.js"></script>
+<script src="/vendors/scripts/layout-settings.js"></script>
+<script src="/src/plugins/apexcharts/apexcharts.min.js"></script>
+<script src="/src/plugins/datatables/js/jquery.dataTables.min.js}"></script>
+<script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js'"></script>
+<script src="vendors/scripts/dashboard.js"></script>
 </body>
 </html>
