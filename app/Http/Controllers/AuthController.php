@@ -25,7 +25,7 @@ class AuthController extends Controller
             'date_of_birth' => now()->subYears(30)->toDateString(), // Example: 30 years old
             'address' => 'Default Address',
             'phone_number' => '1234567890',
-            'civil_status' => 'Single', // Assuming a default civil status
+            'civil_status' => 'single', // Assuming a default civil status
             'role' => 'admin',
             'profile_picture' => 'admin.png', // Assuming a default profile picture
             'username' => 'admin',
