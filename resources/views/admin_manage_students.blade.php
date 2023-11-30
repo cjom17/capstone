@@ -324,9 +324,7 @@
 						</div>
 						<div class="col-md-6 col-sm-12 text-right">
 							<div class="dropdown">
-								<a class="btn btn-primary" href="/add_student">
-									ADD NEW STUDENT
-								</a>
+								
 							
 							</div>
 						</div>

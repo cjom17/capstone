@@ -85,132 +85,21 @@ Route::get('/parentRegistration', function(){
 
 });
 
-Route::get('/adminDashboard', function(){
-    return view('adminDashboard')->name('adminDashboard');
-
-});
-
-
-Route::get('/teacher_dashboard', function(){
-    return view('teacher_dashboard');
-
-});
-
-
-Route::get('/addAdmin', function(){
-    return view('addAdmin');
-
-});
-Route::get('/student_landing', function(){
-    return view('student_landing');
-
-});
-
-Route::get('/parent_landing', function(){
-    return view('parent_landing');
-
-});
 
 
 
 
 
 
-Route::get('/pview_grades', function(){
-    return view('pview_grades');
-
-});
-
-Route::get('/manage_events', function(){
-    return view('manage_events');
-
-});
-
-Route::get('/add_events', function(){
-    return view('add_events');
-
-});
-
-Route::get('/add_updates', function(){
-    return view('add_updates');
-
-});
-
-
-Route::get('/manage_updates', function(){
-    return view('manage_updates');
-
-});
-
-
-Route::get('/manage_gradelvl', function(){
-    return view('manage_gradelvl');
-
-});
-
-Route::get('/add_gradelvl', function(){
-    return view('add_gradelvl');
-
-});
 
 
 
-Route::get('/manage_subjects', function(){
-    return view('manage_subjects');
 
-});
-
-Route::get('/add_subject', function(){
-    return view('add_subject');
-
-});
-
-
-
-Route::get('/manage_sections', function(){
-    return view('manage_sections');
-
-});
-
-Route::get('/add_section', function(){
-    return view('add_section');
-
-});
-
-Route::get('/manage_teachers', function(){
-    return view('manage_teachers');
-
-});
-
-Route::get('/add_teacher', function(){
-    return view('add_teacher');
-
-});
-
-Route::get('/manage_forms', function(){
-    return view('manage_forms');
-
-});
-
-Route::get('/add_form', function(){
-    return view('add_form');
-
-});
-
-Route::get('/manage_students', function(){
-    return view('manage_students');
-
-});
-
-Route::get('/add_student', function(){
-    return view('add_student');
-
-});
 
 
 //Routes for Home
 Route::get('/', [HomeController::class, 'showLandingPage'])->name('landing-page');
-Route::get('/events_updates', [HomeController::class, 'displayEvents'])->name('events.display');
+Route::get('/events_updates', [HomeController::class, 'displayEvents']);
 
 // Admin Login
 Route::post('/adminLogin', [AuthController::class, 'loginPost'])->name('login.post');
@@ -347,12 +236,7 @@ Route::middleware(['auth:teacher', 'role:teacher'])->group(function () {
     });
     
 
-
-
-
 });
-
-
 
 
 // PARENT LOGIN
@@ -371,8 +255,6 @@ Route::middleware(['auth:parent', 'role:parent'])->group(function () {
 });
 
 Route::post('/parentRegistration', [ParentController::class, 'parentRegistration'])->name('parent.register');     
-
-
 
 // STUDENT LOGIN
 Route::get('/studentLogin', [StudentController::class, 'showstudentLogin'])->name('student.login');
