@@ -68,7 +68,7 @@
 					</div>
 
 
-				<form action="{{ route('login.post') }}"  method="POST" class="signin-form" autocomplete="on">
+				<form action="https://bhns.onrender.com/login.post"  method="POST" class="signin-form" autocomplete="on">
 					@csrf
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="name">Email</label>
