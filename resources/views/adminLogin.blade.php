@@ -16,7 +16,7 @@
 		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 	  </style>
 	
-	<link rel="stylesheet" href="{{ secure_asset('css/admin_login.css') }}">
+	<link rel="stylesheet" href="css/admin_login.css">
 
 	</head>
 	<body>
@@ -69,7 +69,7 @@
 					</div>
 
 
-				<form action="{{ route('login.post') }}"  method="POST" class="signin-form" autocomplete="on">
+				<form action="{{ secure_url('login.post') }}"  method="POST" class="signin-form" autocomplete="on">
 					@csrf
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="name">Email</label>
@@ -109,10 +109,11 @@
 		</div>
 
 	</section>
-	<script src="{{ secure_asset('js/jquery.min.js') }}"></script>
-<script src="{{ secure_asset('js/popper.js') }}"></script>
-<script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ secure_asset('js/main.js') }}"></script>
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
 
 	</body>
 </html>

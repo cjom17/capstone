@@ -102,7 +102,7 @@ Route::get('/', [HomeController::class, 'showLandingPage'])->name('landing-page'
 Route::get('/events_updates', [HomeController::class, 'displayEvents']);
 
 // Admin Login
-Route::post('/adminLogin', [AuthController::class, 'loginPost'])->name('login.post');
+Route::post('/adminLogin', [AuthController::class, 'loginPost'])->name('login.post')->middleware('web');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 // Route group for Admin
