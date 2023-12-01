@@ -69,7 +69,7 @@
 					</div>
 
 
-				<form action="{{ secure_url('login.post') }}"  method="POST" class="signin-form" autocomplete="on">
+				<form action="{{ secure_url(route('login.post')) }}"  method="POST" class="signin-form" autocomplete="on">
 					@csrf
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="name">Email</label>
