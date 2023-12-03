@@ -30,7 +30,7 @@
                    <a href="/donate">Give to BNHS</a>
                </p>
    
-               <p class="footer-company-name">Copyright © 2021 <strong>Boljoon National High School</strong> All rights reserved</p>
+               <p class="footer-company-name">Copyright © 2023 <strong>Boljoon National High School</strong> All rights reserved</p>
            </div>
    
            <div class="footer-center">

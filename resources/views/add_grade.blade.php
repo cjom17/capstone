@@ -146,7 +146,7 @@
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+						<a class="dropdown-item" href="/teacher_profile"><i class="dw dw-user1"></i> Profile</a>
 						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
 						<a class="dropdown-item" href="{{ route('teacher.logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
@@ -397,7 +397,7 @@
 				<div class="col-md-6 col-sm-12">
 					<div class="form-group">
 					<label>Final Average: </label>
-					<input type="text" id="final" name="final" class="form-control" value="{{ $enrolledSubject->final }}" readonly>	
+					<input type="text" id="final" name="final" class="form-control" value="{{ $enrolledSubject->final }}" >	
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12">

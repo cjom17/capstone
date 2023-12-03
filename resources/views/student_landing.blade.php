@@ -23,7 +23,7 @@
         <section id="studentLanding">
                 <div id="showcase">
                 @auth
-                <h1>HI there <span> {{auth('student')->user()->f_name}} {{auth('student')->user()->l_name}}</span></h1>
+                <h1>Hi there, <span> {{auth('student')->user()->f_name}} {{auth('student')->user()->l_name}}</span></h1>
                 @endauth
                 <h2>Welcome Back!</h2>
                 <p> Keep updated with your progress.

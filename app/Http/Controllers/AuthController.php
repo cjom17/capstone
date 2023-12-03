@@ -30,7 +30,7 @@ class AuthController extends Controller
             'profile_picture' => 'admin.png', // Assuming a default profile picture
             'username' => 'admin',
             'email' => 'admin@example.com',
-            'password' => Hash::make('defaultpassword'),
+            'password' => Hash::make('bnhsd3fau1t'),
         ]);
 
         $defaultAdmin->save();
@@ -268,6 +268,19 @@ public function updateAdmin(Request $request, $id)
         }
 
         return view('delete_users');
+    }
+
+    // public function adminProfile($admin_id)
+    // {
+    //     $admin = User::find($admin_id);
+
+    //     return view('profile', compact('admin'));
+    // }
+
+    public function getAllAdmins()
+    {
+        $admin = auth()->user(); // Assuming you're using Laravel's built-in authentication
+        return view('profile', compact('admin'));
     }
 
    

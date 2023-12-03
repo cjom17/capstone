@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Events and Updates | Boljoon National High School</title>
     <link rel="stylesheet" href="css/eventsUpdates.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -60,6 +60,8 @@
                     <div class="event-content">
                         <h3 class="event-title">{{ $event->event_title }}</h3>
                         <p class="event-date">Date: {{ \Carbon\Carbon::parse($event->event_date)->format('F j, Y') }}</p>
+                        <p class="event-date">Where: {{ $event->event_place }}</p>
+
                         <p class="event-description">{{ $event->event_desc }}</p>
                         <button class="read-more-button">Read More</button>
                     </div>
@@ -89,9 +91,11 @@
                 <img src="{{ asset('images/' . $update->update_image) }}" alt="">
                 </div>
                 <div class="update-content">
-                <h3 class="event-title">{{ $update->update_title }}</h3>
-                        <p class="event-date">Date: {{ \Carbon\Carbon::parse($update->update_date)->format('F j, Y') }}</p>
-                        <p class="event-description">{{ $update->update_desc }}</p>
+                <h3 class="update-title">{{ $update->update_title }}</h3>
+                        <p class="update-date">Date: {{ \Carbon\Carbon::parse($update->update_date)->format('F j, Y') }}</p>
+                        <p class="update-date">Where: {{ $update->update_place }}</p>
+
+                        <p class="update-description">{{ $update->update_desc }}</p>
                     <button class="read-more-button">Read More</button>
                 </div>
             </div>
@@ -111,7 +115,47 @@
 
     @include('footer')
 
-    <script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Shared expanded state for both events and updates
+    let isExpandedEvent = false;
+    let isExpandedUpdate = false;
+
+    // Function to toggle the expanded state and update the UI
+    function toggleExpandedState(button, description, isExpanded) {
+        button.addEventListener('click', () => {
+            if (!isExpanded) {
+                description.style.maxHeight = 'none'; // Show full text
+                button.textContent = 'Read Less';
+                console.log('Description expanded');
+            } else {
+                description.style.maxHeight = '90px'; // Hide excess text
+                button.textContent = 'Read More';
+                console.log('Description collapsed');
+            }
+
+            isExpanded = !isExpanded; // Toggle the expanded state
+            console.log('isExpanded:', isExpanded);
+        });
+    }
+
+    // Event delegation for both events and updates
+    document.addEventListener('click', function (event) {
+        const eventButton = event.target.closest('.event-card .read-more-button');
+        if (eventButton) {
+            const eventDescription = eventButton.closest('.event-card').querySelector('.event-description');
+            toggleExpandedState(eventButton, eventDescription, isExpandedEvent);
+        }
+
+        const updateButton = event.target.closest('.update-card .read-more-button');
+        if (updateButton) {
+            const updateDescription = updateButton.closest('.update-card').querySelector('.update-description');
+            toggleExpandedState(updateButton, updateDescription, isExpandedUpdate);
+        }
+    });
+});
+</script>
+
     <script>
  document.addEventListener('DOMContentLoaded', function () {
     var events = @json($events);
@@ -151,6 +195,8 @@
             <div class="event-content">
                 <h3 class="event-title">${event.event_title}</h3>
                 <p class="event-date">Date: ${new Date(event.event_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                <p class="event-date">${event.event_place}</p>
+
                 <p class="event-description">${event.event_desc}</p>
                 <button class="read-more-button">Read More</button>
             </div>
@@ -209,9 +255,10 @@
                 <img src="${imagePath}" alt="${update.update_title}">
             </div>
             <div class="update-content">
-                <h3 class="event-title">${update.update_title}</h3>
-                <p class="event-date">Date: ${new Date(update.update_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
-                <p class="event-description">${update.update_desc}</p>
+                <h3 class="update-title">${update.update_title}</h3>
+                <p class="update-date">Date: ${new Date(update.update_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                <p class="update-date">${update.update_place}</p>
+                <p class="update-description">${update.update_desc}</p>
                 <button class="read-more-button">Read More</button>
             </div>
         `;
@@ -234,7 +281,8 @@
 </script>
 
 
-    <script>
+
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     
 </body>

@@ -134,10 +134,10 @@
 					
 						<span class="user-icon" >
 						@if(auth()->user()->profile_picture)
-						<img src="/images/' . auth()->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
+						<img src="{{ asset('images/' . auth()->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
 						@else
 							{{-- Default image if the user doesn't have a profile picture --}}
-							<img src="/images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+							<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
 						@endif
 							
 							<!-- <img src="vendors/images/photo1.jpg" alt=""> -->
@@ -147,7 +147,12 @@
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+				
+						<a class="dropdown-item" href="/profile">
+							<i class="dw dw-user1"></i> Profile
+						</a>
+				
+			
 						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
 						<a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
@@ -298,12 +303,12 @@
 
 					<li>
 						<a href="/manage_gradelvl" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-lines"></span><span class="mtext" href=>Grade Level</span>
+                        <span class="micon dw dw-bar-chart"></span><span class="mtext" href=>Grade Level</span>
 						</a>
 					</li>
 					<li>
 						<a href="/manage_sections" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-sections"></span><span class="mtext" href=>Section</span>
+                        <span class="micon dw dw-menu"></span><span class="mtext" href=>Section</span>
 						</a>
 					</li>
 				</ul>

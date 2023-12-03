@@ -102,51 +102,53 @@
 			showMenu('nav-toggle','nav-menu')
 
 	</script>
-	<script>
-			function sendEmail() {
-				console.log('Form Data Before Serialization:', {
-        name: $('#name').val(),
-        email: $('#email').val(),
-        message: $('#message').val(),
-    });
+<script>
+    function sendEmail() {
+        console.log('Form Data Before Serialization:', {
+            name: $('#name').val(),
+            email: $('#email').val(),
+            message: $('#message').val(),
+        });
 
-	var formData = new FormData();
-    formData.append('name', $('#name').val());
-    formData.append('email', $('#email').val());
-    formData.append('message', $('#message').val());
+        var formData = new FormData();
+        formData.append('name', $('#name').val());
+        formData.append('email', $('#email').val());
+        formData.append('message', $('#message').val());
 
-	console.log('FormData Object Before Sending:', formData);
+        console.log('FormData Object Before Sending:', formData);
 
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-				var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("send-email") }}',
+            data: formData,
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            success: function (response) {
+                console.log('Success:', response);
+                // Display an alert and reload the page
+                alert('Email sent successfully.');
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.error('XHR:', xhr);
+                console.error('Status:', status);
+                console.error('Error:', error);
 
-				$.ajax({
-					type: 'POST',
-					url: '{{ route("send-email") }}',
-					data: formData,
-					contentType: false,
-    processData: false, 
-					headers: {
-						'X-CSRF-TOKEN': csrfToken
-					},
-					success: function (response) {
-						console.log('Success:', response);
-					},
-					error: function (xhr, status, error) {
-			console.error('XHR:', xhr);
-			console.error('Status:', status);
-			console.error('Error:', error);
+                // Check if the response contains a 'responseJSON' property
+                if (xhr.responseJSON) {
+                    console.error('Server Error:', xhr.responseJSON);
+                    alert('Server Error: ' + xhr.responseJSON.message); // Display the error message
+                }
+            }
+        });
+    }
+</script>
 
-			// Check if the response contains a 'responseJSON' property
-			if (xhr.responseJSON) {
-				console.error('Server Error:', xhr.responseJSON);
-				alert('Server Error: ' + xhr.responseJSON.message); // Display the error message
-				}
-			}
-
-       	 });
-    	}
-	</script>
 
 		
 

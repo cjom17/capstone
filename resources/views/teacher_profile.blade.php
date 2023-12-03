@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Boljoon National High School</title>
 	<link rel="icon" type="image/x-icon" href="images/bnhs1-removebg-preview.png">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
+	<title>Boljoon National High School</title>
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	
+
+	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="/vendors/styles/core.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/styles/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/styles/style.css">
 
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -27,18 +34,6 @@
 </head>
 <body>
 
-	<!-- <div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="images/logo.PNG" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div> -->
 
 	<div class="header">
 		<div class="header-left">
@@ -147,6 +142,7 @@
 			
 		</div>
 	</div>
+
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -222,7 +218,6 @@
 		</div>
 	</div>
 
-	
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/teacher_dashboard">
@@ -264,117 +259,183 @@
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
-	
 
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
 				<div class="page-header">
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
-							<!-- <div class="title">
-								<h4>List of Admins</h4>
-							</div> -->
+						<div class="col-md-12 col-sm-12">
+							<div class="title">
+								<h4>Profile</h4>
+							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Students</li>
+									<li class="breadcrumb-item active" aria-current="page">Profile</li>
 								</ol>
 							</nav>
 						</div>
-						<div class="col-md-6 col-sm-12 text-right">
-							<div class="dropdown">
-								<a class="btn btn-primary" href="/add_student">
-									ADD NEW STUDENT
-								</a>
-							
-							</div>
-						</div>
-					
 					</div>
 				</div>
-				<div class="card-box mb-30">
-					<div class="pd-20">
-						<h4 class="text-blue h4">List of Students</h4>
+				<div class="row">
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
+						<div class="pd-20 card-box height-100-p">
+							<div class="profile-photo">
+							@if($teacher->profile_picture)
+										<img src="{{ asset($teacher->profile_picture) }}" alt="Profile Picture" style="width: 100px">
+									@else
+									<img src="{{ asset('/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+									@endif							
+							</div>
+							<h5 class="text-center h5 mb-0">{{$teacher->fullname}}</h5>
+							<div class="profile-info">
+								<h5 class="mb-20 h5 text-blue">Contact Information</h5>
+								<ul>
+									<li>
+										<span>Email Address:</span>
+										{{$teacher->email}}
+																		
+									</li>
+									<li>
+										<span>Phone Number:</span>
+										{{$teacher->phone_number}}									
+									</li>
+								
+									<li>
+										<span>Address:</span>
+										{{$teacher->address}}
+									</li>
+								</ul>
+							</div>
+							<!-- <div class="profile-social">
+								<h5 class="mb-20 h5 text-blue">Social Links</h5>
+								<ul class="clearfix">
+									<li><a href="#" class="btn" data-bgcolor="#3b5998" data-color="#ffffff"><i class="fa fa-facebook"></i></a></li>
+							
+								</ul>
+							</div> -->
+							
+						</div>
 					</div>
-					<div class="pb-20">
+					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+						<div class="card-box height-100-p overflow-hidden">
+							<div class="profile-tab height-100-p">
+								<div class="tab height-100-p">
+									<ul class="nav nav-tabs customtab" role="tablist">
+										<li class="nav-item">
+											<a class="nav-link active" data-toggle="tab" href="" role="tab">Personal Information</a>
+										</li>
+									
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane fade show active" id="timeline" role="tabpanel">
+										<div class="profile-setting">
+												<form>
+													<ul class="profile-edit-list row">
+														<li class="weight-500 col-md-6">
+															<div class="form-group">
+																<label>Full Name</label>
+																<input class="form-control form-control-lg" type="text" value="{{ $teacher->fullname }}" readonly>
+															</div>
+														
+															<div class="form-group">
+																<label>Postion:</label>
+																<input class="form-control form-control-lg" type="text" value="{{ $teacher->position }}" readonly>
+															</div>
+															<div class="form-group">
+																<label>Advisory Level:</label>
+																<input class="form-control form-control-lg" type="text" value="{{ $teacher->advisory_lvl }}" readonly>
+															</div>
+															<div class="form-group">
+																<label>Civil Status: </label>
+																<input class="form-control form-control-lg" type="text" value="{{ $teacher->civil_status }}" readonly>
+															</div>
+															<div class="form-group">
+																<label>Username:</label>
+																<input class="form-control form-control-lg" type="text" value="{{ $teacher->username }}" readonly>
+															</div>
 
-						<table class="data-table table stripe hover nowrap">
-							<thead>
-
-								<tr>
-									<th class="datatable-nosort">LRN</th>
-									<th class="datatable-nosort">Name</th>
-									<th class="datatable-nosort">Grade Level</th>
-									<th class="datatable-nosort">Section</th>
-									<th class="datatable-nosort">Action</th>
-
-
-								</tr>
-							</thead>
-							<tbody>
-							@foreach($students as $student)
-
-								<tr>
-									<td class="table-plus">{{ $student->student_lrn }}</td>
-									<td>{{ $student->f_name }} {{ $student->l_name }}</td>
-									<td>{{ $student->year_lvl }}  </td>
-									<td>{{ $student->section_name }}</td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<!-- Update the href attribute to include the student's ID -->
-												<a class="dropdown-item" href="{{ route('specStudent.show', ['student_id' => $student->id]) }}"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="{{ route('updateStudent.show', ['student_id' => $student->id]) }}"><i class="dw dw-edit"></i> Edit</a>
-												<a class="dropdown-item" href="{{ route('enrolledSub.show', ['student_id' => $student->id, 'student_lrn' => $student->student_lrn]) }}"><i class="dw dw-book"></i> Enrolled Subjects</a>
-												<a class="dropdown-item" href="{{ route('remarks.show', ['student_id' => $student->id, 'student_lrn' => $student->student_lrn]) }}"><i class="dw dw-file"></i> Grades</a>
-												<form action="{{ route('delete.student', ['id' => $student->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this student?')">
-													@csrf
-													@method('DELETE')
-													<button type="submit" class="dropdown-item" style="background: none; border: none; cursor: pointer;">
-														<i class="dw dw-delete-3"></i> Delete
-													</button>	
+														</li>
+														<li class="weight-500 col-md-6">
+														<div class="form-group">
+																<label>Id number:</label>
+																<input class="form-control form-control-lg" type="text" value="{{ $teacher->id_number }}" readonly>
+															</div>
+															<div class="form-group">
+																<label>Section name</label>
+																<input class="form-control form-control-lg" type="text" value="{{ $teacher->section_name }}" readonly>
+															</div>
+															<div class="form-group">
+																<label>Gender</label>
+																<input class="form-control form-control-lg" type="text" value="{{ $teacher->gender }}" readonly>
+															</div>
+															<div class="form-group">
+																<label>Date of Birth:</label>
+																<input class="form-control form-control-lg" type="text" value="{{ $teacher->date_of_birth }}" readonly>
+															</div>
+														
+														
+														</li>
+													</ul>
 												</form>
-
 											</div>
 										</div>
-									</td>
-								</tr>
-								@endforeach
-
-							
-							</tbody>
-						</table>
-
+										<!-- Timeline Tab End -->
+										
+										<!-- Tasks Tab End -->
+										<!-- Setting Tab start -->
+										<div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
+											
+										</div>
+										<!-- Setting Tab End -->
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="footer-wrap pd-20 mb-20 card-box">
+			</div>
+			<div class="footer-wrap pd-20 mb-20 card-box">
 				Boljoon National High School | All rights reserved.
 			</div>
 		</div>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
 	<!-- js -->
-	<script src="vendors/scripts/core.js"></script>
-	<script src="vendors/scripts/script.min.js"></script>
-	<script src="vendors/scripts/process.js"></script>
-	<script src="vendors/scripts/layout-settings.js"></script>
-	<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-	<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-	<!-- buttons for Export datatable -->
-	<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
-	<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
-	<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
-	<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
-	<!-- Datatable Setting js -->
-	<script src="vendors/scripts/datatable-setting.js"></script></body>
+	<script src="/vendors/scripts/core.js"></script>
+	<script src="/vendors/scripts/script.min.js"></script>
+	<script src="/vendors/scripts/process.js"></script>
+	<script src="/vendors/scripts/layout-settings.js"></script>
+	<script src="/src/plugins/cropperjs/dist/cropper.js"></script>
+	<script>
+		window.addEventListener('DOMContentLoaded', function () {
+			var image = document.getElementById('image');
+			var cropBoxData;
+			var canvasData;
+			var cropper;
+
+			$('#modal').on('shown.bs.modal', function () {
+				cropper = new Cropper(image, {
+					autoCropArea: 0.5,
+					dragMode: 'move',
+					aspectRatio: 3 / 3,
+					restore: false,
+					guides: false,
+					center: false,
+					highlight: false,
+					cropBoxMovable: false,
+					cropBoxResizable: false,
+					toggleDragModeOnDblclick: false,
+					ready: function () {
+						cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
+					}
+				});
+			}).on('hidden.bs.modal', function () {
+				cropBoxData = cropper.getCropBoxData();
+				canvasData = cropper.getCanvasData();
+				cropper.destroy();
+			});
+		});
+	</script>
+</body>
 </html>

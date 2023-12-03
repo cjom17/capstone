@@ -3,8 +3,8 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
+      
       <link rel="stylesheet" href="css/style.css">
       <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
       <script src="https://kit.fontawesome.com/515e3f1675.js" crossorigin="anonymous"></script>
@@ -54,7 +54,9 @@
                 </div>
                 <div class="event-content">
                     <h3 class="event-title">{{ $event->event_title }}</h3>
-                    <p class="event-date">Date: {{ \Carbon\Carbon::parse($event->event_date)->format('F j, Y') }}</p>
+                    <p class="event-date">When: {{ \Carbon\Carbon::parse($event->event_date)->format('F j, Y') }}</p>
+                    <p class="event-date">Where: {{ $event->event_place }}</p>
+
                     <p class="event-description">{{ $event->event_desc }}</p>
                     <button class="read-more-button">Read More</button>
                 </div>
@@ -93,8 +95,10 @@
                </div>
                <div class="update-content">
                <h3 class="update-title">{{ $update->update_title }}</h3>
-                   <p class="update-date">Date: {{ \Carbon\Carbon::parse($update->update_date)->format('F j, Y') }}</p>
-                   <p class="update-description">{{ $update->update_desc }}</p>                   </p>
+                   <p class="update-date">When: {{ \Carbon\Carbon::parse($update->update_date)->format('F j, Y') }}</p>
+                   <p class="update-date">Where: {{ $update->update_place }}</p>                  
+
+                   <p class="update-description">{{ $update->update_desc }}</p>                  
                    <button class="read-more-button">Read More</button>
                </div>
            </div>
@@ -119,18 +123,18 @@
       <!--=============== MAIN JS ===============-->
       <script src="js/main.js"></script>
       <script>
-        /*=============== SHOW MENU ===============*/
-const showMenu = (toggleId, navId) =>{
-  const toggle = document.getElementById(toggleId),
-        nav = document.getElementById(navId)
-  toggle.addEventListener('click', () =>{
-      // Add show-menu class to nav menu
-      nav.classList.toggle('show-menu')
-      // Add show-icon to show and hide the menu icon
-      toggle.classList.toggle('show-icon')
-  })
-}
-showMenu('nav-toggle','nav-menu')
+            /*=============== SHOW MENU ===============*/
+    const showMenu = (toggleId, navId) =>{
+    const toggle = document.getElementById(toggleId),
+            nav = document.getElementById(navId)
+    toggle.addEventListener('click', () =>{
+        // Add show-menu class to nav menu
+        nav.classList.toggle('show-menu')
+        // Add show-icon to show and hide the menu icon
+        toggle.classList.toggle('show-icon')
+    })
+    }
+    showMenu('nav-toggle','nav-menu')
       </script>
    </body>
 </html>

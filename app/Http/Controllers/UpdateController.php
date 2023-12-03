@@ -54,6 +54,7 @@ class UpdateController extends Controller
         $request->validate([
             'update_title' => 'required|string',
             'update_desc' => 'required|string',
+            'update_place' => 'required|string',
             'update_date' => 'required|date',
             'update_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the validation rules for the image
         ]);
@@ -64,6 +65,7 @@ class UpdateController extends Controller
             'admin_id' => $adminId,
             'update_title' => $request->update_title,
             'update_desc' => $request->update_desc,
+            'update_place' => $request->update_place,
             'update_date' => $request->update_date,
             'update_image' => $request->updateImage,
             'date_uploaded' => now(),
@@ -106,6 +108,7 @@ class UpdateController extends Controller
     $request->validate([
         'update_title' => 'required|string',
         'update_desc' => 'required|string',
+        'update_place' => 'required|string',
         'update_date' => 'required|date',
         'update_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the validation rules for the image
     ]);
@@ -123,6 +126,7 @@ class UpdateController extends Controller
         'admin_id' => $user->id,
         'update_title' => $request->update_title,
         'update_desc' => $request->update_desc,
+        'update_place' => $request->update_place,
         'update_date' => $request->update_date,
     ];
 

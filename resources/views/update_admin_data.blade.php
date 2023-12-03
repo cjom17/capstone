@@ -147,7 +147,12 @@
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+				
+						<a class="dropdown-item" href="/profile">
+							<i class="dw dw-user1"></i> Profile
+						</a>
+				
+			
 						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
 						<a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
@@ -156,7 +161,6 @@
 			
 		</div>
 	</div>
-
 
 	<div class="right-sidebar">
 		<div class="sidebar-title">
@@ -237,7 +241,7 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/adminDashboard">
-			<img src="/images/logo3.PNG" alt="" class="light-logo">
+				<img src="/images/logo3.PNG" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -301,12 +305,12 @@
 
 					<li>
 						<a href="/manage_gradelvl" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-lines"></span><span class="mtext" href=>Grade Level</span>
+                        <span class="micon dw dw-bar-chart"></span><span class="mtext" href=>Grade Level</span>
 						</a>
 					</li>
 					<li>
 						<a href="/manage_sections" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-sections"></span><span class="mtext" href=>Section</span>
+                        <span class="micon dw dw-menu"></span><span class="mtext" href=>Section</span>
 						</a>
 					</li>
 				</ul>
@@ -381,11 +385,26 @@
 					<form action="{{ route('update.admin', ['admin_id' => $admin->id]) }}" method="post"  enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
+					
 
 						<div class="row">
+							
+						<div class="col-md-12">
+							<label for="event_image_old" class="col-sm-2 col-form-label">Profile Picture</label>
+							
+							@if($admin->profile_picture)
+								<img src="{{ asset('images/' . auth()->user()->profile_picture) }}"  alt="Profile Image" style="width: 80px; ">
+									@else
+									<img src="{{ asset('images/admin.png') }}" alt="Default Image" style="width: 170px; border: 3px solid;">
+									@endif							
+						
+									
+							</div>
+
+						
 							<div class="col-md-6">
 									<div class="form-group">
-										<label>Profile Picture:</label>
+										<label>Upload New Picture:</label>
 										<input type="file" name="profile_picture" id="profile_picture" accept="image/*">
 									</div>
 						

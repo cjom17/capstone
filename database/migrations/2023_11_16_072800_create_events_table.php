@@ -16,7 +16,8 @@ return new class extends Migration
             $table->integer('admin_id'); 
             $table->string('event_image')->nullable();
             $table->string('event_title');
-            $table->string('event_desc');  
+            $table->string('event_place')->nullable();  
+            $table->text('event_desc');  
             $table->date('event_date'); 
             $table->date('date_uploaded'); 
             $table->timestamps();

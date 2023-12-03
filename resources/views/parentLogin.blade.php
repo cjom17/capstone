@@ -27,8 +27,8 @@
 			<div class="overlay"></div>
 			<div class="row justify-content-center">
 				<div class="col-md-9 text-center mb-5">
-					<img src="./images/bnhs1-removebg-preview.png" alt="">
-					<h2 class="heading-section">BOLJOON NATIONAL HIGH SCHOOL</h2>
+					<a href="/"><img src="./images/bnhs1-removebg-preview.png" alt=""></a>
+					<a href="/"><h2 class="heading-section">BOLJOON NATIONAL HIGH SCHOOL</h2></a>
 				</div>
 			</div>
 			<div class="row justify-content-center">

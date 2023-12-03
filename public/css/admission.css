@@ -339,7 +339,12 @@ a{
             #requirements {
                 align-items: center; /* Center align content */
                 padding: 10px;
-                height: 150vh;
+                height: 170vh;
+            }
+
+            .form-section p{
+              padding-bottom: 20px;
+
             }
 
             .requirements-title {

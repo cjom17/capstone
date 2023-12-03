@@ -250,4 +250,10 @@ public function updateTeacher(Request $request, $id)
         return back()->with("success", "Teacher Information updated successfully");
     }
 
+    public function getAllTeachers()
+    {
+        $teacher = auth()->user(); // Assuming you're using Laravel's built-in authentication
+        return view('teacher_profile', compact('teacher'));
+    }
+
 }

@@ -53,6 +53,7 @@ class EventController extends Controller
         $request->validate([
             'event_title' => 'required|string',
             'event_desc' => 'required|string',
+            'event_place' => 'required|string',
             'event_date' => 'required|date',
             'event_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the validation rules for the image
         ]);
@@ -63,6 +64,7 @@ class EventController extends Controller
             'admin_id' => $adminId,
             'event_title' => $request->event_title,
             'event_desc' => $request->event_desc,
+            'event_place' => $request->event_place,
             'event_date' => $request->event_date,
             'event_image' => $request->eventImage,
             'date_uploaded' => now(),
@@ -104,6 +106,7 @@ class EventController extends Controller
     $request->validate([
         'event_title' => 'required|string',
         'event_desc' => 'required|string',
+        'event_place' => 'required|string',
         'event_date' => 'required|date',
         'event_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the validation rules for the image
     ]);
@@ -120,6 +123,7 @@ class EventController extends Controller
     $data = [
         'admin_id' => $user->id,
         'event_title' => $request->event_title,
+        'event_place' => $request->event_place,
         'event_desc' => $request->event_desc,
         'event_date' => $request->event_date,
     ];

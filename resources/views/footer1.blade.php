@@ -24,7 +24,7 @@
 	<section id="forFooter">
 		<div class="footer-container">
 			<img src="./images/bnhs1-removebg-preview.png" alt="">
-			<h1>Boljoon National High School <span>2016 - 2023</span>. All rights reserved.</h1>
+			<h1>Boljoon National High School <span>2023</span>. All rights reserved.</h1>
 		</div>
 
 	</section>

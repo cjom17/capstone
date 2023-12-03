@@ -146,7 +146,12 @@
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+				
+						<a class="dropdown-item" href="/profile">
+							<i class="dw dw-user1"></i> Profile
+						</a>
+				
+			
 						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
 						<a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
@@ -155,7 +160,6 @@
 			
 		</div>
 	</div>
-
 
 	<div class="right-sidebar">
 		<div class="sidebar-title">
@@ -300,12 +304,12 @@
 
 					<li>
 						<a href="/manage_gradelvl" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-lines"></span><span class="mtext" href=>Grade Level</span>
+                        <span class="micon dw dw-bar-chart"></span><span class="mtext" href=>Grade Level</span>
 						</a>
 					</li>
 					<li>
 						<a href="/manage_sections" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-sections"></span><span class="mtext" href=>Section</span>
+                        <span class="micon dw dw-menu"></span><span class="mtext" href=>Section</span>
 						</a>
 					</li>
 				</ul>
@@ -391,13 +395,19 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<label for="event_place" class="col-sm-2 col-form-label">Event Place</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control" name="event_place" id="event_place" placeholder="Enter the event place here">
+				</div>
+			</div>
+			<div class="form-group row">
 				<label for="event_desc" class="col-sm-2 col-form-label">Event Description</label>
 				<div class="col-sm-10">
 				<textarea class="form-control" name="event_desc" id="event_desc" placeholder="Enter the event description here..."></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="event_date" class="col-sm-2 col-form-label">Event date</label>
+				<label for="event_date" class="col-sm-2 col-form-label">Event Date</label>
 				<div class="col-sm-10"> 
 				<input type="date" class="form-control" name="event_date" id="event_date" placeholder="Select date">
 				</div>

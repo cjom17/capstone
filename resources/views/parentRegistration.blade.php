@@ -191,7 +191,7 @@
 					</div>
 
 					<div class="d-flex justify-content-end pt-3" >
-						<button type="button" class="btn btn-secondary " >Reset all</button>
+						<button type="button" id="resetButton" class="btn btn-secondary " >Reset all</button>
 						<button type="submit" class="btn btn-success" style="margin-left: 10px">Submit form</button>
 					</div>
 		</form>
@@ -212,6 +212,30 @@
 		</div>
 
 	</section>
+	<!-- Add this script at the end of your HTML file -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Find the reset button by its ID
+        var resetButton = document.getElementById("resetButton");
+
+        // Attach a click event listener to the reset button
+        resetButton.addEventListener("click", function () {
+            // Get all form elements and reset their values
+            var formElements = document.querySelectorAll("form input, form select, form textarea");
+            formElements.forEach(function (element) {
+                // Check if the element is a file input
+                if (element.type === "file") {
+                    // Clear the file input by resetting its value
+                    element.value = "";
+                } else {
+                    // Clear other input types
+                    element.value = "";
+                }
+            });
+        });
+    });
+</script>
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 	<script src="js/jquery.min.js"></script>

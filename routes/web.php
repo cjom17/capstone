@@ -115,6 +115,7 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::delete('/delete-subject/{id}', [SubjectController::class, 'deleteSubject'])->name('delete.subject');
     Route::get('/update_subject_data/{subject_id}', [SubjectController::class, 'updateSubjectShow'])->name('updateSubject.show');  
     Route::put('/update-subject/{subject_id}', [SubjectController::class, 'updateSubject'])->name('update.subject');
+    
 
     // Routes for grade level
     Route::get('/add_gradelvl', [GradelvlController::class, 'showAddGradelvl'])->name('gradelvl.index');
@@ -135,6 +136,10 @@ Route::middleware(['auth:web', 'role:admin'])->group(function () {
     Route::put('/update-admin/{admin_id}', [AuthController::class, 'updateAdmin'])->name('update.admin');
     Route::post('/addAdmin', [AuthController::class, 'addAdmin'])->name('add.admin'); 
     Route::get('/addAdmin', [AuthController::class, 'show_add_admin'])->name('addAdmin.show');
+    // Route::get('/view_admin_profile/{admin_id}', [AuthController::class, 'adminProfile'])->name('admin_profile.show'); 
+    Route::get('/profile', [AuthController::class, 'getAllAdmins'])->name('profile.show');
+
+
 
 
     // Routes for managing teacher
@@ -206,6 +211,8 @@ Route::post('/teacherLogin', [TeacherController::class, 'teacherLoginPost'])->na
 // ROUTE GROUP FOR TEACHER
 Route::middleware(['auth:teacher', 'role:teacher'])->group(function () {
  
+    Route::get('/teacher_profile', [TeacherController::class, 'getAllTeachers'])->name('teacher_profile.show');
+
     Route::get('/assign_subjects', [SubjectController::class, 'showSubjects'])->name('assignSubject.display');
     Route::post('/handle_assignment', [EnrolledSubjectController::class, 'handleAssignment'])->name('handle_assignment');
 

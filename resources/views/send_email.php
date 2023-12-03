@@ -25,7 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Send a response back to the client
     if ($success) {
-        echo 'Email sent successfully.';
+          // Use JavaScript to show an alert, clear the form, and optionally reload the page
+          echo '<script>';
+          echo 'alert("Email sent successfully.");';
+        //   echo 'document.getElementById("name").value = "";';
+          // Uncomment the next line if you want to reload the page after sending the email
+          echo 'window.location.reload();';
+          echo '</script>';
     } else {
         echo 'Error sending email.';
     }

@@ -85,6 +85,13 @@
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;
+  
+}
+
+@media screen and (max-width: 600px) {
+  .modal-content {
+    width: 90%;
+  }
 }
 </style>
 <body>

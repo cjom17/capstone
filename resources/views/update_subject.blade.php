@@ -149,7 +149,12 @@
 						@endauth
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+				
+						<a class="dropdown-item" href="/profile">
+							<i class="dw dw-user1"></i> Profile
+						</a>
+				
+			
 						<!-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> -->
 						<a class="dropdown-item" href="{{ route('logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
@@ -236,7 +241,7 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/adminDashboard">
-				<img src="{{ asset ('images/logo3.PNG') }}" alt="" class="light-logo">
+			<img src="/images/logo3.PNG" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -300,12 +305,12 @@
 
 					<li>
 						<a href="/manage_gradelvl" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-lines"></span><span class="mtext" href=>Grade Level</span>
+                        <span class="micon dw dw-bar-chart"></span><span class="mtext" href=>Grade Level</span>
 						</a>
 					</li>
 					<li>
 						<a href="/manage_sections" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-sections"></span><span class="mtext" href=>Section</span>
+                        <span class="micon dw dw-menu"></span><span class="mtext" href=>Section</span>
 						</a>
 					</li>
 				</ul>
