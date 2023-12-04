@@ -304,12 +304,12 @@
 
 					<li>
 						<a href="/manage_gradelvl" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-lines"></span><span class="mtext" href=>Grade Level</span>
+                        <span class="micon dw dw-bar-chart"></span><span class="mtext" href=>Grade Level</span>
 						</a>
 					</li>
 					<li>
 						<a href="/manage_sections" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-sections"></span><span class="mtext" href=>Section</span>
+                        <span class="micon dw dw-menu"></span><span class="mtext" href=>Section</span>
 						</a>
 					</li>
 				</ul>

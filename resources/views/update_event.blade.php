@@ -409,6 +409,12 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<label for="event_people" class="col-sm-2 col-form-label">Who are the persons involved</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control" name="event_people" id="event_people" placeholder="Enter the persons involved for this event." value="{{ $event->event_place }}">
+				</div>
+			</div>
+			<div class="form-group row">
 				<label for="event_desc" class="col-sm-2 col-form-label">Event Description</label>
 				<div class="col-sm-10">
 				<textarea class="form-control" name="event_desc" id="event_desc" placeholder="Enter the event description here...">{{ $event->event_desc}}</textarea>

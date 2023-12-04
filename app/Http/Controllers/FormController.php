@@ -25,9 +25,9 @@ class FormController extends Controller
     {
         // Assuming your model is named Form and it has a 'form_type' field
         $enrollmentForms = Form::where('form_type', 'Enrollment')->get();
-        $requirementForms = Form::where('form_type', 'Requirements')->get();
+        $downloadableForms = Form::where('form_type', 'Downloadable')->get();
 
-        return view('admission', compact('enrollmentForms', 'requirementForms'));
+        return view('admission', compact('enrollmentForms', 'downloadableForms'));
     }
 
 
@@ -82,7 +82,7 @@ class FormController extends Controller
         'form_file' => 'required|mimes:pdf,doc,docx|max:10240',
         'form_name' => 'required|string',
         'form_desc' => 'required|string',
-        'form_type' => 'required|in:Enrollment,Requirements',
+        'form_type' => 'required|in:Enrollment,Downloadable',
     ]);
 
     $adminId = Auth::id();
@@ -128,7 +128,7 @@ class FormController extends Controller
     $request->validate([
         'form_name' => 'required|string',
         'form_desc' => 'required|string',
-        'form_type' => 'required|in:Enrollment,Requirements',
+        'form_type' => 'required|in:Enrollment,Downloadable',
     ]);
 
     // Retrieve the form by its ID

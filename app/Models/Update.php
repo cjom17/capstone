@@ -13,7 +13,9 @@ class Update extends Model
         'admin_id',
         'update_image',
         'update_title', // Fullname
-        'update_desc', // Position
+        'update_desc', 
+        'update_people', 
+
         'update_date', // Gender
         'update_place', // Gender
         'date_uploaded', // Date of Birth

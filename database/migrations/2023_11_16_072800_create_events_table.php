@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('event_image')->nullable();
             $table->string('event_title');
             $table->string('event_place')->nullable();  
+            $table->string('event_people')->nullable();  
             $table->text('event_desc');  
             $table->date('event_date'); 
             $table->date('date_uploaded'); 

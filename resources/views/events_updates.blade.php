@@ -61,6 +61,7 @@
                         <h3 class="event-title">{{ $event->event_title }}</h3>
                         <p class="event-date">Date: {{ \Carbon\Carbon::parse($event->event_date)->format('F j, Y') }}</p>
                         <p class="event-date">Where: {{ $event->event_place }}</p>
+                        <p class="event-date">Where: {{ $event->event_people }}</p>
 
                         <p class="event-description">{{ $event->event_desc }}</p>
                         <button class="read-more-button">Read More</button>
@@ -94,6 +95,8 @@
                 <h3 class="update-title">{{ $update->update_title }}</h3>
                         <p class="update-date">Date: {{ \Carbon\Carbon::parse($update->update_date)->format('F j, Y') }}</p>
                         <p class="update-date">Where: {{ $update->update_place }}</p>
+                        <p class="update-date">Where: {{ $update->update_people }}</p>
+
 
                         <p class="update-description">{{ $update->update_desc }}</p>
                     <button class="read-more-button">Read More</button>
@@ -196,6 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h3 class="event-title">${event.event_title}</h3>
                 <p class="event-date">Date: ${new Date(event.event_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
                 <p class="event-date">${event.event_place}</p>
+                <p class="event-date">${event.event_people}</p>
 
                 <p class="event-description">${event.event_desc}</p>
                 <button class="read-more-button">Read More</button>
@@ -258,6 +262,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h3 class="update-title">${update.update_title}</h3>
                 <p class="update-date">Date: ${new Date(update.update_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
                 <p class="update-date">${update.update_place}</p>
+                <p class="update-date">${update.update_people}</p>
                 <p class="update-description">${update.update_desc}</p>
                 <button class="read-more-button">Read More</button>
             </div>

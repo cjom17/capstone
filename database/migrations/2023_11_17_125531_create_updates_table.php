@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('update_image')->nullable();
             $table->string('update_title');
             $table->string('update_place')->nullable();
+            $table->string('update_people')->nullable();
             $table->text('update_desc');  
             $table->date('update_date'); 
             $table->date('date_uploaded'); 

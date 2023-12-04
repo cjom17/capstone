@@ -43,11 +43,11 @@
             @endif
         </div>
         <div class="form-card form-right-card">
-            <h2>Requirements Forms</h2>
-            @if($requirementForms->isEmpty())
-                <p>No requirement forms available at the moment.</p>
+            <h2>Dowloadable Forms</h2>
+            @if($downloadableForms->isEmpty())
+                <p>No downloadable forms available at the moment.</p>
             @else
-                @foreach($requirementForms as $form)
+                @foreach($downloadableForms as $form)
                     <div class="form-section">
                         <p>{{ $form->form_name }}</p>
                         <a href="{{ route('download.form', ['formType' => $form->form_type]) }}" class="download-button" target="_blank">Download Now</a>

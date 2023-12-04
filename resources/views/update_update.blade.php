@@ -397,11 +397,20 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="update_place" class="col-sm-2 col-form-label">Update Description</label>
-						<div class="col-sm-10">
-						<textarea class="form-control" name="update_place" id="update_place" placeholder="Enter the update place here...">{{ $update->update_place }}</textarea>
+						<label for="update_place" class="col-sm-2 col-form-label">Update Place</label>
+						<div class="col-sm-10"> 
+						<input type="text" class="form-control" name="update_place" id="update_place" placeholder="Enter the update place here" value="{{ $update->update_place }}">
 						</div>
 					</div>
+
+					<div class="form-group row">
+						<label for="update_people" class="col-sm-2 col-form-label">Who are the persons involved</label>
+						<div class="col-sm-10"> 
+						<input type="text" class="form-control" name="update_people" id="update_people" placeholder="Enter the update place here" value="{{ $update->update_people }}">
+						</div>
+					</div>
+			
+				
 					<div class="form-group row">
 						<label for="event_desc" class="col-sm-2 col-form-label">Update Description</label>
 						<div class="col-sm-10">

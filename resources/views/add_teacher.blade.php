@@ -407,7 +407,7 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4 col-sm-12">
+				<div class="col-md-6 col-sm-12">
 					<label>ID number: </label>
 					<input type="text" id="id_number" name="id_number" class="form-control">	
 				</div>

@@ -367,6 +367,8 @@
 						<th class="datatable-nosort">Event Description</th>
 						<th class="datatable-nosort">Event Place</th>
 						<th class="datatable-nosort">Event Date</th>
+						<th class="datatable-nosort">Who</th>
+
 						<th class="datatable-nosort">Action</th>
 					</tr>
 				</thead>
@@ -381,6 +383,8 @@
 							</td>
 							<td>{{ $event->event_desc }}</td>
 							<td>{{ $event->event_place }}</td>
+							<td>{{ $event->event_people }}</td>
+
 							<td>{{ $event->event_date }}</td>
 							<td>
 								<div class="dropdown">

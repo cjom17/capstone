@@ -364,6 +364,8 @@
 						<th class="datatable-nosort">Update Description</th>
 						<th class="datatable-nosort">Update Place</th>
 						<th class="datatable-nosort">Update Date</th>
+						<th class="datatable-nosort">Who</th>
+
 						<th class="datatable-nosort">Date Uploaded</th>
 
 						<th class="datatable-nosort">Action</th>
@@ -382,6 +384,8 @@
 							<td>{{ $update->update_place }}</td>
 
 							<td>{{ $update->update_date }}</td>
+							<td>{{ $update->update_people }}</td>
+
 
 							<td>{{ $update->date_uploaded }}</td>
 

@@ -403,7 +403,7 @@
 							<select class="custom-select form-control" name="form_type" id="form_type">
 								<option value="" selected disabled>Select Form Type</option>
 								<option >Enrollment</option>
-								<option >Requirements</option>
+								<option >Downloadable</option>
 							</select>
 						</div>
 				</div>

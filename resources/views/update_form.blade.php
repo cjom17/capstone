@@ -405,7 +405,7 @@
 							<select class="custom-select form-control" name="form_type" id="form_type">
 							<option value="{{ $form->form_type }}" selected>{{ ucfirst($form->form_type) }}</option>
 								<option >Enrollment</option>
-								<option >Requirements</option>
+								<option >Downloadable</option>
 							</select>
 						</div>
 				</div>

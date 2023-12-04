@@ -239,8 +239,7 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/adminDashboard">
-				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-				<img src="images/logo3.PNG" alt="" class="light-logo">
+				<img src="/images/logo3.PNG" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -396,6 +395,12 @@
 				<label for="event_place" class="col-sm-2 col-form-label">Update Place</label>
 				<div class="col-sm-10"> 
 				<input type="text" class="form-control" name="update_place" id="update_place" placeholder="Enter the update place here">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="update_people" class="col-sm-2 col-form-label">Who are the persons involved</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control" name="update_people" id="update_people" placeholder="Enter the person involve for this update here">
 				</div>
 			</div>
 			<div class="form-group row">

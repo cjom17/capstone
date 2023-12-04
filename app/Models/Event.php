@@ -15,6 +15,7 @@ class Event extends Model
         'event_image',
         'event_title',
         'event_desc', 
+        'event_people', 
         'event_place', 
         'event_date', 
         'date_uploaded', 
