@@ -213,8 +213,10 @@ class EnrolledSubjectController extends Controller
     
         // Get the LRN from the student model
         $lrn = $parent->student_lrn;
-        $studentFname = $parent->f_name;
-        $studentLname = $parent->l_name;
+
+        $studentCred = Student::where('student_lrn', $lrn )->first();
+        $studentFname = $studentCred->f_name;
+        $studentLname = $studentCred->l_name;
 
         // Fetch enrolled subjects for the specific student
         $enrolledSubjects = EnrolledSubject::where('student_lrn', $lrn)->get();
