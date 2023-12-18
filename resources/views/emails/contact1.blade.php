@@ -8,13 +8,13 @@
     <title>Document</title>
 </head>
 <body>
-# Contact Form Submission
+<br>
 
-**Name:** {{ $formData['name'] }}
-
-**Email:** {{ $formData['email'] }}
-
-**Message:**
+Name: {{ $formData['name'] }}
+<br>
+Email: {{ $formData['email'] }}
+<br>
+Message:
 {{ $formData['message'] }}
 </body>
 </html>

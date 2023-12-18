@@ -27,7 +27,7 @@
                         <h2>Commitment</h2>
                         <h2>Excellence</h2>
                     </div>
-                    <a href="#" class="landing-read-more-button">Read More</a>
+                    <a href="/about" class="landing-read-more-button">Read More</a>
                 </div>
             </div>
         </div>

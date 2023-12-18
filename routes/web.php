@@ -14,6 +14,9 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EnrolledSubjectController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\TeacherForgotPasswordController;
+
 
 
 
@@ -294,3 +297,17 @@ Route::post('/send-email', [ContactController::class, 'sendEmail'])->name('send-
 
 Route::get('/admission', [FormController::class, 'showForms'])->name('forms.show');
 Route::get('/download-form/{formType}', [FormController::class, 'downloadForm'])->name('download.form');
+
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPassword'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('password.update');
+Route::get('resetpassword/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+
+// for teacher
+Route::get('/teacher-forgot-password', [TeacherForgotPasswordController::class, 'showForgotPasswordTeacher'])->name('teacher.password.request');
+Route::get('teacherresetpassword/{token}', [TeacherForgotPasswordController::class, 'showResetPasswordFormTeacher'])->name('teacher.reset.password.get');
+Route::get('/reset-password/{token}', [TeacherForgotPasswordController::class, 'showResetPasswordFormTeacher'])->name('teacher.password.reset');
+Route::post('/forgot-password-teacher', [TeacherForgotPasswordController::class, 'sendResetLinkEmailTeacher'])->name('teacher.password.email');
+Route::post('/teacher-reset-password', [TeacherForgotPasswordController::class, 'submitResetPasswordFormTeacher'])->name('teacher.password.update');

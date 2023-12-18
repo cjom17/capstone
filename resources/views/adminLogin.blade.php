@@ -93,7 +93,7 @@
 									</div>
 		            </div> -->
 		        </form>
-		          <!-- <p class="text-center">Don't have an account yet? <a data-toggle="tab" href="#signup" style="color: #11CC72;">Sign Up</a></p> -->
+		          <p class="text-center">Lost your account? <a data-toggle="tab" href="{{ route('password.request') }}" style="color: #11CC72;">Forgot Password</a></p>
 		        </div>
 		      </div>
 				</div>
