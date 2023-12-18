@@ -366,8 +366,8 @@
 						<th class="datatable-nosort">Event Title</th>
 						<th class="datatable-nosort">Event Description</th>
 						<th class="datatable-nosort">Event Place</th>
-						<th class="datatable-nosort">Event Date</th>
 						<th class="datatable-nosort">Who</th>
+						<th class="datatable-nosort">Event Date</th>
 
 						<th class="datatable-nosort">Action</th>
 					</tr>
